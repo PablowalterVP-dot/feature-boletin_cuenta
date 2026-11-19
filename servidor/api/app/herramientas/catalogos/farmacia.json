@@ -1,0 +1,426 @@
+{
+  "_nota": "Generado por servidor/scripts/exportar-catalogo-farmacia.mjs desde la definición del bot. No se edita a mano.",
+  "version": "FAR-W1",
+  "hoja": "Informe mensual (Word)",
+  "cuadros": [
+    {
+      "codigo": "f1",
+      "numero": 1,
+      "titulo": "Atenciones del mes",
+      "subtitulo": "Por tipo de financiamiento: SIS, convenios, programas, boletas y otros",
+      "casillas": [
+        {
+          "codigo": "f1.sis.hosp",
+          "fila": "sis.hosp",
+          "nombre": "SIS · Hospitalización",
+          "etiquetas": [
+            "Hospitalización"
+          ]
+        },
+        {
+          "codigo": "f1.sis.emerg",
+          "fila": "sis.emerg",
+          "nombre": "SIS · Emergencia",
+          "etiquetas": [
+            "Emergencia"
+          ]
+        },
+        {
+          "codigo": "f1.sis.ce",
+          "fila": "sis.ce",
+          "nombre": "SIS · Consulta externa",
+          "etiquetas": [
+            "Consulta externa"
+          ]
+        },
+        {
+          "codigo": "f1.sis.hemodialisis",
+          "fila": "sis.hemodialisis",
+          "nombre": "SIS · Hemodiálisis",
+          "etiquetas": [
+            "Hemodiálisis"
+          ]
+        },
+        {
+          "codigo": "f1.sis.oncologia",
+          "fila": "sis.oncologia",
+          "nombre": "SIS · Oncología",
+          "etiquetas": [
+            "Oncología"
+          ]
+        },
+        {
+          "codigo": "f1.convenio.emerg",
+          "fila": "convenio.emerg",
+          "nombre": "Convenios · Emergencia",
+          "etiquetas": [
+            "Convenios",
+            "Emergencia"
+          ]
+        },
+        {
+          "codigo": "f1.convenio.hosp",
+          "fila": "convenio.hosp",
+          "nombre": "Convenios · Hospitalizados",
+          "etiquetas": [
+            "Convenios",
+            "Hospitalizados"
+          ]
+        },
+        {
+          "codigo": "f1.convenio.consultorio",
+          "fila": "convenio.consultorio",
+          "nombre": "Convenios · Consultorio",
+          "etiquetas": [
+            "Convenios",
+            "Consultorio"
+          ]
+        },
+        {
+          "codigo": "f1.otros.programas",
+          "fila": "otros.programas",
+          "nombre": "Programas",
+          "etiquetas": [
+            "Programas"
+          ]
+        },
+        {
+          "codigo": "f1.otros.boletas",
+          "fila": "otros.boletas",
+          "nombre": "Boletas de venta",
+          "etiquetas": [
+            "Boletas de venta"
+          ]
+        },
+        {
+          "codigo": "f1.otros.credito",
+          "fila": "otros.credito",
+          "nombre": "Crédito personal",
+          "etiquetas": [
+            "Crédito personal"
+          ]
+        },
+        {
+          "codigo": "f1.otros.defensa",
+          "fila": "otros.defensa",
+          "nombre": "Defensa Nacional",
+          "etiquetas": [
+            "Defensa Nacional"
+          ]
+        },
+        {
+          "codigo": "f1.otros.insolvencias",
+          "fila": "otros.insolvencias",
+          "nombre": "Insolvencias",
+          "etiquetas": [
+            "Insolvencias"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "f2",
+      "numero": 2,
+      "titulo": "Sala de Operaciones",
+      "subtitulo": "Atenciones a hospitalizados por servicio, más convenios",
+      "casillas": [
+        {
+          "codigo": "f2.hospitalizados.fila1.mater",
+          "fila": "hospitalizados.fila1.mater",
+          "nombre": "Sala de Operaciones · Fila 1 · MATER",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MATER"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila1.ginec",
+          "fila": "hospitalizados.fila1.ginec",
+          "nombre": "Sala de Operaciones · Fila 1 · GINEC",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "GINEC"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila1.ciru",
+          "fila": "hospitalizados.fila1.ciru",
+          "nombre": "Sala de Operaciones · Fila 1 · CIRU",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CIRU"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila1.medi",
+          "fila": "hospitalizados.fila1.medi",
+          "nombre": "Sala de Operaciones · Fila 1 · MEDI",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MEDI"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila1.pedia",
+          "fila": "hospitalizados.fila1.pedia",
+          "nombre": "Sala de Operaciones · Fila 1 · PEDIA",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "PEDIA"
+          ]
+        },
+        {
+          "codigo": "f2.convenios.fila1",
+          "fila": "convenios.fila1",
+          "nombre": "Sala de Operaciones · Fila 1 · Convenios",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CONVENIOS"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila2.mater",
+          "fila": "hospitalizados.fila2.mater",
+          "nombre": "Sala de Operaciones · Fila 2 · MATER",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MATER"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila2.ginec",
+          "fila": "hospitalizados.fila2.ginec",
+          "nombre": "Sala de Operaciones · Fila 2 · GINEC",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "GINEC"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila2.ciru",
+          "fila": "hospitalizados.fila2.ciru",
+          "nombre": "Sala de Operaciones · Fila 2 · CIRU",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CIRU"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila2.medi",
+          "fila": "hospitalizados.fila2.medi",
+          "nombre": "Sala de Operaciones · Fila 2 · MEDI",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MEDI"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila2.pedia",
+          "fila": "hospitalizados.fila2.pedia",
+          "nombre": "Sala de Operaciones · Fila 2 · PEDIA",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "PEDIA"
+          ]
+        },
+        {
+          "codigo": "f2.convenios.fila2",
+          "fila": "convenios.fila2",
+          "nombre": "Sala de Operaciones · Fila 2 · Convenios",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CONVENIOS"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila3.mater",
+          "fila": "hospitalizados.fila3.mater",
+          "nombre": "Sala de Operaciones · Fila 3 · MATER",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MATER"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila3.ginec",
+          "fila": "hospitalizados.fila3.ginec",
+          "nombre": "Sala de Operaciones · Fila 3 · GINEC",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "GINEC"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila3.ciru",
+          "fila": "hospitalizados.fila3.ciru",
+          "nombre": "Sala de Operaciones · Fila 3 · CIRU",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CIRU"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila3.medi",
+          "fila": "hospitalizados.fila3.medi",
+          "nombre": "Sala de Operaciones · Fila 3 · MEDI",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MEDI"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila3.pedia",
+          "fila": "hospitalizados.fila3.pedia",
+          "nombre": "Sala de Operaciones · Fila 3 · PEDIA",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "PEDIA"
+          ]
+        },
+        {
+          "codigo": "f2.convenios.fila3",
+          "fila": "convenios.fila3",
+          "nombre": "Sala de Operaciones · Fila 3 · Convenios",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CONVENIOS"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila4.mater",
+          "fila": "hospitalizados.fila4.mater",
+          "nombre": "Sala de Operaciones · Fila 4 · MATER",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MATER"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila4.ginec",
+          "fila": "hospitalizados.fila4.ginec",
+          "nombre": "Sala de Operaciones · Fila 4 · GINEC",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "GINEC"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila4.ciru",
+          "fila": "hospitalizados.fila4.ciru",
+          "nombre": "Sala de Operaciones · Fila 4 · CIRU",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CIRU"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila4.medi",
+          "fila": "hospitalizados.fila4.medi",
+          "nombre": "Sala de Operaciones · Fila 4 · MEDI",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "MEDI"
+          ]
+        },
+        {
+          "codigo": "f2.hospitalizados.fila4.pedia",
+          "fila": "hospitalizados.fila4.pedia",
+          "nombre": "Sala de Operaciones · Fila 4 · PEDIA",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "PEDIA"
+          ]
+        },
+        {
+          "codigo": "f2.convenios.fila4",
+          "fila": "convenios.fila4",
+          "nombre": "Sala de Operaciones · Fila 4 · Convenios",
+          "etiquetas": [
+            "FARMACIA SALA DE OPERACIONES",
+            "CONVENIOS"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "f3",
+      "numero": 3,
+      "titulo": "Consultorios externos",
+      "subtitulo": "Consultas SIS y convenios",
+      "casillas": [
+        {
+          "codigo": "f3.consultas.fila1",
+          "fila": "consultas.fila1",
+          "nombre": "Consultorios externos · Fila 1 · Consultas",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONSULTAS EXTERNAS"
+          ]
+        },
+        {
+          "codigo": "f3.convenios.fila1",
+          "fila": "convenios.fila1",
+          "nombre": "Consultorios externos · Fila 1 · Convenios",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONVENIOS"
+          ]
+        },
+        {
+          "codigo": "f3.consultas.fila2",
+          "fila": "consultas.fila2",
+          "nombre": "Consultorios externos · Fila 2 · Consultas",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONSULTAS EXTERNAS"
+          ]
+        },
+        {
+          "codigo": "f3.convenios.fila2",
+          "fila": "convenios.fila2",
+          "nombre": "Consultorios externos · Fila 2 · Convenios",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONVENIOS"
+          ]
+        },
+        {
+          "codigo": "f3.consultas.fila3",
+          "fila": "consultas.fila3",
+          "nombre": "Consultorios externos · Fila 3 · Consultas",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONSULTAS EXTERNAS"
+          ]
+        },
+        {
+          "codigo": "f3.convenios.fila3",
+          "fila": "convenios.fila3",
+          "nombre": "Consultorios externos · Fila 3 · Convenios",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONVENIOS"
+          ]
+        },
+        {
+          "codigo": "f3.consultas.fila4",
+          "fila": "consultas.fila4",
+          "nombre": "Consultorios externos · Fila 4 · Consultas",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONSULTAS EXTERNAS"
+          ]
+        },
+        {
+          "codigo": "f3.convenios.fila4",
+          "fila": "convenios.fila4",
+          "nombre": "Consultorios externos · Fila 4 · Convenios",
+          "etiquetas": [
+            "FARMACIA CONSULTORIOS EXTERNOS",
+            "CONVENIOS"
+          ]
+        }
+      ]
+    }
+  ]
+}

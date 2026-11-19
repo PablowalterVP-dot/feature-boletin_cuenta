@@ -1,0 +1,25 @@
+{
+  "name": "bot-validador-hrl",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Bot que lee y valida el Excel o el Word de los reportes mensuales de las áreas del HRL. Sin dependencias.",
+  "type": "module",
+  "main": "./src/motor.js",
+  "scripts": {
+    "start": "node src/servidor.js",
+    "prueba": "node pruebas/prueba.mjs && node pruebas/laboratorio.mjs && node pruebas/lavanderia.mjs && node pruebas/farmacia.mjs && node pruebas/epidemiologia.mjs && node pruebas/imagenes.mjs && node pruebas/nefrologia.mjs && node pruebas/ginecologia.mjs && node pruebas/centro-quirurgico.mjs && node pruebas/correccion.mjs",
+    "prueba:nutricion": "node pruebas/prueba.mjs",
+    "prueba:lab": "node pruebas/laboratorio.mjs",
+    "prueba:lavanderia": "node pruebas/lavanderia.mjs",
+    "prueba:farmacia": "node pruebas/farmacia.mjs",
+    "prueba:epidemiologia": "node pruebas/epidemiologia.mjs",
+    "prueba:imagenes": "node pruebas/imagenes.mjs",
+    "prueba:nefrologia": "node pruebas/nefrologia.mjs",
+    "prueba:ginecologia": "node pruebas/ginecologia.mjs",
+    "prueba:cqx": "node pruebas/centro-quirurgico.mjs",
+    "prueba:correccion": "node pruebas/correccion.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

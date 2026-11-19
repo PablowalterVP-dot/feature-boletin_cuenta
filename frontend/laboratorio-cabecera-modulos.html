@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cabecera por módulo</title>
+  <link rel="stylesheet" href="/node_modules/@hrl/core-ui/tokens.css" />
+  <style>
+    /* Página de pruebas, fuera de la aplicación. Ningún color escrito a mano:
+       los degradados mezclan tokens del kit. */
+    body { margin: 0; }
+    .lab { min-height: 100vh; background: var(--bg-app); color: var(--text-primary); font-family: var(--font-sans); font-size: var(--text-base); }
+    /* Texto claro sobre el degradado: el blanco de la mascota, que no cambia
+       con el tema. Al implementar, el kit necesita un token propio. */
+    .lab { --cab-texto: var(--mascota-blanco); }
+
+    .lab__barra {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4);
+      padding: var(--space-3) var(--space-5);
+      background: var(--surface); border-bottom: 1px solid var(--border-soft);
+    }
+    .lab__barra h1 { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-bold); }
+    .lab__barra p { margin: 0; flex: 1 1 300px; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .lab__grupo { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); }
+    .lab__etiqueta { margin-right: var(--space-1); font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--muted-foreground); }
+    .lab__toggle {
+      min-height: var(--touch-target); padding: 0 var(--space-3);
+      border: 1px solid var(--input-border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-primary);
+      font: inherit; font-size: var(--text-sm); font-weight: var(--weight-semibold); cursor: pointer;
+    }
+    .lab__toggle[aria-pressed='true'] { background: var(--primary); border-color: var(--primary); color: var(--primary-foreground); }
+    .lab__toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+    .lab__cuerpo { display: grid; gap: var(--space-6); max-width: 1180px; margin: 0 auto; padding: var(--space-6) var(--space-5); }
+    .lab--movil .lab__cuerpo { max-width: 420px; }
+
+    .rol { display: grid; gap: var(--space-4); }
+    .rol > h2 { margin: 0; padding-bottom: var(--space-2); border-bottom: 1px solid var(--border-soft); font-size: var(--text-xl); font-weight: var(--weight-bold); }
+    .modulo { display: grid; gap: var(--space-2); }
+    .modulo h3 { margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); }
+    .modulo__nota { margin: 0; max-width: 80ch; font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.5; }
+    .caso__rotulo { margin: var(--space-1) 0 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted-foreground); }
+
+    /* ---------------------------------------------------------- la cabecera
+
+       Un lado: migas, el título y debajo la fecha completa y la hora (en
+       Inicio) o la descripción del módulo (en los demás). El otro: el estado
+       dicho una vez —etiqueta y detalle— y los botones. Dr. Mochi, solo en
+       Inicio. */
+
+    .cab {
+      position: relative; isolation: isolate; overflow: hidden;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5);
+      border-radius: var(--radius-card); color: var(--cab-texto);
+      padding: var(--space-6) var(--space-6) calc(var(--space-6) + 30px);
+      background: linear-gradient(110deg, var(--brand-deep) 0%, var(--brand) 100%);
+    }
+    .cab__ondas { position: absolute; inset: auto 0 0 0; z-index: -1; width: 100%; height: 72px; }
+    .cab__ondas path:nth-child(1) { fill: color-mix(in srgb, var(--mascota-cuerpo) 35%, transparent); }
+    .cab__ondas path:nth-child(2) { fill: color-mix(in srgb, var(--mascota-cuerpo-claro) 22%, transparent); }
+    .cab__ondas path:nth-child(3) { fill: color-mix(in srgb, var(--mascota-estetoscopio) 70%, transparent); }
+
+    .cab__titulo { flex: 1 1 340px; min-width: 0; }
+    .cab__migas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); margin: 0 0 var(--space-2); font-size: var(--text-sm); font-weight: var(--weight-medium); opacity: 0.86; }
+    .cab__migas [aria-current] { font-weight: var(--weight-bold); opacity: 1; }
+    .cab h4 { margin: 0; font-size: var(--text-2xl); font-weight: var(--weight-bold); letter-spacing: -0.03em; line-height: 1.15; }
+    .cab__bajada { margin: var(--space-1) 0 0; max-width: 60ch; font-size: var(--text-base); line-height: 1.45; opacity: 0.88; }
+    .cab__hora { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    .cab__estado-lado { flex: 0 1 460px; display: grid; gap: var(--space-3); justify-items: end; text-align: right; }
+    .lab--movil .cab__estado-lado { justify-items: start; text-align: left; }
+    .cab__acciones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+    .lab--movil .cab__acciones { justify-content: flex-start; }
+    .cab__estado { display: grid; gap: 2px; }
+    .cab__etiqueta { display: inline-flex; align-items: center; justify-content: flex-end; gap: var(--space-2); margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); }
+    .lab--movil .cab__etiqueta { justify-content: flex-start; }
+    .cab__detalle { margin: 0; font-size: var(--text-sm); line-height: 1.45; opacity: 0.9; }
+    .cab__mochi { display: flex; align-items: center; gap: var(--space-3); }
+
+    /* El último día: la etiqueta va sobre amarillo con texto oscuro. Dice
+       «Vence hoy»: el color no es la única señal. */
+    .cab--urgente .cab__etiqueta {
+      justify-self: end; padding: 2px var(--space-3); border-radius: var(--radius-full);
+      background: var(--warning); color: var(--mascota-tinta);
+    }
+    .lab--movil .cab--urgente .cab__etiqueta { justify-self: start; }
+
+    /* Botones sobre el degradado: el principal en blanco, el secundario con
+       borde claro. */
+    .cab .hrl-btn--cta { background: var(--cab-texto); border-color: var(--cab-texto); color: var(--brand-deep); }
+    .cab .hrl-btn--ghost {
+      background: transparent; color: var(--cab-texto);
+      border: 1px solid color-mix(in srgb, var(--cab-texto) 55%, transparent);
+    }
+    .cab .hrl-btn--ghost:hover { background: color-mix(in srgb, var(--cab-texto) 12%, transparent); }
+  </style>
+</head>
+<body>
+  <div class="lab hrl-nuevo" id="lab">
+    <header class="lab__barra">
+      <h1>Cabecera «Ondas» en cada módulo</h1>
+      <p>Inicio con Dr. Mochi y la hora; el resto, solo información y botones. Los módulos que dependen del plazo cambian con la fecha simulada.</p>
+      <div class="lab__grupo" role="group" aria-label="Fecha simulada" id="fechas">
+        <span class="lab__etiqueta">Hoy</span>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-03" aria-pressed="true">3 oct · dentro</button>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-05" aria-pressed="false">5 oct · último día</button>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-18" aria-pressed="false">18 oct · fuera</button>
+        <button type="button" class="lab__toggle" id="enviado" aria-pressed="false">Nutrición ya envió</button>
+      </div>
+      <div class="lab__grupo">
+        <button type="button" class="lab__toggle" id="tema" aria-pressed="false">Modo oscuro</button>
+        <button type="button" class="lab__toggle" id="movil" aria-pressed="false">Teléfono</button>
+      </div>
+    </header>
+    <main class="lab__cuerpo" id="roles"></main>
+  </div>
+
+  <script type="module">
+    import { createElement as h } from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { Button, Icon, IconSprite, Mascot } from '@hrl/core-ui';
+
+    /* ── La regla del plazo (al implementar, va a dominio/periodos.js) ── */
+    const ABRE = 1;
+    const CIERRA = 5;
+    const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    const fecha = (a, m, d) => new Date(a, m - 1, d);
+    const diasEntre = (x, y) => Math.round((y - x) / 86400000);
+    const cap = (t) => t[0].toUpperCase() + t.slice(1);
+    const fechaLarga = (f) => cap(`${DIAS[f.getDay()]}, ${f.getDate()} de ${MESES[f.getMonth()]} de ${f.getFullYear()}`);
+    const diaYFecha = (f) => `${DIAS[f.getDay()]} ${f.getDate()} de ${MESES[f.getMonth()]}`;
+    /* «3:42 p. m.»: la hora del equipo, con la fecha simulada al lado. */
+    const HORA = new Intl.DateTimeFormat('es-PE', { hour: 'numeric', minute: '2-digit', hour12: true });
+    const horaAhora = () => HORA.format(new Date());
+
+    function ventana(hoy) {
+      const a = hoy.getFullYear(), m = hoy.getMonth() + 1, d = hoy.getDate();
+      if (d >= ABRE && d <= CIERRA) {
+        const pm = m === 1 ? 12 : m - 1, pa = m === 1 ? a - 1 : a;
+        return { abierta: true, mes: MESES[pm - 1], anio: pa, abre: fecha(a, m, ABRE), cierra: fecha(a, m, CIERRA), quedan: CIERRA - d, dia: d };
+      }
+      const sm = m === 12 ? 1 : m + 1, sa = m === 12 ? a + 1 : a;
+      return { abierta: false, mes: MESES[m - 1], anio: a, abre: fecha(sa, sm, ABRE), cierra: fecha(sa, sm, CIERRA), faltan: diasEntre(hoy, fecha(sa, sm, ABRE)), dia: d };
+    }
+    const quedan = (v) => (v.quedan === 1 ? 'queda 1 día' : `quedan ${v.quedan} días`);
+    const faltan = (v) => (v.faltan === 1 ? 'falta 1 día' : `faltan ${v.faltan} días`);
+
+    /* El momento: qué ventana corre y en qué está Nutrición. Todos los módulos
+       leen de aquí, así que dicen lo mismo. */
+    function momento(hoyIso, enviado) {
+      const hoy = new Date(`${hoyIso}T12:00`);
+      const v = ventana(hoy);
+      const situacion = !v.abierta ? 'fuera' : enviado ? 'enviado' : v.quedan === 0 ? 'vence' : 'pendiente';
+      const mesAnio = `${v.mes} ${v.anio}`;
+      const enviadoEl = fecha(v.abre.getFullYear(), v.abre.getMonth() + 1, Math.max(ABRE, v.dia - 1));
+      return { hoy, v, situacion, mesAnio, enviadoEl };
+    }
+
+    /* El estado del plazo para un área: el de Inicio y el de Reporte del mes. */
+    function plazoDelArea(m) {
+      const { v } = m;
+      return {
+        pendiente: { icono: 'sh-clock', etiqueta: 'Pendiente de envío', detalle: `Reporte de ${v.mes} · hasta el ${diaYFecha(v.cierra)} (${quedan(v)})`, mascota: 'idle' },
+        vence: { icono: 'sh-warn', etiqueta: 'Vence hoy', detalle: `Reporte de ${v.mes} · último día del plazo`, mascota: 'thinking', urgente: true },
+        enviado: { icono: 'sh-ok', etiqueta: 'Enviado a Estadística', detalle: `Reporte de ${v.mes} · enviado el ${diaYFecha(m.enviadoEl)}`, mascota: 'done' },
+        fuera: { icono: 'sh-calendar', etiqueta: 'Sin envíos pendientes', detalle: `Próximo envío: ${v.mes}, del ${ABRE} al ${CIERRA} de ${MESES[v.abre.getMonth()]} (${faltan(v)})`, mascota: 'sleeping' },
+      }[m.situacion];
+    }
+
+    const B = (texto, icono, tono = 'ghost') => ({ texto, icono, tono });
+
+    /* Cada módulo: su título y descripción (los de navegacion.js), si depende
+       del plazo, y lo que dice al otro lado. Cifras del prototipo: ficticias. */
+    const ROLES = [
+      {
+        nombre: 'Área que reporta · Nutrición y Dietética',
+        ambito: 'Nutrición y Dietética',
+        modulos: [
+          {
+            id: 'inicio', label: 'Inicio', titulo: 'Departamento de Nutrición y Dietética', inicio: true, plazo: true,
+            nota: 'La variante F elegida: la fecha completa y la hora (se actualiza sola) bajo el título, y Dr. Mochi junto al estado.',
+            lado: (m) => {
+              const p = plazoDelArea(m);
+              const botones = m.situacion === 'pendiente' || m.situacion === 'vence'
+                ? [B('Subir el Excel', 'sh-upload', 'cta'), B('Llenar a mano', 'sh-pencil')]
+                : m.situacion === 'enviado'
+                  ? [B('Revisar historial de reportes', 'sh-folder', 'cta'), B('Ver la constancia', 'sh-doc')]
+                  : [B('Revisar historial de reportes', 'sh-folder', 'cta'), B('Llenar a mano', 'sh-pencil')];
+              return { ...p, botones };
+            },
+          },
+          {
+            id: 'reporte', label: 'Reporte del mes', titulo: 'Reporte del mes', bajada: 'Formatos del periodo, con sumas y validaciones cruzadas', plazo: true,
+            nota: 'El mismo plazo que Inicio, sin la mascota. Fuera del plazo no se sube el Excel: solo se puede adelantar el llenado a mano.',
+            lado: (m) => {
+              const p = plazoDelArea(m);
+              const botones = m.situacion === 'pendiente' || m.situacion === 'vence'
+                ? [B('Subir el Excel', 'sh-upload', 'cta'), B('Llenar a mano', 'sh-pencil')]
+                : m.situacion === 'enviado'
+                  ? [B('Ver la constancia', 'sh-doc', 'cta'), B('Revisar historial', 'sh-folder')]
+                  : [B(`Llenar ${m.v.mes} a mano`, 'sh-pencil', 'cta')];
+              const detalle = m.situacion === 'fuera' ? `Se envía del ${ABRE} al ${CIERRA} de ${MESES[m.v.abre.getMonth()]}; mientras tanto puede adelantar el llenado` : p.detalle;
+              return { ...p, detalle, botones };
+            },
+          },
+          {
+            id: 'historial', label: 'Historial', titulo: 'Historial de reportes', bajada: 'Periodos anteriores, su estado, su puntualidad y sus constancias',
+            nota: 'Un resumen de lo enviado en el año y la descarga de las constancias.',
+            lado: () => ({ icono: 'sh-ok', etiqueta: '8 reportes enviados', detalle: 'Enero a agosto de 2026 · todos dentro del plazo', botones: [B('Descargar constancias', 'sh-export', 'cta')] }),
+          },
+          {
+            id: 'matriz', label: 'A quién llega', titulo: 'A quién llega mi reporte', bajada: 'Las oficinas que reciben este reporte y por qué lo necesitan',
+            nota: 'Cuántas oficinas lo reciben y cuándo; el botón explica cómo se decide la matriz.',
+            lado: () => ({ icono: 'sh-share', etiqueta: '2 oficinas lo reciben', detalle: 'Estadística y Planeamiento · en cuanto se envía', botones: [B('Cómo se decide', 'sh-info')] }),
+          },
+        ],
+      },
+      {
+        nombre: 'Oficina de Estadística',
+        ambito: 'Oficina de Estadística',
+        modulos: [
+          {
+            id: 'semaforo', label: 'Cumplimiento', titulo: 'Cumplimiento por área y periodo', bajada: 'Quién entregó, quién va tarde y qué espera revisión', plazo: true,
+            nota: 'Durante el plazo cuenta las entregas y lo que queda; fuera, el cierre del último periodo.',
+            lado: (m) => m.v.abierta
+              ? { icono: m.situacion === 'vence' ? 'sh-warn' : 'sh-traffic-light', urgente: m.situacion === 'vence', etiqueta: m.situacion === 'vence' ? 'Vence hoy' : '7 de 10 áreas entregaron', detalle: m.situacion === 'vence' ? `${cap(m.mesAnio)} · faltan 3 áreas y el plazo cierra hoy` : `${cap(m.mesAnio)} · el plazo cierra el ${diaYFecha(m.v.cierra)}`, botones: [B('Ver las que faltan', 'sh-eye', 'cta'), B('Exportar', 'sh-export')] }
+              : { icono: 'sh-traffic-light', etiqueta: '10 de 10 áreas entregaron', detalle: `${cap(MESES[(m.v.abre.getMonth() + 10) % 12])} ${m.v.anio} · plazo cerrado el 5 de ${m.v.mes}`, botones: [B('Exportar', 'sh-export', 'cta')] },
+          },
+          {
+            id: 'revision', label: 'Bandeja de reportes', titulo: 'Bandeja de reportes del mes', bajada: 'Lo que enviaron las diez áreas, para revisar y validar', plazo: true,
+            nota: 'Lo que espera revisión y la acción de abrir el siguiente.',
+            lado: (m) => m.v.abierta
+              ? { icono: 'sh-inbox', etiqueta: '4 por revisar', detalle: `${cap(m.mesAnio)} · 3 validados de 7 recibidos`, botones: [B('Revisar el siguiente', 'sh-eye', 'cta'), B('Ver todos', 'sh-table')] }
+              : { icono: 'sh-ok', etiqueta: 'Todo revisado', detalle: 'Los 10 reportes del último periodo están validados', botones: [B('Ver todos', 'sh-table', 'cta')] },
+          },
+          {
+            id: 'remision', label: 'Remisión a oficinas', titulo: 'Remisión a oficinas', bajada: 'Reportes validados que se remiten según la matriz de destinos',
+            nota: 'Cuántos están listos para remitir.',
+            lado: () => ({ icono: 'sh-share', etiqueta: '3 listos para remitir', detalle: 'Validados · cada uno va a las oficinas de su matriz', botones: [B('Remitir', 'sh-share', 'cta'), B('Ver la matriz', 'sh-table')] }),
+          },
+          {
+            id: 'diresa', label: 'Remisión a DIRESA', titulo: 'Remisión a DIRESA', bajada: 'Consolidado de servicios intermedios e indicadores de gestión hospitalaria',
+            nota: 'Su propio plazo (el 15) y cuántas áreas alimentan el consolidado.',
+            lado: () => ({ icono: 'sh-send', etiqueta: 'Plazo: jueves 15 de octubre', detalle: 'Consolidado de septiembre · 9 de 10 áreas validadas', botones: [B('Preparar la remisión', 'sh-send', 'cta')] }),
+          },
+          {
+            id: 'boletin', label: 'Boletín estadístico', titulo: 'Boletín estadístico', bajada: 'Resumen del mes, listo para imprimir o guardar en PDF',
+            nota: 'El boletín del mes y la acción de imprimirlo.',
+            lado: () => ({ icono: 'sh-bulletin', etiqueta: 'Boletín de septiembre', detalle: 'Con los 10 reportes validados', botones: [B('Imprimir o guardar en PDF', 'sh-export', 'cta')] }),
+          },
+          {
+            id: 'matriz-e', label: 'Matriz de destinos', titulo: 'Matriz de destinos', bajada: 'Qué oficina recibe el reporte de cada área, y por qué',
+            nota: 'El tamaño de la matriz y su exportación.',
+            lado: () => ({ icono: 'sh-table', etiqueta: '10 áreas · 4 oficinas', detalle: '23 envíos por periodo', botones: [B('Exportar a Excel', 'sh-export', 'cta')] }),
+          },
+        ],
+      },
+      {
+        nombre: 'Oficina receptora · Planeamiento',
+        ambito: 'Oficina de Planeamiento',
+        modulos: [
+          {
+            id: 'bandeja', label: 'Reportes recibidos', titulo: 'Reportes recibidos', bajada: 'Lo que Estadística remitió a esta oficina en el periodo',
+            nota: 'Lo nuevo desde la última visita.',
+            lado: () => ({ icono: 'sh-inbox', etiqueta: '2 reportes nuevos', detalle: 'Septiembre 2026 · Nutrición y Lavandería', botones: [B('Abrir el más reciente', 'sh-eye', 'cta'), B('Ver todos', 'sh-table')] }),
+          },
+          {
+            id: 'historial-oficina', label: 'Histórico', titulo: 'Histórico de recepción', bajada: 'Periodos anteriores de las áreas que competen a esta oficina',
+            nota: 'El total recibido en el año.',
+            lado: () => ({ icono: 'sh-clock', etiqueta: '34 reportes recibidos', detalle: 'Enero a septiembre de 2026 · de 4 áreas', botones: [B('Exportar', 'sh-export', 'cta')] }),
+          },
+          {
+            id: 'matriz-o', label: 'Matriz de destinos', titulo: 'Matriz de destinos', bajada: 'Qué áreas alimentan a esta oficina, y por qué',
+            nota: 'Cuántas áreas le envían.',
+            lado: () => ({ icono: 'sh-share', etiqueta: '4 áreas le envían', detalle: 'Nutrición, Lavandería, Imágenes y Farmacia', botones: [B('Cómo se decide', 'sh-info')] }),
+          },
+        ],
+      },
+      {
+        nombre: 'Administración',
+        ambito: 'Administración',
+        modulos: [
+          {
+            id: 'cuentas', label: 'Cuentas y roles', titulo: 'Cuentas y roles', bajada: 'Entrar como cualquier cuenta para probarla, y reiniciar los datos del prototipo',
+            nota: 'Recuerda que los datos son de prueba.',
+            lado: () => ({ icono: 'sh-people', etiqueta: '16 cuentas de prueba', detalle: 'Datos ficticios · se pueden reiniciar', botones: [B('Reiniciar los datos', 'sh-swap')] }),
+          },
+          {
+            id: 'bot', label: 'Bot validador', titulo: 'Bot validador', bajada: 'Dónde corre, qué versión es y qué reglas aplica',
+            nota: 'Si el servicio responde, y la plantilla.',
+            lado: () => ({ icono: 'sh-shield', etiqueta: 'En servicio · versión 0.2.0', detalle: 'Sabe leer Nutrición · 7 reglas', botones: [B('Descargar la plantilla', 'sh-export', 'cta')] }),
+          },
+        ],
+      },
+    ];
+
+    /* ── Marcado ── */
+    const ONDAS = '<svg class="cab__ondas" viewBox="0 0 1200 72" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C200 10 400 70 600 40 S1000 10 1200 35 V72 H0Z"/><path d="M0 52 C250 30 450 75 700 50 S1050 30 1200 50 V72 H0Z"/><path d="M0 62 C300 50 600 75 900 60 S1100 52 1200 60 V72 H0Z"/></svg>';
+    const icono = (n, t = 18) => `<span data-icono="${n}" data-tamano="${t}"></span>`;
+
+    function cabecera(rol, mod, m) {
+      const l = mod.lado(m);
+      const bajada = mod.inicio
+        ? `${fechaLarga(m.hoy)} | <span class="cab__hora" data-hora>${horaAhora()}</span>`
+        : mod.bajada;
+      const estado = `<div class="cab__estado"><p class="cab__etiqueta">${icono(l.icono)}${l.etiqueta}</p><p class="cab__detalle">${l.detalle}</p></div>`;
+      const botones = `<div class="cab__acciones">${l.botones.map((b) => `<span data-boton="${b.texto}" data-icono-boton="${b.icono}" data-tono="${b.tono}"></span>`).join('')}</div>`;
+      const lado = mod.inicio ? `<div class="cab__mochi">${estado}<span data-mascota="${l.mascota}"></span></div>${botones}` : `${estado}${botones}`;
+      return `<section class="cab${l.urgente ? ' cab--urgente' : ''}">
+        <div class="cab__titulo"><nav class="cab__migas" aria-label="Ruta de navegación"><span>${rol.ambito}</span><span aria-hidden="true">›</span><span aria-current="page">${mod.label}</span></nav><h4>${mod.titulo}</h4><p class="cab__bajada">${bajada}</p></div>
+        <div class="cab__estado-lado">${lado}</div>${ONDAS}</section>`;
+    }
+
+    const destino = document.getElementById('roles');
+    let raices = [];
+    const elegido = { fecha: '2026-10-03', enviado: false };
+
+    function pintar() {
+      raices.forEach((r) => r.unmount());
+      raices = [];
+      const m = momento(elegido.fecha, elegido.enviado);
+      destino.innerHTML = ROLES.map((rol, i) => `
+        <section class="rol" aria-labelledby="r${i}">
+          <h2 id="r${i}">${rol.nombre}</h2>
+          ${rol.modulos.map((mod) => `
+            <div class="modulo">
+              <h3>${mod.label}${mod.plazo ? ' · cambia con el plazo' : ''}</h3>
+              <p class="modulo__nota">${mod.nota}</p>
+              ${cabecera(rol, mod, m)}
+            </div>`).join('')}
+        </section>`).join('');
+
+      const montar = (nodo, el) => { const r = createRoot(nodo); r.render(el); raices.push(r); };
+      destino.querySelectorAll('[data-icono]').forEach((n) => montar(n, h(Icon, { name: n.dataset.icono, size: Number(n.dataset.tamano) })));
+      destino.querySelectorAll('[data-boton]').forEach((n) => montar(n, h(Button, { tone: n.dataset.tono, icon: n.dataset.iconoBoton }, n.dataset.boton)));
+      destino.querySelectorAll('[data-mascota]').forEach((n) => montar(n, h(Mascot, { state: n.dataset.mascota, size: 'md' })));
+    }
+
+    /* La hora se mueve sola, sin volver a pintar todo. */
+    setInterval(() => {
+      for (const n of document.querySelectorAll('[data-hora]')) n.textContent = horaAhora();
+    }, 15000);
+
+    const sprite = document.createElement('div');
+    document.body.append(sprite);
+    createRoot(sprite).render(h(IconSprite));
+
+    const botonesFecha = [...document.querySelectorAll('#fechas [data-fecha]')];
+    botonesFecha.forEach((b) => b.addEventListener('click', () => {
+      botonesFecha.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      elegido.fecha = b.dataset.fecha;
+      pintar();
+    }));
+    const enviado = document.getElementById('enviado');
+    enviado.addEventListener('click', () => {
+      elegido.enviado = !elegido.enviado;
+      enviado.setAttribute('aria-pressed', String(elegido.enviado));
+      pintar();
+    });
+
+    const raiz = document.documentElement;
+    const tema = document.getElementById('tema');
+    const fijarTema = (oscuro) => { raiz.dataset.temaHrl = oscuro ? 'oscuro' : 'claro'; tema.setAttribute('aria-pressed', String(oscuro)); };
+    tema.addEventListener('click', () => fijarTema(raiz.dataset.temaHrl !== 'oscuro'));
+    const movil = document.getElementById('movil');
+    movil.addEventListener('click', () => {
+      const activo = document.getElementById('lab').classList.toggle('lab--movil');
+      movil.setAttribute('aria-pressed', String(activo));
+    });
+
+    /* Enlace directo: ?fecha=2026-10-05&enviado=1&tema=oscuro&movil=1 */
+    const p = new URLSearchParams(location.search);
+    if (p.get('fecha')) document.querySelector(`#fechas [data-fecha="${p.get('fecha')}"]`)?.click();
+    if (p.get('enviado') === '1') enviado.click();
+    if (p.get('tema') === 'oscuro') fijarTema(true);
+    if (p.get('movil') === '1') movil.click();
+    pintar();
+  </script>
+</body>
+</html>

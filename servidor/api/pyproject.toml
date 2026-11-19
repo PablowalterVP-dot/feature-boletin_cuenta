@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reporte-estadistico-hrl-backend"
+version = "0.1.0"
+description = "API del Sistema de Reporte Estadístico del Hospital Regional de Loreto."
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.2",
+    "pydantic-settings",
+    "pyjwt",
+    "argon2-cffi",
+    "httpx",
+    # FastAPI la exige para recibir archivos por multipart (la carga del Excel).
+    "python-multipart",
+    # Windows no trae base de datos de zonas horarias: sin esto, zoneinfo no
+    # encuentra America/Lima.
+    "tzdata",
+    # SINADEF entrega sus reportes en .xls (Excel 97-2003), que no es un zip
+    # como el .xlsx: no se puede leer sin una librería. Solo la usa la carga de
+    # defunciones del módulo de indicadores de desempeño.
+    "xlrd>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["pruebas"]
+python_files = ["prueba_*.py"]
+python_functions = ["prueba_*"]
+python_classes = ["Prueba*"]
+markers = [
+    "bd: necesita una base PostgreSQL real (DATABASE_URL)",
+    "node: necesita Node en el PATH",
+]

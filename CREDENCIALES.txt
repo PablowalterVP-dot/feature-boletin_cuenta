@@ -1,0 +1,55 @@
+CREDENCIALES DE PRUEBA · Sistema de Reporte Estadístico HRL (prototipo)
+=====================================================================================
+
+Cuentas de demostración. Los nombres son ficticios y no corresponden a
+personal del hospital.
+
+Contraseña: cualquiera. El prototipo no autentica; basta con que el usuario
+exista. En el sistema real cada cuenta tendrá su contraseña y este archivo
+no existirá.
+
+La cuenta «admin» es del equipo de desarrollo: desde «Cuentas y roles» entra
+como cualquier otra cuenta, y con «Ver como…» cambia de cuenta o vuelve a
+administración.
+
+Sale de frontend/src/app/datos/usuarios.js (15 cuentas). La prueba de humo
+falla si una cuenta del código falta aquí.
+
+EQUIPO DE DESARROLLO
+-------------------------------------------------------------------------------------
+Usuario           Rol                                   Ámbito
+admin             Administración                        Todo el prototipo
+
+OFICINA DE ESTADÍSTICA
+-------------------------------------------------------------------------------------
+Usuario           Rol                                   Ámbito
+estadistica       Oficina de Estadística                Todas las áreas
+
+BOLETÍN ESTADÍSTICO
+-------------------------------------------------------------------------------------
+Usuario           Rol                                   Ámbito
+boletin           Boletín                               Boletín y panel de monitoreo
+
+ÁREAS QUE REPORTAN
+-------------------------------------------------------------------------------------
+Usuario           Rol                                   Ámbito
+farmacia          Área que reporta                      Farmacia
+nefrologia        Área que reporta                      Nefrología y Hemodiálisis
+epidemiologia     Área que reporta + Oficina receptora  Epidemiología (reporta y recibe)
+laboratorio       Área que reporta                      Laboratorio y Anatomía Patológica
+ginecologia       Área que reporta                      Gineco-Obstetricia
+centroquirurgico  Área que reporta                      Centro Quirúrgico
+lavanderia        Área que reporta                      Costura y Lavandería
+nutricion         Área que reporta                      Nutrición y Dietética
+imagenes          Área que reporta                      Diagnóstico por Imágenes
+
+OFICINA DE PLANEAMIENTO
+-------------------------------------------------------------------------------------
+Usuario           Rol                                   Ámbito
+planeamiento      Oficina de Planeamiento               Las nueve áreas · actividades operativas
+
+OFICINAS RECEPTORAS
+-------------------------------------------------------------------------------------
+Usuario           Rol                                   Ámbito
+cuerpotecnico     Oficina receptora                     Cuerpo Técnico
+direccion         Oficina receptora                     Dirección General

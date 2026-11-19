@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laboratorio de tarjetas</title>
+  <!-- Los tokens y estilos reales del kit, tal como los carga la aplicación:
+       mismas fuentes, colores, modo oscuro, insignias, botones y pasos. -->
+  <link rel="stylesheet" href="/node_modules/@hrl/core-ui/tokens.css" />
+  <!-- Y la composición de la aplicación (chips de estado, por ejemplo). -->
+  <link rel="stylesheet" href="/src/app/estilos.css" />
+  <style>
+    /* Página de pruebas, fuera de la aplicación. Ningún color escrito a mano:
+       todo sale de los tokens del kit, así que el modo oscuro funciona igual. */
+    body { margin: 0; font-family: var(--font-sans); }
+    .lab { min-height: 100vh; background: var(--bg-app); color: var(--text-primary); font-size: var(--text-base); }
+    .lab__barra {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);
+      padding: var(--space-3) var(--space-5);
+      background: var(--surface); border-bottom: 1px solid var(--border-soft);
+    }
+    .lab__barra h1 { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-bold); }
+    .lab__barra p { margin: 0; flex: 1; min-width: 240px; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .lab__botones { display: flex; gap: var(--space-2); }
+    .lab__toggle {
+      min-height: 36px; padding: 0 var(--space-3);
+      border: 1px solid var(--input-border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-primary);
+      font: inherit; font-size: var(--text-sm); font-weight: var(--weight-semibold); cursor: pointer;
+    }
+    .lab__toggle[aria-pressed='true'] { background: var(--primary); border-color: var(--primary); color: var(--primary-foreground); }
+    .lab__toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+    .lab__variantes { display: grid; gap: var(--space-6); padding: var(--space-5); max-width: 1180px; margin: 0 auto; }
+    .lab--movil .lab__variantes { max-width: 420px; }
+
+    .variante { display: grid; gap: var(--space-3); }
+    .variante__cabeza { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+    .variante__cabeza h2 { margin: 0; font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.02em; }
+    .variante__nota { margin: 0; max-width: 72ch; font-size: var(--text-base); line-height: var(--leading-normal); color: var(--muted-foreground); }
+    .variante__medidas { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+    .variante__medidas li {
+      padding: 2px var(--space-2); border-radius: var(--radius-xs);
+      background: var(--muted); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-secondary);
+    }
+
+    /* El «fondo» de la aplicación donde viven las tarjetas: cada variante fija
+       cuánto se separa la tarjeta del borde (--lienzo) y entre sí (--hueco). */
+    .lienzo {
+      display: grid; gap: var(--hueco); padding: var(--lienzo);
+      background: var(--bg-app);
+      border: 1px dashed var(--input-border); border-radius: var(--radius-sm);
+    }
+
+    /* Piezas comunes del contenido (iguales en todas las variantes). */
+    .fila { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+    .fila--entre { justify-content: space-between; }
+    .estado { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+    .chip-plazo { background: var(--warning-soft) !important; color: var(--warning-fg) !important; }
+    .vacio__texto { margin: 0; line-height: var(--leading-normal); }
+    .ico { width: 16px; height: 16px; flex: 0 0 auto; }
+    .hrl-btn svg { width: 16px; height: 16px; }
+
+    /* ============================================ 0 · Actual (referencia) */
+    .v0 { --lienzo: 32px; --hueco: var(--space-5); }
+    .v0 .tarjeta { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 24px; display: grid; gap: 16px; }
+    .v0 .tarjeta__cabeza { display: grid; grid-template-columns: 6px 1fr; column-gap: 12px; align-items: start; }
+    .v0 .tarjeta__cabeza::before { content: ''; grid-row: 1 / span 2; width: 6px; height: 22px; border-radius: 4px; background: var(--primary); }
+    .v0 .tarjeta__titulo, .v0 .tarjeta__sub { grid-column: 2; }
+    .v0 .tarjeta--vacia .tarjeta__cabeza::before { background: var(--info); }
+    .v0 .tarjeta__titulo { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-bold); }
+    .v0 .tarjeta__sub { margin: 4px 0 0; font-size: var(--text-base); color: var(--muted-foreground); }
+    .v0 .tarjeta__cuerpo { padding: 0 0 0 18px; display: grid; gap: 16px; }
+
+    /* ===================================================== 1 · Compacta */
+    .v1 { --lienzo: var(--space-5); --hueco: var(--space-3); }
+    .v1 .tarjeta {
+      background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm); padding: var(--space-4) var(--space-5); display: grid; gap: var(--space-3);
+    }
+    .v1 .tarjeta__titulo { margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); }
+    .v1 .tarjeta__sub { margin: 2px 0 0; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .v1 .tarjeta__cuerpo { display: grid; gap: var(--space-3); }
+
+    /* ========================================== 2 · Cabecera rotulada */
+    .v2 { --lienzo: var(--space-4); --hueco: var(--space-3); }
+    .v2 .tarjeta { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .v2 .tarjeta__cabeza {
+      display: grid; gap: 2px;
+      padding: var(--space-2) var(--space-4); background: var(--muted); border-bottom: 1px solid var(--border);
+    }
+    .v2 .tarjeta__titulo { margin: 0; font-size: var(--text-base); font-weight: var(--weight-bold); }
+    .v2 .tarjeta__sub { margin: 0; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .v2 .tarjeta__cuerpo { padding: var(--space-3) var(--space-4); display: grid; gap: var(--space-3); }
+
+    /* ============================================ 3 · Icono de sección */
+    .v3 { --lienzo: var(--space-5); --hueco: var(--space-4); }
+    .v3 .tarjeta {
+      background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-card);
+      padding: var(--space-4) var(--space-5); display: grid; gap: var(--space-3);
+    }
+    .v3 .tarjeta__cabeza { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-2); align-items: center; }
+    .v3 .tarjeta__cabeza .ico { color: var(--primary-text); grid-row: 1; }
+    .v3 .tarjeta--vacia .tarjeta__cabeza .ico { color: var(--info-fg); }
+    .v3 .tarjeta__titulo { margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); }
+    .v3 .tarjeta__sub { grid-column: 2; margin: 2px 0 0; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .v3 .tarjeta__cuerpo { display: grid; gap: var(--space-3); padding-left: 24px; }
+
+    /* ============================================== 4 · Estado al frente */
+    .v4 { --lienzo: var(--space-5); --hueco: var(--space-3); }
+    .v4 .tarjeta {
+      background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5); display: grid; gap: var(--space-3);
+    }
+    .v4 .tarjeta__cabeza { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3); }
+    .v4 .tarjeta__titulo { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-bold); letter-spacing: -0.01em; }
+    .v4 .tarjeta__sub { flex-basis: 100%; margin: 0; font-size: var(--text-sm); color: var(--muted-foreground); }
+    /* El estado es la marca del título: color con texto, no adorno. */
+    .v4 .senal { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+    .v4 .senal::before { content: ''; width: 8px; height: 8px; border-radius: var(--radius-full); background: currentColor; }
+    .v4 .senal--aviso { color: var(--warning-fg); }
+    .v4 .senal--neutra { color: var(--muted-foreground); }
+    .v4 .tarjeta__cuerpo { display: grid; gap: var(--space-3); }
+
+    /* ============================================== 5 · Lista unificada */
+    .v5 { --lienzo: var(--space-4); --hueco: 0px; }
+    .v5 .lienzo-unico { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .v5 .tarjeta { padding: var(--space-3) var(--space-4); display: grid; gap: var(--space-2); }
+    .v5 .tarjeta + .tarjeta { border-top: 1px solid var(--border); }
+    .v5 .tarjeta__cabeza { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--space-3); }
+    .v5 .tarjeta__titulo { margin: 0; font-size: var(--text-base); font-weight: var(--weight-bold); }
+    .v5 .tarjeta__sub { margin: 0; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .v5 .tarjeta__cuerpo { display: grid; gap: var(--space-2); }
+    .v5 .tarjeta--vacia { background: var(--muted); }
+
+    /* ================================================== 6 · Regla de título */
+    .v6 { --lienzo: var(--space-5); --hueco: var(--space-3); }
+    .v6 .tarjeta { background: var(--surface); border-radius: var(--radius-xs); padding: var(--space-4) var(--space-5) var(--space-4); display: grid; gap: var(--space-3); }
+    /* El título se reconoce por una línea fina que sigue al texto hasta el
+       borde: separa la cabecera sin franja de color ni caja. */
+    .v6 .tarjeta__cabeza { display: grid; gap: 2px; }
+    .v6 .tarjeta__linea { display: flex; align-items: center; gap: var(--space-3); }
+    .v6 .tarjeta__linea::after { content: ''; flex: 1; height: 1px; background: var(--input-border); opacity: 0.6; }
+    .v6 .tarjeta__titulo { margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); white-space: nowrap; }
+    .v6 .tarjeta__sub { margin: 0; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .v6 .tarjeta__cuerpo { display: grid; gap: var(--space-3); }
+    .v6 .tarjeta--vacia { background: transparent; border: 1px dashed var(--input-border); }
+
+    /* Pasos más compactos en las variantes que lo piden. */
+    .pasos-compactos .hrl-trayecto { --hrl-trayecto-circulo: 24px; }
+    .pasos-compactos .hrl-trayecto__circulo { margin-bottom: 2px; font-size: var(--text-xs); }
+
+
+    /* =====================================================================
+       Segunda tanda (7-12): la misma piel compacta en todas (radio 10, 12 x 16
+       de relleno, borde fino, sombra corta) para comparar solo cómo se reparte
+       el espacio. Las piezas de cada tarjeta son celdas de una rejilla; cada
+       variante las acomoda con sus propias áreas. */
+    .n { --lienzo: var(--space-4); --hueco: var(--space-3); }
+    .n .lienzo { container-type: inline-size; }
+    .n .t {
+      display: grid; column-gap: var(--space-4); row-gap: var(--space-1); align-items: center;
+      /* Las filas no se estiran: si la tarjeta es más alta que su contenido
+         (lado a lado con otra), el espacio sobrante va abajo, no entre el
+         título y su descripción. */
+      align-content: start;
+      background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm); padding: var(--space-3) var(--space-4);
+    }
+    .n .t__cab, .n .t__lado { display: contents; }
+    .n .t__tit { grid-area: tit; margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); }
+    .n .t__sub { grid-area: sub; margin: 0; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--muted-foreground); }
+    .n .t__meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: flex-end; }
+    .n .t__accion { grid-area: accion; justify-self: end; }
+    .n .t__extra { grid-area: extra; margin-top: var(--space-2); }
+    .n .t__accion .hrl-btn { min-height: var(--touch-target); }
+
+    /* 7 · Cabecera partida: estado a la altura del título, acción a la altura de la descripción. */
+    .v7 .t { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tit meta" "sub accion" "extra extra"; }
+
+    /* 8 · Una banda: título, estado y acción en una sola franja. */
+    .v8 .t { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "tit meta accion" "sub meta accion" "extra extra extra"; }
+
+    /* 9 · Estado en texto: el reparto de la 7, con el estado como texto e icono, sin cápsulas. */
+    .v9 .t { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tit meta" "sub accion" "extra extra"; }
+    .v9 .t__meta { gap: var(--space-3); }
+    .v9 .t__meta .hrl-badge, .v9 .t__meta .hrl-chip { padding: 0; background: transparent !important; }
+    .v9 .t__meta > * + *::before { content: '·'; margin-right: var(--space-3); color: var(--muted-foreground); }
+
+    /* 10 · Columna de acción: el lado derecho es una columna tintada con estado y acción. */
+    .v10 .t { padding: 0; column-gap: 0; overflow: hidden; grid-template-columns: minmax(0, 1fr) minmax(200px, 240px); grid-template-areas: "tit lado" "sub lado" "extra lado"; }
+    .v10 .t__tit { padding: var(--space-3) var(--space-4) 0; }
+    .v10 .t__sub { padding: 0 var(--space-4) var(--space-3); }
+    .v10 .t__extra { padding: 0 var(--space-4) var(--space-3); margin-top: 0; }
+    .v10 .t__lado {
+      grid-area: lado; align-self: stretch; display: flex; flex-direction: column; justify-content: center; gap: var(--space-2);
+      padding: var(--space-3) var(--space-4); background: var(--muted); border-left: 1px solid var(--border-soft);
+    }
+    .v10 .t__meta { justify-content: flex-start; }
+    .v10 .t__accion { justify-self: stretch; }
+    .v10 .t__accion .hrl-btn { width: 100%; justify-content: center; }
+
+    /* 11 · Pasos en la cabecera: el recorrido ocupa la mitad derecha en vez de una fila propia. */
+    .v11 .t { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tit meta" "sub accion" "extra extra"; }
+    .v11 .t--b { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); grid-template-areas: "tit extra" "sub extra" "meta extra"; }
+    .v11 .t--b .t__meta { justify-content: flex-start; margin-top: var(--space-1); }
+    .v11 .t--b .t__extra { margin-top: 0; }
+
+    /* 12 · Mosaico: las dos tarjetas cortas lado a lado; el recorrido debajo, a todo el ancho. */
+    .v12 .lienzo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .v12 .t--b { grid-column: 1 / -1; order: 3; }
+    .v12 .t { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tit meta" "sub accion" "extra extra"; }
+    .v12 .t--a { grid-template-areas: "tit tit" "sub sub" "meta accion"; }
+    .v12 .t--a .t__meta { justify-content: flex-start; }
+
+    /* La tarjeta vacía: una línea de título con su estado y la frase debajo. */
+    .n .t--c { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tit meta" "sub sub"; }
+    .v10 .t--c { grid-template-columns: minmax(0, 1fr) minmax(200px, 240px); grid-template-areas: "tit lado" "sub lado"; }
+
+    /* Estrecho (teléfono o media columna): todo en una columna, en orden de lectura. */
+    @container (max-width: 560px) {
+      .n .t, .n .t--b, .n .t--c, .v12 .t--a {
+        grid-template-columns: minmax(0, 1fr); grid-template-areas: "tit" "sub" "meta" "accion" "extra";
+      }
+      .n .t__meta { justify-content: flex-start; margin-top: var(--space-1); }
+      .n .t__accion { justify-self: start; margin-top: var(--space-1); }
+      .v10 .t, .v10 .t--c { grid-template-areas: "tit" "sub" "extra" "lado"; }
+      .v10 .t__lado { border-left: 0; border-top: 1px solid var(--border-soft); }
+    }
+    @container (max-width: 760px) {
+      .v12 .lienzo { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .tanda { margin: var(--space-4) 0 0; padding-top: var(--space-5); border-top: 1px solid var(--border); }
+    .tanda h2 { margin: 0 0 var(--space-1); font-size: var(--text-lg); }
+    .tanda p { margin: 0; max-width: 72ch; color: var(--muted-foreground); line-height: var(--leading-normal); }
+
+    @media (max-width: 600px) {
+      .lab__variantes { padding: var(--space-4); }
+      .v0 { --lienzo: 16px; }
+      .v0 .tarjeta__cuerpo, .v3 .tarjeta__cuerpo { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hrl-nuevo lab" id="lab">
+    <header class="lab__barra">
+      <h1>Laboratorio de tarjetas</h1>
+      <p>Doce maneras de las tres tarjetas del Inicio de Nutrición. Todo sale de los tokens del kit; las cifras son las ficticias del prototipo.</p>
+      <div class="lab__botones" role="group" aria-label="Cómo verlas">
+        <button type="button" class="lab__toggle" id="tema" aria-pressed="false">Modo oscuro</button>
+        <button type="button" class="lab__toggle" id="movil" aria-pressed="false">Ancho de teléfono</button>
+      </div>
+    </header>
+
+    <main class="lab__variantes" id="variantes"></main>
+  </div>
+
+  <!-- Las tres tarjetas, una vez: cada variante las pinta con su propio estilo. -->
+  <template id="tarjetas">
+    <article class="tarjeta">
+      <div class="tarjeta__cabeza">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="tarjeta__linea"><h3 class="tarjeta__titulo">Reporte de Agosto 2026</h3></span>
+        <span class="senal senal--aviso">Vencido hace 3 días</span>
+        <p class="tarjeta__sub">Todavía no se cargó nada. Suba el Excel de agosto con las raciones de cada día.</p>
+      </div>
+      <div class="tarjeta__cuerpo">
+        <div class="fila fila--entre">
+          <span class="estado">
+            <span class="hrl-badge" style="--tone-fg: var(--neutral-text); --tone-bg: var(--neutral-soft)">
+              <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.22"/><path d="M8.5 12h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              En llenado
+            </span>
+            <span class="hrl-chip chip-plazo">
+              <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              Plazo vencido hace 3 días
+            </span>
+          </span>
+          <button type="button" class="hrl-btn hrl-btn--cta">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Subir el Excel del mes
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <article class="tarjeta">
+      <div class="tarjeta__cabeza">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tarjeta__linea"><h3 class="tarjeta__titulo">Reporte de Agosto 2026</h3></span>
+        <span class="senal senal--aviso">En llenado · vencido hace 3 días</span>
+        <p class="tarjeta__sub">Nutrición y Dietética · se llena subiendo su Excel</p>
+      </div>
+      <div class="tarjeta__cuerpo">
+        <span class="estado estado--b">
+          <span class="hrl-badge" style="--tone-fg: var(--neutral-text); --tone-bg: var(--neutral-soft)">
+            <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.22"/><path d="M8.5 12h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            En llenado
+          </span>
+          <span class="hrl-chip chip-plazo">
+            <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Plazo vencido hace 3 días
+          </span>
+        </span>
+        <ol class="hrl-trayecto" aria-label="Pasos del reporte" style="--hrl-trayecto-pasos: 3">
+          <li class="hrl-trayecto__paso hrl-trayecto__paso--empty hrl-trayecto__paso--on" aria-current="step">
+            <span class="hrl-trayecto__circulo" aria-hidden="true">1</span>
+            <span class="hrl-trayecto__titulo">Subir el Excel</span>
+            <span class="hrl-trayecto__nota">La plantilla del mes, llena</span>
+          </li>
+          <li class="hrl-trayecto__paso hrl-trayecto__paso--empty">
+            <span class="hrl-trayecto__circulo" aria-hidden="true">2</span>
+            <span class="hrl-trayecto__titulo">Revisar y resolver</span>
+            <span class="hrl-trayecto__nota">0 de 1,116 casillas</span>
+          </li>
+          <li class="hrl-trayecto__paso hrl-trayecto__paso--empty">
+            <span class="hrl-trayecto__circulo" aria-hidden="true">3</span>
+            <span class="hrl-trayecto__titulo">Enviar</span>
+            <span class="hrl-trayecto__nota">A Estadística y Planeamiento</span>
+          </li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="tarjeta tarjeta--vacia">
+      <div class="tarjeta__cabeza">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="13" width="4" height="7" rx="1.2" fill="currentColor"/><rect x="10" y="8" width="4" height="12" rx="1.2" fill="currentColor" opacity="0.65"/><rect x="16" y="4" width="4" height="16" rx="1.2" fill="currentColor" opacity="0.4"/></svg>
+        <span class="tarjeta__linea"><h3 class="tarjeta__titulo">Todavía no hay meses enviados</h3></span>
+        <span class="senal senal--neutra">Sin datos aún</span>
+      </div>
+      <div class="tarjeta__cuerpo">
+        <p class="vacio__texto">Cuando envíe su primer reporte, aquí verá sus raciones por mes.</p>
+      </div>
+    </article>
+  </template>
+
+  <!-- Segunda tanda: las mismas tres tarjetas, con cada pieza como celda de la rejilla. -->
+  <template id="tarjetas2">
+    <article class="t t--a">
+      <header class="t__cab"><h3 class="t__tit">Reporte de Agosto 2026</h3><p class="t__sub">Todavía no se cargó nada. Suba el Excel de agosto con las raciones de cada día.</p></header>
+      <div class="t__lado">
+        <div class="t__meta"><span class="hrl-badge" style="--tone-fg: var(--neutral-text); --tone-bg: var(--neutral-soft)"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.22"/><path d="M8.5 12h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>En llenado</span><span class="hrl-chip chip-plazo"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Plazo vencido hace 3 días</span></div>
+        <div class="t__accion"><button type="button" class="hrl-btn hrl-btn--cta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Subir el Excel del mes</button></div>
+      </div>
+    </article>
+
+    <article class="t t--b">
+      <header class="t__cab"><h3 class="t__tit">Reporte de Agosto 2026</h3><p class="t__sub">Nutrición y Dietética · se llena subiendo su Excel</p></header>
+      <div class="t__lado"><div class="t__meta"><span class="hrl-badge" style="--tone-fg: var(--neutral-text); --tone-bg: var(--neutral-soft)"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.22"/><path d="M8.5 12h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>En llenado</span><span class="hrl-chip chip-plazo"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Plazo vencido hace 3 días</span></div></div>
+      <div class="t__extra">
+        <ol class="hrl-trayecto" aria-label="Pasos del reporte" style="--hrl-trayecto-pasos: 3">
+          <li class="hrl-trayecto__paso hrl-trayecto__paso--empty hrl-trayecto__paso--on" aria-current="step"><span class="hrl-trayecto__circulo" aria-hidden="true">1</span><span class="hrl-trayecto__titulo">Subir el Excel</span><span class="hrl-trayecto__nota">La plantilla del mes, llena</span></li>
+          <li class="hrl-trayecto__paso hrl-trayecto__paso--empty"><span class="hrl-trayecto__circulo" aria-hidden="true">2</span><span class="hrl-trayecto__titulo">Revisar y resolver</span><span class="hrl-trayecto__nota">0 de 1,116 casillas</span></li>
+          <li class="hrl-trayecto__paso hrl-trayecto__paso--empty"><span class="hrl-trayecto__circulo" aria-hidden="true">3</span><span class="hrl-trayecto__titulo">Enviar</span><span class="hrl-trayecto__nota">A Estadística y Planeamiento</span></li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="t t--c">
+      <header class="t__cab"><h3 class="t__tit">Todavía no hay meses enviados</h3><p class="t__sub">Cuando envíe su primer reporte, aquí verá sus raciones por mes.</p></header>
+      <div class="t__lado"><div class="t__meta"><span class="hrl-badge" style="--tone-fg: var(--neutral-text); --tone-bg: var(--neutral-soft)"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.22"/><path d="M8.5 12h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Sin datos aún</span></div></div>
+    </article>
+  </template>
+
+  <script>
+    /* Qué cambia en cada variante: se lee arriba de su lienzo. */
+    const VARIANTES = [
+      {
+        clase: 'v0', nombre: '0 · Actual', referencia: true,
+        nota: 'Como está hoy, para comparar. 32 px de margen al fondo, 24 px entre tarjetas y 24 px de relleno, radio de 16 px y una barra de color junto a cada título que no comunica nada (verde en casi todas).',
+        medidas: ['fondo 32', 'entre tarjetas 24', 'relleno 24', 'radio 16', 'barra de color'],
+      },
+      {
+        clase: 'v1', nombre: '1 · Compacta',
+        nota: 'El cambio mínimo: mismo aspecto, menos aire. La sombra grande pasa a una sombra corta con borde fino, el título baja un escalón y gana peso, y la tarjeta mide casi la mitad de alto sin sentirse apretada.',
+        medidas: ['fondo 24', 'entre tarjetas 12', 'relleno 16 · 24', 'radio 10', 'título 14 negrita'],
+      },
+      {
+        clase: 'v2', nombre: '2 · Cabecera rotulada',
+        nota: 'El título vive en una franja tenue con una línea debajo: se reconoce dónde empieza cada sección sin color. Sin sombra; el borde da la forma. La más «de herramienta», buena para pantallas con muchas tarjetas.',
+        medidas: ['fondo 16', 'entre tarjetas 12', 'cabecera 8 · 16', 'cuerpo 12 · 16', 'radio 8'],
+      },
+      {
+        clase: 'v3', nombre: '3 · Icono de sección', pasos: true,
+        nota: 'La barra se sustituye por el icono de lo que trata la tarjeta (calendario del mes, subida, gráfico), en el color de marca y sin caja alrededor. Conserva la sombra suave actual, con radio de 12.',
+        medidas: ['fondo 24', 'entre tarjetas 16', 'relleno 16 · 24', 'radio 12', 'icono 16'],
+      },
+      {
+        clase: 'v4', nombre: '4 · Estado al frente',
+        nota: 'La marca del título es el estado del reporte: un punto de color con su texto («Vencido hace 3 días»). Ahora el color informa algo. Las insignias de abajo se pueden quitar en la versión final, porque dicen lo mismo.',
+        medidas: ['fondo 24', 'entre tarjetas 12', 'relleno 16 · 24', 'radio 10', 'sin sombra'],
+      },
+      {
+        clase: 'v5', nombre: '5 · Lista unificada', pasos: true,
+        nota: 'Las tres tarjetas se funden en una sola superficie separada por líneas: no hay huecos de fondo entre ellas. La más densa; el vacío se distingue con un tono de fondo.',
+        medidas: ['fondo 16', 'entre tarjetas 0 (línea)', 'relleno 12 · 16', 'radio 8'],
+      },
+      {
+        clase: 'v6', nombre: '6 · Regla de título', pasos: true,
+        nota: 'El título se reconoce por una línea fina que lo sigue hasta el borde. Esquinas casi rectas, sin sombra ni borde: la tarjeta es solo un tono sobre el fondo. La tarjeta vacía queda con borde punteado, como un hueco por llenar.',
+        medidas: ['fondo 24', 'entre tarjetas 12', 'relleno 16 · 24', 'radio 6', 'regla 1 px'],
+      },
+    ];
+
+    const plantilla = document.getElementById('tarjetas');
+    const destino = document.getElementById('variantes');
+
+    for (const v of VARIANTES) {
+      const sec = document.createElement('section');
+      sec.className = `variante ${v.clase}${v.pasos ? ' pasos-compactos' : ''}`;
+      sec.setAttribute('aria-labelledby', `${v.clase}-t`);
+      sec.innerHTML = `
+        <div class="variante__cabeza"><h2 id="${v.clase}-t">${v.nombre}</h2></div>
+        <p class="variante__nota">${v.nota}</p>
+        <ul class="variante__medidas" aria-label="Medidas">${v.medidas.map((m) => `<li>${m}</li>`).join('')}</ul>`;
+      const lienzo = document.createElement('div');
+      lienzo.className = 'lienzo';
+      const contenedor = v.clase === 'v5' ? Object.assign(document.createElement('div'), { className: 'lienzo-unico' }) : lienzo;
+      contenedor.append(plantilla.content.cloneNode(true));
+      if (contenedor !== lienzo) lienzo.append(contenedor);
+
+      /* Lo que cada variante no usa se quita, para que el marcado sea el real. */
+      lienzo.querySelectorAll('.tarjeta').forEach((t, i) => {
+        if (v.clase !== 'v3') t.querySelector('.ico')?.remove();
+        if (v.clase !== 'v6') { const l = t.querySelector('.tarjeta__linea'); l.replaceWith(...l.childNodes); }
+        if (v.clase !== 'v4') t.querySelector('.senal')?.remove();
+        else if (i === 1) t.querySelector('.estado--b')?.remove();
+        if (v.clase === 'v4' && i === 0) t.querySelector('.estado')?.remove();
+      });
+      sec.append(lienzo);
+      destino.append(sec);
+    }
+
+    /* ------------------------------------------------ segunda tanda */
+    const VARIANTES2 = [
+      { clase: 'v7', nombre: '7 · Cabecera partida', nota: 'Tu sugerencia tal cual: el estado sube a la derecha, a la altura del título, y el botón queda a la altura de la descripción. La tarjeta del mes pasa de tres filas a dos y no queda ningún hueco entre las insignias y el botón.', medidas: ['2 filas', 'estado ↗ título', 'acción ↘ descripción'] },
+      { clase: 'v8', nombre: '8 · Una banda', nota: 'Título, estado y acción en una sola franja, centrados en vertical. La más baja: la tarjeta del mes mide lo que su título y su descripción. En anchos medianos se aprieta antes, porque todo compite por la misma línea.', medidas: ['1 franja', 'estado + acción a la derecha'] },
+      { clase: 'v9', nombre: '9 · Estado en texto', nota: 'El reparto de la 7, pero el estado se escribe como texto con su icono («En llenado · Plazo vencido hace 3 días»), sin cápsulas de color. La más tranquila: el único bloque de color es el botón, que es lo que hay que hacer.', medidas: ['2 filas', 'sin cápsulas', 'separador ·'] },
+      { clase: 'v10', nombre: '10 · Columna de acción', nota: 'La parte derecha, que hoy queda vacía, se vuelve una columna tintada con el estado y la acción. A la izquierda lo que se lee, a la derecha lo que se hace; en la tarjeta del recorrido, el estado acompaña a los pasos todo el alto.', medidas: ['columna 200–240', 'tinte --muted'] },
+      { clase: 'v11', nombre: '11 · Pasos en la cabecera', pasos: true, nota: 'La tarjeta del recorrido pone los tres pasos en la mitad derecha, junto al título, en vez de en una fila propia debajo: pierde casi la mitad de su alto. Las otras dos siguen el reparto de la 7.', medidas: ['pasos a la derecha', 'recorrido en 3 filas cortas'] },
+      { clase: 'v12', nombre: '12 · Mosaico', pasos: true, nota: 'Las dos tarjetas cortas (el mes y la vacía) van lado a lado y el recorrido debajo, a todo el ancho. Aprovecha el ancho de la pantalla en vez de apilar tarjetas cortas una sobre otra. En pantallas estrechas vuelven a apilarse.', medidas: ['2 columnas', 'recorrido a todo el ancho'] },
+    ];
+
+    const tanda = document.createElement('section');
+    tanda.className = 'tanda';
+    tanda.innerHTML = '<h2>Segunda tanda · 7 a 12</h2><p>La misma piel compacta en las seis (radio 10, relleno 12 × 16, borde fino, sombra corta); cambia solo cómo se reparte el espacio. Ninguna deja un hueco largo entre el estado y la acción.</p>';
+    destino.append(tanda);
+
+    const plantilla2 = document.getElementById('tarjetas2');
+    for (const v of VARIANTES2) {
+      const sec = document.createElement('section');
+      sec.className = `variante n ${v.clase}${v.pasos ? ' pasos-compactos' : ''}`;
+      sec.setAttribute('aria-labelledby', `${v.clase}-t`);
+      sec.innerHTML = `
+        <div class="variante__cabeza"><h2 id="${v.clase}-t">${v.nombre}</h2></div>
+        <p class="variante__nota">${v.nota}</p>
+        <ul class="variante__medidas" aria-label="Medidas">${v.medidas.map((m) => `<li>${m}</li>`).join('')}</ul>`;
+      const lienzo = document.createElement('div');
+      lienzo.className = 'lienzo';
+      lienzo.append(plantilla2.content.cloneNode(true));
+      sec.append(lienzo);
+      destino.append(sec);
+    }
+
+    /* Tema y ancho: el tema es el atributo del kit en <html>. */
+    const raiz = document.documentElement;
+    const tema = document.getElementById('tema');
+    tema.addEventListener('click', () => {
+      const oscuro = raiz.dataset.temaHrl !== 'oscuro';
+      raiz.dataset.temaHrl = oscuro ? 'oscuro' : 'claro';
+      tema.setAttribute('aria-pressed', String(oscuro));
+    });
+    const movil = document.getElementById('movil');
+    movil.addEventListener('click', () => {
+      const activo = document.getElementById('lab').classList.toggle('lab--movil');
+      movil.setAttribute('aria-pressed', String(activo));
+    });
+  </script>
+</body>
+</html>

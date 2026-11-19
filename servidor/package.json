@@ -1,0 +1,25 @@
+{
+  "name": "servidor-hrl",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Lado servidor del sistema: la API (api/, FastAPI) y el bot validador (bot-validador/). Un solo comando los levanta juntos.",
+  "type": "module",
+  "scripts": {
+    "instalar": "node scripts/instalar.mjs",
+    "dev": "node scripts/arrancar.mjs",
+    "api": "node scripts/arrancar.mjs api",
+    "bot": "node scripts/arrancar.mjs bot",
+    "dev:hospitalizacion": "node scripts/arrancar.mjs hospitalizacion",
+    "prueba": "node scripts/probar.mjs",
+    "desempeno": "node scripts/desempeno.mjs",
+    "migrate": "node scripts/bd.mjs migrate",
+    "migrate:status": "node scripts/bd.mjs status",
+    "seed": "node scripts/bd.mjs seed",
+    "seed:usuarios": "node scripts/bd.mjs seed:usuarios",
+    "seed:hospitalizacion": "node scripts/bd.mjs seed:hospitalizacion",
+    "migrate:fresh": "node scripts/bd.mjs fresh"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

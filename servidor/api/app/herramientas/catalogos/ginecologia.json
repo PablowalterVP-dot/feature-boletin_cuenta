@@ -1,0 +1,455 @@
+{
+  "_nota": "Generado por servidor/scripts/exportar-catalogo-ginecologia.mjs desde la definición del bot. No se edita a mano.",
+  "version": "GIN-1",
+  "hoja": "Reporte EBVI del mes",
+  "cuadros": [
+    {
+      "codigo": "f1",
+      "numero": 1,
+      "titulo": "Controles prenatales",
+      "subtitulo": "Por grupo de edad de la gestante",
+      "casillas": [
+        {
+          "codigo": "f1.edad_10_14.controles_prenatales",
+          "fila": "edad_10_14.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 10 A 14 AÑOS",
+          "etiquetas": [
+            "10 A 14 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_10_14.partos_1_control",
+          "fila": "edad_10_14.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 10 A 14 AÑOS",
+          "etiquetas": [
+            "10 A 14 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_10_14.partos_6_controles",
+          "fila": "edad_10_14.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 10 A 14 AÑOS",
+          "etiquetas": [
+            "10 A 14 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_10_14.partos_1er_trimestre",
+          "fila": "edad_10_14.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 10 A 14 AÑOS",
+          "etiquetas": [
+            "10 A 14 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        },
+        {
+          "codigo": "f1.edad_15_19.controles_prenatales",
+          "fila": "edad_15_19.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 15 A 19 AÑOS",
+          "etiquetas": [
+            "15 A 19 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_15_19.partos_1_control",
+          "fila": "edad_15_19.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 15 A 19 AÑOS",
+          "etiquetas": [
+            "15 A 19 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_15_19.partos_6_controles",
+          "fila": "edad_15_19.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 15 A 19 AÑOS",
+          "etiquetas": [
+            "15 A 19 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_15_19.partos_1er_trimestre",
+          "fila": "edad_15_19.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 15 A 19 AÑOS",
+          "etiquetas": [
+            "15 A 19 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        },
+        {
+          "codigo": "f1.edad_20_24.controles_prenatales",
+          "fila": "edad_20_24.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 20 A 24 AÑOS",
+          "etiquetas": [
+            "20 A 24 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_20_24.partos_1_control",
+          "fila": "edad_20_24.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 20 A 24 AÑOS",
+          "etiquetas": [
+            "20 A 24 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_20_24.partos_6_controles",
+          "fila": "edad_20_24.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 20 A 24 AÑOS",
+          "etiquetas": [
+            "20 A 24 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_20_24.partos_1er_trimestre",
+          "fila": "edad_20_24.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 20 A 24 AÑOS",
+          "etiquetas": [
+            "20 A 24 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        },
+        {
+          "codigo": "f1.edad_25_29.controles_prenatales",
+          "fila": "edad_25_29.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 25 A 29 AÑOS",
+          "etiquetas": [
+            "25 A 29 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_25_29.partos_1_control",
+          "fila": "edad_25_29.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 25 A 29 AÑOS",
+          "etiquetas": [
+            "25 A 29 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_25_29.partos_6_controles",
+          "fila": "edad_25_29.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 25 A 29 AÑOS",
+          "etiquetas": [
+            "25 A 29 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_25_29.partos_1er_trimestre",
+          "fila": "edad_25_29.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 25 A 29 AÑOS",
+          "etiquetas": [
+            "25 A 29 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        },
+        {
+          "codigo": "f1.edad_30_34.controles_prenatales",
+          "fila": "edad_30_34.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 30 A 34 AÑOS",
+          "etiquetas": [
+            "30 A 34 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_30_34.partos_1_control",
+          "fila": "edad_30_34.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 30 A 34 AÑOS",
+          "etiquetas": [
+            "30 A 34 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_30_34.partos_6_controles",
+          "fila": "edad_30_34.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 30 A 34 AÑOS",
+          "etiquetas": [
+            "30 A 34 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_30_34.partos_1er_trimestre",
+          "fila": "edad_30_34.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 30 A 34 AÑOS",
+          "etiquetas": [
+            "30 A 34 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        },
+        {
+          "codigo": "f1.edad_35_39.controles_prenatales",
+          "fila": "edad_35_39.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 35 A 39 AÑOS",
+          "etiquetas": [
+            "35 A 39 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_35_39.partos_1_control",
+          "fila": "edad_35_39.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 35 A 39 AÑOS",
+          "etiquetas": [
+            "35 A 39 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_35_39.partos_6_controles",
+          "fila": "edad_35_39.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 35 A 39 AÑOS",
+          "etiquetas": [
+            "35 A 39 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_35_39.partos_1er_trimestre",
+          "fila": "edad_35_39.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 35 A 39 AÑOS",
+          "etiquetas": [
+            "35 A 39 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        },
+        {
+          "codigo": "f1.edad_40_44.controles_prenatales",
+          "fila": "edad_40_44.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 40 A 44 AÑOS",
+          "etiquetas": [
+            "40 A 44 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_40_44.partos_1_control",
+          "fila": "edad_40_44.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 40 A 44 AÑOS",
+          "etiquetas": [
+            "40 A 44 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_40_44.partos_6_controles",
+          "fila": "edad_40_44.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 40 A 44 AÑOS",
+          "etiquetas": [
+            "40 A 44 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_40_44.partos_1er_trimestre",
+          "fila": "edad_40_44.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 40 A 44 AÑOS",
+          "etiquetas": [
+            "40 A 44 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        },
+        {
+          "codigo": "f1.edad_45_49.controles_prenatales",
+          "fila": "edad_45_49.controles_prenatales",
+          "nombre": "Controles prenatales realizados · 45 A 49 AÑOS",
+          "etiquetas": [
+            "45 A 49 AÑOS",
+            "CONTROLES PRENATALES REALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.edad_45_49.partos_1_control",
+          "fila": "edad_45_49.partos_1_control",
+          "nombre": "Partos de gestantes con al menos 1 control prenatal · 45 A 49 AÑOS",
+          "etiquetas": [
+            "45 A 49 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 01 CONTROL PRENATAL"
+          ]
+        },
+        {
+          "codigo": "f1.edad_45_49.partos_6_controles",
+          "fila": "edad_45_49.partos_6_controles",
+          "nombre": "Partos de gestantes con al menos 6 controles prenatales · 45 A 49 AÑOS",
+          "etiquetas": [
+            "45 A 49 AÑOS",
+            "PARTOS DE GESTANTES QUE HAN RECIBIDO POR LO MENOS 6 CONTROLES PRENATALES"
+          ]
+        },
+        {
+          "codigo": "f1.edad_45_49.partos_1er_trimestre",
+          "fila": "edad_45_49.partos_1er_trimestre",
+          "nombre": "Partos con primera consulta prenatal en el primer trimestre · 45 A 49 AÑOS",
+          "etiquetas": [
+            "45 A 49 AÑOS",
+            "PARTOS EN GESTANTES QUE HAN RECIBIDO LA PRIMERA CONSULTA PRENATAL EN EL PRIMER TRIMESTRE DE EMBARAZO"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "f2",
+      "numero": 2,
+      "titulo": "Partos, cesáreas y nacidos",
+      "subtitulo": "Por tipo de parto",
+      "casillas": [
+        {
+          "codigo": "f2.vaginal_sin_complicaciones.total_partos",
+          "fila": "vaginal_sin_complicaciones.total_partos",
+          "nombre": "Total de partos · Parto vaginal sin complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL SIN COMPLICACIONES",
+            "TOTAL DE PARTOS"
+          ]
+        },
+        {
+          "codigo": "f2.vaginal_sin_complicaciones.total_nacimientos",
+          "fila": "vaginal_sin_complicaciones.total_nacimientos",
+          "nombre": "Total de nacimientos (vivos más muertos) · Parto vaginal sin complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL SIN COMPLICACIONES",
+            "TOTAL DE NACIMIENTOS VIVOS + MUERTOS"
+          ]
+        },
+        {
+          "codigo": "f2.vaginal_sin_complicaciones.nacidos_vivos",
+          "fila": "vaginal_sin_complicaciones.nacidos_vivos",
+          "nombre": "Nacidos vivos · Parto vaginal sin complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL SIN COMPLICACIONES",
+            "NACIDOS VIVOS"
+          ]
+        },
+        {
+          "codigo": "f2.vaginal_sin_complicaciones.nacidos_muertos",
+          "fila": "vaginal_sin_complicaciones.nacidos_muertos",
+          "nombre": "Nacidos muertos · Parto vaginal sin complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL SIN COMPLICACIONES",
+            "NACIDOS MUERTOS"
+          ]
+        },
+        {
+          "codigo": "f2.vaginal_con_complicaciones.total_partos",
+          "fila": "vaginal_con_complicaciones.total_partos",
+          "nombre": "Total de partos · Parto vaginal con complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL CON COMPLICACIONES",
+            "TOTAL DE PARTOS"
+          ]
+        },
+        {
+          "codigo": "f2.vaginal_con_complicaciones.total_nacimientos",
+          "fila": "vaginal_con_complicaciones.total_nacimientos",
+          "nombre": "Total de nacimientos (vivos más muertos) · Parto vaginal con complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL CON COMPLICACIONES",
+            "TOTAL DE NACIMIENTOS VIVOS + MUERTOS"
+          ]
+        },
+        {
+          "codigo": "f2.vaginal_con_complicaciones.nacidos_vivos",
+          "fila": "vaginal_con_complicaciones.nacidos_vivos",
+          "nombre": "Nacidos vivos · Parto vaginal con complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL CON COMPLICACIONES",
+            "NACIDOS VIVOS"
+          ]
+        },
+        {
+          "codigo": "f2.vaginal_con_complicaciones.nacidos_muertos",
+          "fila": "vaginal_con_complicaciones.nacidos_muertos",
+          "nombre": "Nacidos muertos · Parto vaginal con complicaciones",
+          "etiquetas": [
+            "PARTO VAGINAL CON COMPLICACIONES",
+            "NACIDOS MUERTOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_sin_complicaciones.total_partos",
+          "fila": "cesarea_sin_complicaciones.total_partos",
+          "nombre": "Total de partos · Parto por cesárea sin complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA SIN COMPLICACIONES",
+            "TOTAL DE PARTOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_sin_complicaciones.total_nacimientos",
+          "fila": "cesarea_sin_complicaciones.total_nacimientos",
+          "nombre": "Total de nacimientos (vivos más muertos) · Parto por cesárea sin complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA SIN COMPLICACIONES",
+            "TOTAL DE NACIMIENTOS VIVOS + MUERTOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_sin_complicaciones.nacidos_vivos",
+          "fila": "cesarea_sin_complicaciones.nacidos_vivos",
+          "nombre": "Nacidos vivos · Parto por cesárea sin complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA SIN COMPLICACIONES",
+            "NACIDOS VIVOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_sin_complicaciones.nacidos_muertos",
+          "fila": "cesarea_sin_complicaciones.nacidos_muertos",
+          "nombre": "Nacidos muertos · Parto por cesárea sin complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA SIN COMPLICACIONES",
+            "NACIDOS MUERTOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_con_complicaciones.total_partos",
+          "fila": "cesarea_con_complicaciones.total_partos",
+          "nombre": "Total de partos · Parto por cesárea con complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA CON COMPLICACIONES",
+            "TOTAL DE PARTOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_con_complicaciones.total_nacimientos",
+          "fila": "cesarea_con_complicaciones.total_nacimientos",
+          "nombre": "Total de nacimientos (vivos más muertos) · Parto por cesárea con complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA CON COMPLICACIONES",
+            "TOTAL DE NACIMIENTOS VIVOS + MUERTOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_con_complicaciones.nacidos_vivos",
+          "fila": "cesarea_con_complicaciones.nacidos_vivos",
+          "nombre": "Nacidos vivos · Parto por cesárea con complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA CON COMPLICACIONES",
+            "NACIDOS VIVOS"
+          ]
+        },
+        {
+          "codigo": "f2.cesarea_con_complicaciones.nacidos_muertos",
+          "fila": "cesarea_con_complicaciones.nacidos_muertos",
+          "nombre": "Nacidos muertos · Parto por cesárea con complicaciones",
+          "etiquetas": [
+            "PARTO POR CESAREA CON COMPLICACIONES",
+            "NACIDOS MUERTOS"
+          ]
+        }
+      ]
+    }
+  ]
+}

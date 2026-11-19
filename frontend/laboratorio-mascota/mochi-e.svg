@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-base="176" data-cabeza-y="66" data-sudor-x="152" data-sudor-y="94" style="--m-tinta:#1d3d36;--m-globo-tinta:#1d3d36;--m-sombra:#1d3d36;--m-brillo:#ffffff;--m-globo:#ffffff;--m-globo-borde:#c3ddd3;--m-ok:#00a76f;--m-alerta:#e5533d;--m-corazon:#ff6b81;--m-cruz:#00a76f;--m-sudor:#6ec6f0;--m-destello:#ffc23c;--m-zz:#6f8f86">
+  <!-- E · El que escucha: verde agua pastel, estetoscopio puesto; pestañas, sonrisa ladeada y mejillas apenas marcadas. -->
+  <defs>
+    <linearGradient id="piel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0faf7"/><stop offset="1" stop-color="#c4ebdd"/></linearGradient>
+    <radialGradient id="metal" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffffff"/><stop offset="0.55" stop-color="#d5dfe2"/><stop offset="1" stop-color="#93a3a9"/></radialGradient>
+    <clipPath id="silueta"><rect x="42" y="66" width="116" height="110" rx="55"/></clipPath>
+  </defs>
+  <ellipse class="m-sombra" cx="100" cy="179" rx="48" ry="6" fill="var(--m-sombra)" opacity="0.14"/>
+  <g class="m-cuerpo">
+    
+    <rect x="42" y="66" width="116" height="110" rx="55" fill="url(#piel)"/>
+    <g clip-path="url(#silueta)">
+      <path d="M30 136 H80 L100 168 L120 136 H170 V190 H30 Z" fill="#ffffff"/>
+      <path d="M80 136 L90 151 L85 154 L100 168 M120 136 L110 151 L115 154 L100 168" fill="none" stroke="#bfdcd2" stroke-width="2.2" stroke-linejoin="round"/>
+    </g>
+    <rect x="42" y="66" width="116" height="110" rx="55" fill="none" stroke="#95cdb9" stroke-width="2.5"/>
+    <g class="m-capa" data-paralaje="0.6">
+      <path d="M47 116 C42 148 80 160 100 163 M153 116 C158 148 120 160 100 163" fill="none" stroke="#3d5a80" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="47" cy="113" r="5.5" fill="#3d5a80"/><circle cx="153" cy="113" r="5.5" fill="#3d5a80"/>
+      <circle cx="100" cy="166" r="7" fill="url(#metal)" stroke="#3d5a80" stroke-width="3"/>
+    </g>
+    <g class="m-cara" data-paralaje="1">
+      <g class="m-mejillas" data-base="0.16"><ellipse cx="62" cy="123" rx="8" ry="5" fill="#5fbf9f"/><ellipse cx="138" cy="123" rx="8" ry="5" fill="#5fbf9f"/></g>
+      <g class="m-ojos" data-cx="100" data-cy="108" data-estilo="pestanas" data-sep="36" data-w="13" data-h="20"></g>
+      
+      <g class="m-boca" data-cx="100" data-cy="128" data-w="15" data-estilo="ladeada"></g>
+    </g>
+    
+  </g>
+  <g class="m-globo" data-x="154" data-y="56"></g>
+</svg>

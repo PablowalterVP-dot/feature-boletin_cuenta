@@ -1,0 +1,720 @@
+{
+  "_nota": "Generado por servidor/scripts/exportar-catalogo-imagenes.mjs desde la definición del bot. No se edita a mano.",
+  "version": "DXI-W1",
+  "hoja": "Oficio de Diagnóstico por Imágenes",
+  "unidad": "exámenes",
+  "cuadros": [
+    {
+      "codigo": "eco",
+      "numero": 1,
+      "titulo": "Ecografía",
+      "subtitulo": "Totales de los médicos: exámenes, biopsias y procedimientos oncológicos",
+      "casillas": [
+        {
+          "codigo": "eco.examenes.sis.ce",
+          "fila": "examenes.sis.ce",
+          "nombre": "Exámenes ecográficos · SIS · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · SIS · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.sis.emerg",
+          "fila": "examenes.sis.emerg",
+          "nombre": "Exámenes ecográficos · SIS · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · SIS · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.sis.hosp",
+          "fila": "examenes.sis.hosp",
+          "nombre": "Exámenes ecográficos · SIS · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · SIS · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.convenio.ce",
+          "fila": "examenes.convenio.ce",
+          "nombre": "Exámenes ecográficos · Convenios · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · Convenios · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.convenio.emerg",
+          "fila": "examenes.convenio.emerg",
+          "nombre": "Exámenes ecográficos · Convenios · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · Convenios · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.convenio.hosp",
+          "fila": "examenes.convenio.hosp",
+          "nombre": "Exámenes ecográficos · Convenios · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · Convenios · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.pagado.ce",
+          "fila": "examenes.pagado.ce",
+          "nombre": "Exámenes ecográficos · Pagados · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · Pagados · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.pagado.emerg",
+          "fila": "examenes.pagado.emerg",
+          "nombre": "Exámenes ecográficos · Pagados · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · Pagados · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.pagado.hosp",
+          "fila": "examenes.pagado.hosp",
+          "nombre": "Exámenes ecográficos · Pagados · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · Pagados · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.pacientes",
+          "fila": "examenes.pacientes",
+          "nombre": "Exámenes ecográficos · pacientes",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · pacientes"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.examenes.monto",
+          "fila": "examenes.monto",
+          "nombre": "Exámenes ecográficos · monto en soles",
+          "etiquetas": [
+            "Ecografía",
+            "Exámenes ecográficos · monto en soles"
+          ],
+          "decimal": true
+        },
+        {
+          "codigo": "eco.biopsias.sis.ce",
+          "fila": "biopsias.sis.ce",
+          "nombre": "Biopsias · SIS · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · SIS · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.sis.emerg",
+          "fila": "biopsias.sis.emerg",
+          "nombre": "Biopsias · SIS · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · SIS · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.sis.hosp",
+          "fila": "biopsias.sis.hosp",
+          "nombre": "Biopsias · SIS · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · SIS · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.convenio.ce",
+          "fila": "biopsias.convenio.ce",
+          "nombre": "Biopsias · Convenios · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · Convenios · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.convenio.emerg",
+          "fila": "biopsias.convenio.emerg",
+          "nombre": "Biopsias · Convenios · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · Convenios · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.convenio.hosp",
+          "fila": "biopsias.convenio.hosp",
+          "nombre": "Biopsias · Convenios · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · Convenios · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.pagado.ce",
+          "fila": "biopsias.pagado.ce",
+          "nombre": "Biopsias · Pagados · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · Pagados · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.pagado.emerg",
+          "fila": "biopsias.pagado.emerg",
+          "nombre": "Biopsias · Pagados · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · Pagados · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.pagado.hosp",
+          "fila": "biopsias.pagado.hosp",
+          "nombre": "Biopsias · Pagados · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · Pagados · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.pacientes",
+          "fila": "biopsias.pacientes",
+          "nombre": "Biopsias · pacientes",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · pacientes"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.biopsias.monto",
+          "fila": "biopsias.monto",
+          "nombre": "Biopsias · monto en soles",
+          "etiquetas": [
+            "Ecografía",
+            "Biopsias · monto en soles"
+          ],
+          "decimal": true
+        },
+        {
+          "codigo": "eco.oncologicos.sis.ce",
+          "fila": "oncologicos.sis.ce",
+          "nombre": "Procedimientos oncológicos · SIS · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · SIS · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.sis.emerg",
+          "fila": "oncologicos.sis.emerg",
+          "nombre": "Procedimientos oncológicos · SIS · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · SIS · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.sis.hosp",
+          "fila": "oncologicos.sis.hosp",
+          "nombre": "Procedimientos oncológicos · SIS · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · SIS · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.convenio.ce",
+          "fila": "oncologicos.convenio.ce",
+          "nombre": "Procedimientos oncológicos · Convenios · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · Convenios · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.convenio.emerg",
+          "fila": "oncologicos.convenio.emerg",
+          "nombre": "Procedimientos oncológicos · Convenios · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · Convenios · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.convenio.hosp",
+          "fila": "oncologicos.convenio.hosp",
+          "nombre": "Procedimientos oncológicos · Convenios · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · Convenios · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.pagado.ce",
+          "fila": "oncologicos.pagado.ce",
+          "nombre": "Procedimientos oncológicos · Pagados · Consulta externa",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · Pagados · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.pagado.emerg",
+          "fila": "oncologicos.pagado.emerg",
+          "nombre": "Procedimientos oncológicos · Pagados · Emergencia",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · Pagados · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.pagado.hosp",
+          "fila": "oncologicos.pagado.hosp",
+          "nombre": "Procedimientos oncológicos · Pagados · Hospitalización",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · Pagados · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.pacientes",
+          "fila": "oncologicos.pacientes",
+          "nombre": "Procedimientos oncológicos · pacientes",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · pacientes"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "eco.oncologicos.monto",
+          "fila": "oncologicos.monto",
+          "nombre": "Procedimientos oncológicos · monto en soles",
+          "etiquetas": [
+            "Ecografía",
+            "Procedimientos oncológicos · monto en soles"
+          ],
+          "decimal": true
+        }
+      ]
+    },
+    {
+      "codigo": "tac",
+      "numero": 2,
+      "titulo": "Tomografía",
+      "subtitulo": "Exámenes por financiador y servicio, pacientes, monto e informes",
+      "casillas": [
+        {
+          "codigo": "tac.examenes.sis.ce",
+          "fila": "examenes.sis.ce",
+          "nombre": "Exámenes · SIS · Consulta externa",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · SIS · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.sis.emerg",
+          "fila": "examenes.sis.emerg",
+          "nombre": "Exámenes · SIS · Emergencia",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · SIS · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.sis.hosp",
+          "fila": "examenes.sis.hosp",
+          "nombre": "Exámenes · SIS · Hospitalización",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · SIS · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.convenio.ce",
+          "fila": "examenes.convenio.ce",
+          "nombre": "Exámenes · Convenios · Consulta externa",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · Convenios · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.convenio.emerg",
+          "fila": "examenes.convenio.emerg",
+          "nombre": "Exámenes · Convenios · Emergencia",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · Convenios · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.convenio.hosp",
+          "fila": "examenes.convenio.hosp",
+          "nombre": "Exámenes · Convenios · Hospitalización",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · Convenios · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.pagado.ce",
+          "fila": "examenes.pagado.ce",
+          "nombre": "Exámenes · Pagados · Consulta externa",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · Pagados · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.pagado.emerg",
+          "fila": "examenes.pagado.emerg",
+          "nombre": "Exámenes · Pagados · Emergencia",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · Pagados · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.examenes.pagado.hosp",
+          "fila": "examenes.pagado.hosp",
+          "nombre": "Exámenes · Pagados · Hospitalización",
+          "etiquetas": [
+            "Tomografía",
+            "Exámenes · Pagados · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.pacientes",
+          "fila": "pacientes",
+          "nombre": "Pacientes",
+          "etiquetas": [
+            "Tomografía",
+            "Pacientes"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.monto",
+          "fila": "monto",
+          "nombre": "Monto en soles",
+          "etiquetas": [
+            "Tomografía",
+            "Monto en soles"
+          ],
+          "decimal": true
+        },
+        {
+          "codigo": "tac.informes",
+          "fila": "informes",
+          "nombre": "Tomografías informadas",
+          "etiquetas": [
+            "Tomografía",
+            "Tomografías informadas"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "tac.inoperativo",
+          "fila": "inoperativo",
+          "nombre": "Tomógrafo inoperativo (1 = sí)",
+          "etiquetas": [
+            "Tomografía",
+            "Tomógrafo inoperativo (1 = sí)"
+          ],
+          "decimal": false
+        }
+      ]
+    },
+    {
+      "codigo": "mam",
+      "numero": 3,
+      "titulo": "Mamografía",
+      "subtitulo": "Exámenes por financiador y servicio, campaña, pacientes, monto e informes",
+      "casillas": [
+        {
+          "codigo": "mam.examenes.sis.ce",
+          "fila": "examenes.sis.ce",
+          "nombre": "Exámenes · SIS · Consulta externa",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · SIS · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.sis.emerg",
+          "fila": "examenes.sis.emerg",
+          "nombre": "Exámenes · SIS · Emergencia",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · SIS · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.sis.hosp",
+          "fila": "examenes.sis.hosp",
+          "nombre": "Exámenes · SIS · Hospitalización",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · SIS · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.convenio.ce",
+          "fila": "examenes.convenio.ce",
+          "nombre": "Exámenes · Convenios · Consulta externa",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · Convenios · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.convenio.emerg",
+          "fila": "examenes.convenio.emerg",
+          "nombre": "Exámenes · Convenios · Emergencia",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · Convenios · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.convenio.hosp",
+          "fila": "examenes.convenio.hosp",
+          "nombre": "Exámenes · Convenios · Hospitalización",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · Convenios · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.pagado.ce",
+          "fila": "examenes.pagado.ce",
+          "nombre": "Exámenes · Pagados · Consulta externa",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · Pagados · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.pagado.emerg",
+          "fila": "examenes.pagado.emerg",
+          "nombre": "Exámenes · Pagados · Emergencia",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · Pagados · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.examenes.pagado.hosp",
+          "fila": "examenes.pagado.hosp",
+          "nombre": "Exámenes · Pagados · Hospitalización",
+          "etiquetas": [
+            "Mamografía",
+            "Exámenes · Pagados · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.campana",
+          "fila": "campana",
+          "nombre": "Campaña o insolventados",
+          "etiquetas": [
+            "Mamografía",
+            "Campaña o insolventados"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.pacientes",
+          "fila": "pacientes",
+          "nombre": "Pacientes",
+          "etiquetas": [
+            "Mamografía",
+            "Pacientes"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "mam.monto",
+          "fila": "monto",
+          "nombre": "Monto en soles",
+          "etiquetas": [
+            "Mamografía",
+            "Monto en soles"
+          ],
+          "decimal": true
+        },
+        {
+          "codigo": "mam.informes",
+          "fila": "informes",
+          "nombre": "Mamografías informadas",
+          "etiquetas": [
+            "Mamografía",
+            "Mamografías informadas"
+          ],
+          "decimal": false
+        }
+      ]
+    },
+    {
+      "codigo": "rx",
+      "numero": 4,
+      "titulo": "Rayos X",
+      "subtitulo": "Exámenes por servicio, pacientes, placas, particulares, monto e informes",
+      "casillas": [
+        {
+          "codigo": "rx.examenes.ce",
+          "fila": "examenes.ce",
+          "nombre": "Exámenes · Consulta externa",
+          "etiquetas": [
+            "Rayos X",
+            "Exámenes · Consulta externa"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "rx.examenes.emerg",
+          "fila": "examenes.emerg",
+          "nombre": "Exámenes · Emergencia",
+          "etiquetas": [
+            "Rayos X",
+            "Exámenes · Emergencia"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "rx.examenes.hosp",
+          "fila": "examenes.hosp",
+          "nombre": "Exámenes · Hospitalización",
+          "etiquetas": [
+            "Rayos X",
+            "Exámenes · Hospitalización"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "rx.pacientes",
+          "fila": "pacientes",
+          "nombre": "Pacientes",
+          "etiquetas": [
+            "Rayos X",
+            "Pacientes"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "rx.placas",
+          "fila": "placas",
+          "nombre": "Placas radiográficas",
+          "etiquetas": [
+            "Rayos X",
+            "Placas radiográficas"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "rx.tecnologos",
+          "fila": "tecnologos",
+          "nombre": "Exámenes por tecnólogo (suma)",
+          "etiquetas": [
+            "Rayos X",
+            "Exámenes por tecnólogo (suma)"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "rx.particulares",
+          "fila": "particulares",
+          "nombre": "Pacientes particulares",
+          "etiquetas": [
+            "Rayos X",
+            "Pacientes particulares"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "rx.monto",
+          "fila": "monto",
+          "nombre": "Monto en soles",
+          "etiquetas": [
+            "Rayos X",
+            "Monto en soles"
+          ],
+          "decimal": true
+        },
+        {
+          "codigo": "rx.informes",
+          "fila": "informes",
+          "nombre": "Radiografías informadas",
+          "etiquetas": [
+            "Rayos X",
+            "Radiografías informadas"
+          ],
+          "decimal": false
+        }
+      ]
+    }
+  ]
+}

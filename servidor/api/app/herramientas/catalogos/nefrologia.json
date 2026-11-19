@@ -1,0 +1,249 @@
+{
+  "_nota": "Generado por servidor/scripts/exportar-catalogo-nefrologia.mjs desde la definición del bot. No se edita a mano.",
+  "version": "NEF-W1",
+  "hoja": "Cuadro de Hemodiálisis",
+  "cuadros": [
+    {
+      "codigo": "f1",
+      "numero": 1,
+      "titulo": "Atenciones ejecutadas",
+      "subtitulo": "Un indicador por fila, un mes por columna: el mismo cuadro que crece cada mes",
+      "casillas": [
+        {
+          "codigo": "f1.pacientes_atendidos",
+          "fila": "pacientes_atendidos",
+          "nombre": "Pacientes atendidos",
+          "etiquetas": [
+            "PACIENTES ATENDIDOS"
+          ]
+        },
+        {
+          "codigo": "f1.nuevos",
+          "fila": "nuevos",
+          "nombre": "Pacientes nuevos",
+          "etiquetas": [
+            "NUEVOS"
+          ]
+        },
+        {
+          "codigo": "f1.sesiones_2",
+          "fila": "sesiones_2",
+          "nombre": "Atendidos con 2 sesiones por semana",
+          "etiquetas": [
+            "ATENDIDOS 2 SESIONES X SEMANA"
+          ]
+        },
+        {
+          "codigo": "f1.sesiones_3",
+          "fila": "sesiones_3",
+          "nombre": "Atendidos con 3 sesiones por semana",
+          "etiquetas": [
+            "ATENDIDOS 3 SESIONES X SEMANA"
+          ]
+        },
+        {
+          "codigo": "f1.sesiones_1",
+          "fila": "sesiones_1",
+          "nombre": "Atendidos con 1 sesión por semana",
+          "etiquetas": [
+            "ATENDIDOS 1 SESION X SEMANA"
+          ]
+        },
+        {
+          "codigo": "f1.sin_reuso",
+          "fila": "sin_reuso",
+          "nombre": "Pacientes con sesiones sin reuso (VIH, hepatitis, etc.)",
+          "etiquetas": [
+            "PCTS. CON SESIONES SIN REUSO (VIH, HEPATITIS, ETC)"
+          ]
+        },
+        {
+          "codigo": "f1.cambio_filtro",
+          "fila": "cambio_filtro",
+          "nombre": "Cambios de filtro",
+          "etiquetas": [
+            "CAMBIO DE FILTRO"
+          ]
+        },
+        {
+          "codigo": "f1.cvc_temporal",
+          "fila": "cvc_temporal",
+          "nombre": "Pacientes con catéter venoso central temporal",
+          "etiquetas": [
+            "PAC. CON CVC TEMPORAL"
+          ]
+        },
+        {
+          "codigo": "f1.cvc_tunelizado",
+          "fila": "cvc_tunelizado",
+          "nombre": "Pacientes con catéter venoso central tunelizado (permanente)",
+          "etiquetas": [
+            "PAC. CON CVC TUNELIZADO ( PERMANENTE )"
+          ]
+        },
+        {
+          "codigo": "f1.fav",
+          "fila": "fav",
+          "nombre": "Pacientes con fístula arterio-venosa",
+          "etiquetas": [
+            "PAC. CON FISTULA ARTERIO VENOSA (FAV)"
+          ]
+        },
+        {
+          "codigo": "f1.colocacion_cateter",
+          "fila": "colocacion_cateter",
+          "nombre": "Colocaciones de catéter venoso",
+          "etiquetas": [
+            "COLOCACION DE CATETER VENOSO"
+          ]
+        },
+        {
+          "codigo": "f1.cvc_disfuncionantes",
+          "fila": "cvc_disfuncionantes",
+          "nombre": "Catéteres venosos centrales disfuncionantes",
+          "etiquetas": [
+            "CVC DISFUNCIONANTES"
+          ]
+        },
+        {
+          "codigo": "f1.cambio_cvc_permanente",
+          "fila": "cambio_cvc_permanente",
+          "nombre": "Cambio de catéter venoso central · permanente",
+          "etiquetas": [
+            "CAMBIO DE(CVC) CATETER VENOSO CENTRAL",
+            "PERMANENTE"
+          ]
+        },
+        {
+          "codigo": "f1.cambio_cvc_temporal",
+          "fila": "cambio_cvc_temporal",
+          "nombre": "Cambio de catéter venoso central · temporal",
+          "etiquetas": [
+            "CAMBIO DE(CVC) CATETER VENOSO CENTRAL",
+            "TEMPORALES"
+          ]
+        },
+        {
+          "codigo": "f1.fistulas_inmaduras",
+          "fila": "fistulas_inmaduras",
+          "nombre": "Fístulas inmaduras",
+          "etiquetas": [
+            "FISTULAS INMADURAS"
+          ]
+        },
+        {
+          "codigo": "f1.infecciones_cvc",
+          "fila": "infecciones_cvc",
+          "nombre": "Pacientes con infecciones de catéter venoso central",
+          "etiquetas": [
+            "PACIENTES CON INFECCIONES CVC"
+          ]
+        },
+        {
+          "codigo": "f1.infecciones_fav",
+          "fila": "infecciones_fav",
+          "nombre": "Pacientes con infecciones de fístula arterio-venosa",
+          "etiquetas": [
+            "PACIENTES CON INFECCIONES FAV"
+          ]
+        },
+        {
+          "codigo": "f1.sis",
+          "fila": "sis",
+          "nombre": "Pacientes SIS",
+          "etiquetas": [
+            "Nº DE PACIENTES. SIS"
+          ]
+        },
+        {
+          "codigo": "f1.convenios",
+          "fila": "convenios",
+          "nombre": "Pacientes de convenio",
+          "etiquetas": [
+            "Nº DE PACIENTES CONVENIOS"
+          ]
+        },
+        {
+          "codigo": "f1.abandono",
+          "fila": "abandono",
+          "nombre": "Abandonos de tratamiento",
+          "etiquetas": [
+            "ABANDONO DE TRATAMIENTO"
+          ]
+        },
+        {
+          "codigo": "f1.hospitalizados",
+          "fila": "hospitalizados",
+          "nombre": "Hospitalizados",
+          "etiquetas": [
+            "HOSPITALIZADOS"
+          ]
+        },
+        {
+          "codigo": "f1.fallecidos",
+          "fila": "fallecidos",
+          "nombre": "Fallecidos",
+          "etiquetas": [
+            "FALLECIDOS"
+          ]
+        },
+        {
+          "codigo": "f1.alta_voluntaria",
+          "fila": "alta_voluntaria",
+          "nombre": "Altas voluntarias",
+          "etiquetas": [
+            "ALTA VOLUNTARIA"
+          ]
+        },
+        {
+          "codigo": "f1.atencion_consultorio",
+          "fila": "atencion_consultorio",
+          "nombre": "Atenciones de consultorio",
+          "etiquetas": [
+            "ATENCION DE CONSULTORIO"
+          ]
+        },
+        {
+          "codigo": "f1.alta_medica",
+          "fila": "alta_medica",
+          "nombre": "Altas médicas",
+          "etiquetas": [
+            "ALTA MEDICA"
+          ]
+        },
+        {
+          "codigo": "f1.traslado_extrahospitalario",
+          "fila": "traslado_extrahospitalario",
+          "nombre": "Traslados extrahospitalarios",
+          "etiquetas": [
+            "TRASLADO EXTRAHOSPITALARIO"
+          ]
+        },
+        {
+          "codigo": "f1.transferencias_clinica",
+          "fila": "transferencias_clinica",
+          "nombre": "Transferencias a clínica (tercerizados)",
+          "etiquetas": [
+            "TRANSFERENCIAS A CLINICA (TERCERIZADOS)"
+          ]
+        },
+        {
+          "codigo": "f1.transferencias",
+          "fila": "transferencias",
+          "nombre": "Transferencias",
+          "etiquetas": [
+            "TRANSFERENCIAS"
+          ]
+        },
+        {
+          "codigo": "f1.total_sesiones",
+          "fila": "total_sesiones",
+          "nombre": "Total de sesiones atendidas",
+          "etiquetas": [
+            "TOTAL DE SESIONES ATENDIDAS"
+          ]
+        }
+      ]
+    }
+  ]
+}

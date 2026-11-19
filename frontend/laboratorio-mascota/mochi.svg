@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-base="176" data-cabeza-y="62" data-sudor-x="150" data-sudor-y="84" style="--m-tinta:#1f2d2a;--m-brillo:#ffffff;--m-mejilla:#ff8fa3;--m-globo:#ffffff;--m-globo-borde:#c4d3cd;--m-globo-tinta:#1f2d2a;--m-ok:#00a76f;--m-alerta:#e5533d;--m-corazon:#ff6b81;--m-cruz:#00a76f;--m-sudor:#6ec6f0;--m-destello:#ffc23c;--m-zz:#7b8a86;--m-sombra:#1f2d2a">
+  <!-- Dr. Mochi, médico de cabecera. Cuerpo blando, bata, estetoscopio y espejo frontal. -->
+  <defs>
+    <linearGradient id="mochi-piel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4fbf7"/>
+      <stop offset="1" stop-color="#cfe8db"/>
+    </linearGradient>
+    <radialGradient id="mochi-metal" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.55" stop-color="#d5dfe2"/>
+      <stop offset="1" stop-color="#93a3a9"/>
+    </radialGradient>
+    <clipPath id="mochi-silueta"><rect x="46" y="62" width="108" height="114" rx="46"/></clipPath>
+  </defs>
+  <ellipse class="m-sombra" cx="100" cy="179" rx="44" ry="6" fill="var(--m-sombra)" opacity="0.14"/>
+  <g class="m-cuerpo">
+    <rect x="46" y="62" width="108" height="114" rx="46" fill="url(#mochi-piel)"/>
+    <g clip-path="url(#mochi-silueta)">
+      <path d="M36 138 H80 L100 172 L120 138 H164 V190 H36 Z" fill="#ffffff"/>
+      <path d="M80 138 L90 152 L85 155 L100 172 M120 138 L110 152 L115 155 L100 172" fill="none" stroke="#c4d3cd" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="127" y="143" width="4" height="13" rx="2" fill="#2f7cc0"/>
+      <rect x="124" y="151" width="18" height="13" rx="3" fill="#ffffff" stroke="#c4d3cd" stroke-width="2"/>
+    </g>
+    <rect x="46" y="62" width="108" height="114" rx="46" fill="none" stroke="#a9c2b7" stroke-width="2.5"/>
+    <g class="m-capa" data-paralaje="0.35">
+      <path d="M74 138 C72 156 86 164 100 164 C114 164 128 156 126 138" fill="none" stroke="#35687d" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="74" cy="137" r="3.6" fill="#35687d"/>
+      <circle cx="126" cy="137" r="3.6" fill="#35687d"/>
+      <circle cx="100" cy="166" r="7" fill="url(#mochi-metal)" stroke="#35687d" stroke-width="3"/>
+    </g>
+    <g class="m-cara" data-paralaje="1">
+      <g class="m-mejillas" data-base="0.3">
+        <ellipse cx="66" cy="116" rx="9" ry="6" fill="var(--m-mejilla)"/>
+        <ellipse cx="134" cy="116" rx="9" ry="6" fill="var(--m-mejilla)"/>
+      </g>
+      <g class="m-ojos" data-cx="100" data-cy="100" data-sep="36" data-w="14" data-h="21"></g>
+      <g class="m-boca" data-cx="100" data-cy="121" data-w="16"></g>
+    </g>
+    <g class="m-capa" data-paralaje="0.8">
+      <path d="M54 84 Q100 60 146 84" fill="none" stroke="#56666b" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="76" cy="73" r="12.5" fill="url(#mochi-metal)" stroke="#6c7c82" stroke-width="2"/>
+      <circle cx="76" cy="73" r="3" fill="#4d5c61"/>
+      <path d="M68.5 69 A8.5 8.5 0 0 1 75 64.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g class="m-globo" data-x="152" data-y="50"></g>
+</svg>

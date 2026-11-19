@@ -1,0 +1,32 @@
+# Base de datos del sistema. Escucha solo en este equipo y en el 5544, para no
+# chocar con otros PostgreSQL de este equipo.
+# Solo para desarrollo: en el servidor la base es la del PostgreSQL del hospital
+# (docs/DESPLIEGUE.md § «Hospitalización»). El nombre del proyecto es el del repositorio
+# de donde vino, para seguir usando el mismo volumen de datos.
+name: egresos-hospitalarios
+
+services:
+  db:
+    image: postgres:16
+    container_name: egresos-db
+    # Vuelve sola cada vez que Docker arranca: sin ella, hospitalización dice «Sin
+    # conexión». Si `estadistica_dev` vive aquí (README), tampoco entra Estadística.
+    restart: unless-stopped
+    command: ["postgres", "-c", "timezone=America/Lima"]
+    environment:
+      POSTGRES_DB: ${EGRESOS_DB:-egresos}
+      POSTGRES_USER: egresos_owner
+      POSTGRES_PASSWORD: ${EGRESOS_OWNER_CLAVE:?Falta EGRESOS_OWNER_CLAVE en .env}
+      TZ: America/Lima
+    ports:
+      - "127.0.0.1:${EGRESOS_DB_PUERTO:-5544}:5432"
+    volumes:
+      - egresos_datos:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U egresos_owner -d ${EGRESOS_DB:-egresos}"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  egresos_datos:

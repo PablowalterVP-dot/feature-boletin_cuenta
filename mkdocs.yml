@@ -1,0 +1,54 @@
+# Documentación del repo en el portal de desarrollo del HRL (TechDocs).
+# Toma los documentos de docs/ tal como están; index.md es la portada.
+site_name: Sistema de Reporte Estadístico
+site_description: Reporte mensual de las diez áreas a la Oficina de Estadística del HRL.
+repo_url: https://github.com/DevHRL/Estadistica_hrl
+edit_uri: edit/main/docs/
+
+nav:
+  - Inicio: index.md
+  - Contexto: CONTEXTO.md
+  - Plan: PLAN.md
+  - Despliegue: DESPLIEGUE.md
+  - Una sola base: BASE_COMPARTIDA.md
+  - API del backend: API_BACKEND.md
+  - Indicadores de desempeño: INDICADORES_DESEMPENO.md
+  - Plan de personalización: Plan_Personalizacion.md
+  # Egresos Hospitalarios: el seguimiento del paciente hospitalizado, camas y censo
+  # diario (servidor/hospitalizacion/ y frontend/src/app/hospitalizacion/).
+  - Hospitalización:
+      - Inicio: hospitalizacion/index.md
+      - Proceso:
+          - hospitalizacion/proceso/index.md
+          - Reglas de negocio: hospitalizacion/proceso/reglas.md
+          - Completado desde la HC física: hospitalizacion/proceso/completado-hc.md
+          - Camas, habitaciones y mantenimiento: hospitalizacion/proceso/camas-y-mantenimiento.md
+      - Módulos y pantallas: hospitalizacion/modulos.md
+      - Arquitectura: hospitalizacion/arquitectura.md
+      - Diseño:
+          - Estándar de animaciones: hospitalizacion/diseno/animaciones.md
+      - Tecnologías: hospitalizacion/tecnologias.md
+      - Plan de implementación: hospitalizacion/plan.md
+      - Piloto Medicina: hospitalizacion/piloto-medicina.md
+      - Preguntas técnicas: hospitalizacion/preguntas-tecnicas.md
+      - "Tarea: base de datos PostgreSQL": hospitalizacion/tareas/base-de-datos-postgresql.md
+      - Excepciones pendientes: hospitalizacion/tareas/excepciones-pendientes.md
+      - Decisiones:
+          - hospitalizacion/decisiones/index.md
+          - 0001 Stack inicial: hospitalizacion/decisiones/0001-stack-inicial.md
+          - 0002 Movimientos como fuente única: hospitalizacion/decisiones/0002-movimientos-fuente-unica.md
+          - 0003 Captura dual papel/digital: hospitalizacion/decisiones/0003-captura-dual-papel-digital.md
+          - 0004 Plano 2D e isométrico: hospitalizacion/decisiones/0004-vista-isometrica-svg.md
+          - 0005 Ingreso obligatorio y reemplazo de Aletheia: hospitalizacion/decisiones/0005-ingreso-obligatorio-reemplazo-aletheia.md
+          - 0006 Una credencial por área: hospitalizacion/decisiones/0006-credencial-por-area.md
+          - 0007 Orden al departamento y seis cuentas: hospitalizacion/decisiones/0007-orden-al-departamento-seis-cuentas.md
+          - 0008 UCI, Quemados y estados de cama: hospitalizacion/decisiones/0008-uci-quemados-y-estados-de-cama.md
+          - 0009 Medicina A en el piso 2: hospitalizacion/decisiones/0009-medicina-a-en-el-piso-2.md
+          - 0010 El área designa y registra el alta: hospitalizacion/decisiones/0010-el-area-designa-y-registra-el-alta.md
+          - 0011 Integración con Estadística: hospitalizacion/decisiones/0011-integracion-con-estadistica.md
+          - 0012 Unidades de hospitalización: hospitalizacion/decisiones/0012-unidades-de-hospitalizacion.md
+          - 0013 Estadística solo visualiza: hospitalizacion/decisiones/0013-estadistica-solo-visualiza.md
+          - 0014 Hospitalización siempre en Docker: hospitalizacion/decisiones/0014-hospitalizacion-siempre-en-docker.md
+
+plugins:
+  - techdocs-core

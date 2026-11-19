@@ -1,0 +1,1757 @@
+/* Estilos propios de esta aplicación.
+
+   El kit (@hrl/core-ui) trae los tokens y los componentes; aquí van solo las
+   piezas de composición que nombran cosas de este sistema y que ningún
+   componente del kit cubre todavía. Se cargan después de los tokens y usan
+   únicamente tokens: ni un color, radio, sombra o tamaño de letra literal.
+
+   Si una de estas piezas se repite en otro sistema del hospital, se pide al
+   kit en vez de copiarla. Las cifras de arriba de un panel, por ejemplo, ya
+   tienen equivalente: StatCard dentro de un Grid. */
+
+/* ------------------------------------------------------------- maquetas
+
+   Estas tres venían en la copia local del kit y el kit publicado no las trae.
+   Al migrar quedaron sin regla base (solo sobrevivió su media query en el
+   kit, y por eso `doctor` las dio por definidas): el panel perdió su margen y
+   el visor y el registro diario, sus dos columnas. */
+
+/* Contenido de cada módulo, bajo el encabezado de página. */
+/* El panel es un Mosaic del kit: él decide qué secciones van lado a lado.
+   Aquí el borde con el layout y el aire entre secciones, los de la nueva
+   interfaz (kit 1.11.0): 24 px de borde, el de la cabecera, y 16 px entre
+   tarjetas. Antes eran 32 y 24; con tarjetas de esquina amplia y sombra
+   difusa, ese aire las separaba de más. El `gap` va aquí y no en la prop del
+   Mosaic para que todos los paneles midan lo mismo. */
+.hrl-panel {
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 1600px;
+  padding: 0 var(--space-5) var(--space-6);
+}
+
+@media (max-width: 700px) {
+  .hrl-panel { padding: 0 var(--space-3) var(--space-5); }
+}
+
+/* La cabecera de la página (PageHeader del kit) y el aviso de Dr. Mochi
+   (MascotAlert) se alinean con las secciones
+   del panel: el mismo borde a cada lado y, en pantallas muy anchas, el mismo
+   ancho máximo que su contenido (1600 menos los dos bordes). */
+.hrl-pagehead,
+.hrl-aviso-pagina {
+  --hrl-borde: var(--space-5);
+  max-width: calc(1600px - 2 * var(--space-5));
+}
+
+@media (max-width: 720px) {
+  .hrl-pagehead,
+  .hrl-aviso-pagina { --hrl-borde: var(--space-3); }
+}
+
+/* Visor de un reporte: lo enviado a la izquierda, lo que decide a la derecha. */
+.hrl-visor {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .hrl-visor { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Registro diario: calendario a la izquierda, el día o la semana a la derecha. */
+.hrl-registro {
+  display: grid;
+  grid-template-columns: minmax(290px, 340px) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+/* En una columna bajo 1100 px, como hace el kit: esta regla va después de la
+   suya y la anulaba, así que en un teléfono el calendario y la semana seguían
+   lado a lado y la página se desplazaba de costado. */
+@media (max-width: 1100px) {
+  .hrl-registro { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* El cuerpo de una tarjeta. Antes cada pantalla lo escribía en línea, de seis
+   maneras (18/20/22, 16/20/20, var(--space-5)…): el mismo hueco medía distinto
+   de una pantalla a otra. */
+.hrl-cuerpo { padding: var(--space-4) var(--space-5) var(--space-5); }
+
+/* ------------------------------------------------------- cifras y tablero */
+
+/* Fila de tarjetas de cifras; se reparte sola según el ancho. Con 200 px de
+   mínimo caben cinco en una pantalla de escritorio: con 240 la quinta bajaba
+   sola a otra fila y dejaba un hueco del ancho de tres tarjetas. */
+.hrl-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: var(--space-5);
+}
+
+/* Una cifra nunca pasa por debajo de su tendencia (07/11/2026: en una tarjeta angosta,
+   «S/ 43,938.00» o «14,297 kg» se partían y se montaban sobre las barras). Cada tarjeta mide
+   su propio ancho: si es angosta, la cifra baja un escalón de tamaño; si aun así no cabe junto
+   a la tendencia, la tendencia pasa a su propia línea, a la derecha; y una cifra más ancha
+   que la tarjeta se corta dentro de ella, no fuera. Corrige el StatCard del kit desde aquí:
+   conviene llevarlo a su CSS en la próxima versión. */
+.hrl-stat { container-type: inline-size; min-width: 0; }
+.hrl-stat__cuerpo { flex-wrap: wrap; row-gap: var(--space-2); }
+.hrl-stat__cuerpo > .hrl-stat__value { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.hrl-stat__cuerpo > :not(.hrl-stat__value) { margin-left: auto; }
+.hrl-stat__note, .hrl-stat__label { min-width: 0; overflow-wrap: anywhere; }
+@container (max-width: 330px) {
+  .hrl-stat__value { font-size: var(--text-xl); }
+}
+
+/* Leyenda de la cobertura (superadmin): cada estado con su icono, en una línea
+   que se parte sola en pantallas estrechas. */
+.hrl-cobertura-leyenda {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-right: var(--space-4);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------- acciones y enlaces */
+
+/* Botones de icono al final de una fila de tabla. */
+.hrl-acciones-icono {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+/* Una acción de fila que borra (eliminar una cuenta): el mismo botón, en el
+   color de lo destructivo. El icono y su tooltip también lo dicen. */
+.hrl-acciones-icono .hrl-accion--peligro:not(:disabled) {
+  color: var(--destructive-text);
+}
+
+/* El identificador de una fila, que abre su registro (CLAUDE.md § 4.4). */
+/* ------------------------------------------------------------------ fichas */
+
+.hrl-chips-fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.hrl-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--muted-foreground);
+  background: var(--neutral-soft);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+/* ------------------------------------------ corrección con Dr. Mochi */
+
+/* Dr. Mochi y lo que dice: la mascota y un bocadillo que la señala. El
+   bocadillo es texto: la mascota es decorativa (Mascota.jsx). */
+.hrl-mochi {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.hrl-mochi__bocadillo {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.hrl-mochi__bocadillo::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--background);
+  border-left: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.hrl-mochi__bocadillo strong { display: block; }
+.hrl-mochi__bocadillo p { margin: var(--space-1) 0 0; }
+
+/* Mochi encima de su bocadillo (el panel derecho): el pico apunta arriba. */
+.hrl-mochi--arriba { flex-direction: column; align-items: stretch; gap: var(--space-2); }
+.hrl-mochi--arriba > :first-child { align-self: center; }
+.hrl-mochi--arriba .hrl-mochi__bocadillo::before { left: 50%; top: -7px; transform: translateX(-50%) rotate(135deg); }
+
+/* EL DIÁLOGO. Mismo tamaño para todos los errores: lo que cambia de un error
+   a otro es cuánto contenido tiene, no el diálogo. UNA sola barra de
+   desplazamiento (21/10/2026): se desplaza el contenido entero —la
+   pregunta, la hoja y las tablas propias del área— y la barra de abajo
+   queda fija. Antes se desplazaban por separado la tabla, cada tabla del
+   área y el panel de Mochi: tres barras en un diálogo era un desorden.
+   Se ajusta aquí, en su contexto (:has), y no en el kit. */
+.hrl-modal-overlay--full:has(.hrl-correccion-marco) { padding: var(--space-2); align-items: center; }
+.hrl-modal--full:has(.hrl-correccion-marco) {
+  width: min(1240px, 100%);
+  height: min(720px, calc(100dvh - 2 * var(--space-2)));
+}
+.hrl-modal--full:has(.hrl-correccion-marco) .hrl-modal__head { padding-top: var(--space-3); padding-bottom: var(--space-2); }
+.hrl-modal--full:has(.hrl-correccion-marco) .hrl-modal__body {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--space-3);
+  padding-bottom: var(--space-3);
+  overflow: hidden;
+}
+
+.hrl-correccion-marco {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Una columna (21/10/2026): la pregunta arriba y la hoja debajo, a todo el
+   ancho, que es lo que la hoja necesita. Ocupa el alto que deja la barra de
+   abajo y se desplaza con la única barra del diálogo. */
+.hrl-correccion {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow-y: auto;
+  padding-right: var(--space-2);
+}
+.hrl-correccion > * { flex: 0 0 auto; min-width: 0; }
+/* Sin nada que revisar: Dr. Mochi y su frase, centrados en el diálogo. */
+.hrl-correccion > .hrl-correccion__vacio { margin: auto; align-items: center; text-align: center; }
+
+/* El selector: «Anterior» siempre a la izquierda, «Siguiente» siempre a la
+   derecha, y los errores numerados en medio (saltan de línea si son muchos). */
+.hrl-correccion__selector {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* ‹ y ›: cuadradas, del alto táctil mínimo. La de retroceso es la misma
+   flecha girada (el kit no trae una hacia la izquierda). */
+.hrl-portal .hrl-correccion__flecha {
+  width: var(--touch-target);
+  min-width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0;
+  justify-content: center;
+}
+
+.hrl-correccion__flecha--atras svg { transform: rotate(180deg); }
+
+.hrl-correccion__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.hrl-portal .hrl-correccion__chip {
+  min-height: var(--touch-target);
+  min-width: 56px;
+  gap: var(--space-1);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+
+.hrl-correccion__chip--pendiente svg { color: var(--destructive-text); }
+.hrl-correccion__chip--nuevo svg { color: var(--warning-fg); }
+.hrl-correccion__chip--resuelto { color: var(--muted-foreground); }
+.hrl-correccion__chip--resuelto svg { color: var(--success-text); }
+.hrl-portal .hrl-correccion__chip--activo { border-color: var(--primary); background: var(--muted); box-shadow: inset 0 -3px 0 var(--primary); }
+
+/* LA COMPARACIÓN (21/10/2026): la barra de la celda elegida y, debajo, la
+   hoja del área recortada alrededor del error (HojaEnVista.jsx). Nada se
+   desplaza por su cuenta: todo se recorre con la barra del diálogo, y la
+   barra de la celda se queda arriba mientras tanto. */
+.hrl-comparar { flex: 0 0 auto; display: flex; flex-direction: column; gap: var(--space-3); }
+
+.hrl-barra-celda {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.hrl-barra-celda--vacia { font-size: var(--text-sm); color: var(--muted-foreground); }
+.hrl-barra-celda__ref {
+  min-width: 56px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-align: center;
+}
+.hrl-barra-celda__que { flex: 1 1 200px; min-width: 0; font-size: var(--text-sm); color: var(--text-secondary); }
+.hrl-barra-celda__excel { font-size: var(--text-sm); color: var(--muted-foreground); white-space: nowrap; }
+.hrl-barra-celda .hrl-celda-cambio { margin-top: 0; align-items: flex-start; }
+
+/* La hoja: cabecera de letras y columna de números en gris, cuadrícula fina,
+   como Excel. Su pestaña lleva el nombre de la hoja (o de la tabla del Word).
+   Si el recorte es más ancho que el panel —pocas veces: las columnas que no
+   tocan el error se pliegan—, se desplaza a lo ancho solo ella. */
+.hrl-hoja { display: flex; flex-direction: column; }
+.hrl-hoja__pestana {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--surface);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.hrl-hoja .hrl-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) var(--radius-sm);
+}
+.hrl-hoja .hrl-table { width: auto; min-width: 100%; table-layout: auto; border-collapse: collapse; }
+.hrl-hoja .hrl-table thead th {
+  padding: var(--space-1) var(--space-2);
+  background: var(--muted);
+  border-right: 1px solid var(--border-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+.hrl-hoja .hrl-table tbody td {
+  height: calc(var(--touch-target) + 4px);
+  padding: 2px var(--space-1);
+  border-right: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: middle;
+}
+.hrl-hoja .hrl-table tbody td:first-child { background: var(--muted); }
+.hrl-hoja .hrl-table tbody .hrl-hoja__fila-hueco td { height: auto; padding: 0 var(--space-1); background: var(--muted); }
+.hrl-hoja__num,
+.hrl-hoja__hueco { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted-foreground); }
+.hrl-hoja__dato {
+  display: block;
+  padding: 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+.hrl-hoja__dato--texto {
+  min-width: 160px;
+  max-width: 320px;
+  text-align: left;
+  white-space: normal;
+  line-height: var(--leading-tight);
+  color: var(--foreground);
+}
+
+/* Una celda del error: se pulsa para verla en la barra. El papel se dice con
+   fondo y borde, y además con su tooltip y la leyenda de abajo. */
+.hrl-portal .hrl-hoja__celda {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-1);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: 0 var(--space-2);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.hrl-hoja__muestra {
+  display: inline-flex;
+  padding: 0 var(--space-1);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+}
+.hrl-portal .hrl-hoja__celda--total,
+.hrl-hoja__muestra.hrl-hoja__celda--total { background: var(--destructive-soft); border-color: var(--destructive); color: var(--destructive-text); font-weight: 700; }
+.hrl-portal .hrl-hoja__celda--sumando,
+.hrl-hoja__muestra.hrl-hoja__celda--sumando { background: var(--warning-soft); border-color: var(--warning); color: var(--warning-fg); }
+/* Lo que propone Dr. Mochi y aún no se aplica: punteado. */
+.hrl-portal .hrl-hoja__celda--propuesta,
+.hrl-hoja__muestra.hrl-hoja__celda--propuesta { background: var(--success-soft); border-color: var(--success); border-style: dashed; color: var(--foreground); }
+.hrl-portal .hrl-hoja__celda--cambiada,
+.hrl-hoja__muestra.hrl-hoja__celda--cambiada { background: var(--success-soft); border-color: var(--success); color: var(--success-text); font-weight: 700; }
+.hrl-portal .hrl-hoja__celda--elegida { outline: 2px solid var(--primary); outline-offset: 1px; }
+.hrl-portal .hrl-hoja__celda--senalada { outline: 2px dashed var(--ring); outline-offset: 1px; }
+.hrl-hoja__par { display: flex; flex-direction: column; align-items: flex-end; line-height: var(--leading-tight); }
+.hrl-hoja__par s { font-size: var(--text-xs); font-weight: 400; color: var(--muted-foreground); }
+.hrl-hoja__nueva { color: var(--success-text); }
+
+.hrl-comparar__ref {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.hrl-comparar__que {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+
+.hrl-comparar__titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.hrl-comparar__titulo svg { flex: 0 0 auto; }
+
+.hrl-comparar__leyenda {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+/* Una cifra de la comparación: en su recuadro, alineada a la derecha. El
+   papel en el error se dice con fondo y borde, y además con el tooltip de
+   «Qué es» y la leyenda: el color nunca va solo. */
+.hrl-celda {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  min-width: 64px;
+  max-width: 100%;
+  min-height: 30px;
+  padding: 0 var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hrl-comparar__leyenda .hrl-celda { min-width: 0; }
+
+.hrl-celda--total { background: var(--destructive-soft); border-color: var(--destructive); color: var(--destructive-text); font-weight: 700; }
+.hrl-celda--sumando { background: var(--warning-soft); border-color: var(--warning); color: var(--warning-fg); }
+.hrl-celda--cambiada { background: var(--info-soft); border-color: var(--info); color: var(--info-fg); font-weight: 700; }
+.hrl-celda--senalada { outline: 2px solid var(--ring); outline-offset: 1px; }
+.hrl-celda--bien { background: var(--success-soft); border-color: var(--success); color: var(--success-text); }
+
+/* Lo que cambió en una celda, bajo su cifra: antes → ahora y quién. */
+.hrl-celda-cambio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  line-height: var(--leading-tight);
+  color: var(--info-fg);
+}
+.hrl-celda-cambio__cifras s { color: var(--muted-foreground); }
+.hrl-celda-cambio__autor { display: inline-flex; align-items: center; gap: 4px; color: var(--muted-foreground); }
+/* Las tablas propias del área (Centro Quirúrgico: RESUMEN frente a las
+   hojas), en el mismo recorrido que la de celdas: sin barra propia ni alto
+   fijo de fila, con columnas que se reparten el ancho. */
+.hrl-tabla-area { display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-3); }
+/* Caben siempre en su panel (21/10/2026: la del RESUMEN se metía bajo el de
+   Mochi): columnas de ancho repartido y los textos parten en líneas. */
+.hrl-tabla-area .hrl-table-wrap { overflow-x: visible; }
+.hrl-tabla-area .hrl-table { width: 100%; min-width: 0; table-layout: fixed; }
+.hrl-tabla-area .hrl-table th:first-child,
+.hrl-tabla-area .hrl-table td:first-child { width: 28%; }
+.hrl-tabla-area .hrl-comparar__que { white-space: normal; overflow-wrap: anywhere; }
+.hrl-tabla-area .hrl-table thead th { padding: var(--space-2) var(--space-3); white-space: normal; vertical-align: bottom; }
+.hrl-tabla-area .hrl-table tbody td { padding: var(--space-2) var(--space-3); }
+.hrl-tabla-area .hrl-celda { min-width: 0; }
+
+.hrl-celda__fx {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--muted-foreground);
+}
+
+/* EL ERROR, A LA VISTA (22/10/2026): una cabecera de una línea, la balanza
+   con lo que no coincide y, debajo, los arreglos en una fila. Sin párrafos:
+   lo que se explica va en tooltips. */
+.hrl-pregunta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.hrl-pregunta--resuelta { border-color: var(--success); }
+.hrl-pregunta__cabeza { display: flex; align-items: center; gap: var(--space-3); min-width: 0; }
+.hrl-pregunta__cabeza > :first-child { flex: 0 0 auto; }
+.hrl-pregunta__numero {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.hrl-pregunta__numero--error { color: var(--destructive-text); }
+.hrl-pregunta__numero--alerta { color: var(--warning-fg); }
+.hrl-pregunta__numero--bien { color: var(--success-text); }
+.hrl-pregunta__titulo {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+.hrl-pregunta__bloque { display: flex; flex-direction: column; gap: var(--space-2); }
+
+/* LA BALANZA (Balanza.jsx): dos lados y el signo en medio. Distinta: el
+   signo en rojo con la diferencia; igual: en verde. El color va con el
+   signo (≠ / =) y la cifra: nunca solo. */
+.hrl-balanza { display: flex; flex-direction: column; gap: var(--space-2); }
+.hrl-balanza__titulo { font-size: var(--text-sm); font-weight: 700; }
+.hrl-balanza__fila {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--space-3);
+}
+.hrl-balanza__lado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--background);
+}
+.hrl-balanza__hoja {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.hrl-balanza__celdas { display: flex; flex-direction: column; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.hrl-balanza__celdas li {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.hrl-balanza__ref { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted-foreground); }
+.hrl-balanza__etiqueta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-secondary); }
+.hrl-balanza__valor { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+.hrl-balanza__valor--cambiada { color: var(--success-text); }
+.hrl-balanza__mas { font-size: var(--text-xs); color: var(--muted-foreground); }
+.hrl-balanza__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+.hrl-balanza__total--solo { padding-top: 0; border-top: none; }
+.hrl-balanza__total strong { font-size: var(--text-xl); font-variant-numeric: tabular-nums; color: var(--foreground); }
+.hrl-balanza__signo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-width: 64px;
+  height: 100%;
+}
+.hrl-balanza__simbolo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+.hrl-balanza__dif { font-size: var(--text-sm); font-weight: 700; font-variant-numeric: tabular-nums; }
+.hrl-balanza--distinta .hrl-balanza__signo { color: var(--destructive-text); }
+.hrl-balanza--distinta .hrl-balanza__simbolo { background: var(--destructive-soft); }
+.hrl-balanza--igual .hrl-balanza__signo { color: var(--success-text); }
+.hrl-balanza--igual .hrl-balanza__simbolo { background: var(--success-soft); }
+.hrl-balanza--igual .hrl-balanza__lado { border-color: var(--success); }
+
+/* Los arreglos: en una fila, cada uno con las celdas que cambia y su botón. */
+.hrl-pregunta__arreglos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.hrl-pregunta__etiqueta { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted-foreground); }
+.hrl-arreglo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--background);
+}
+/* El que la hoja está mostrando. */
+.hrl-arreglo--activa { border-color: var(--primary); outline: 1px solid var(--primary); }
+.hrl-arreglo__marca { display: inline-flex; color: var(--success-text); }
+.hrl-opcion__cambios { display: flex; flex-direction: column; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.hrl-opcion__cambios li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.hrl-opcion__cambios svg { color: var(--muted-foreground); }
+.hrl-opcion__ref { font-family: var(--font-mono); font-weight: 700; }
+.hrl-opcion__mas { font-size: var(--text-xs); color: var(--muted-foreground); }
+
+/* ESCRITURA: lo escrito, con lo que sobra marcado, frente a lo que debería
+   ser. El color va con el rótulo («Escrito», «Debería ser») y el motivo. */
+.hrl-escritos { display: flex; flex-direction: column; gap: var(--space-3); }
+.hrl-escrito { display: flex; flex-direction: column; gap: var(--space-1); }
+.hrl-escrito__donde { font-size: var(--text-sm); color: var(--text-secondary); }
+.hrl-escrito__fila { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.hrl-escrito__fila > svg { color: var(--muted-foreground); }
+.hrl-escrito__caja {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 120px;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--background);
+}
+.hrl-escrito__caja--mal { border-color: var(--destructive); background: var(--destructive-soft); }
+.hrl-escrito__caja--bien { border-color: var(--success); background: var(--success-soft); }
+.hrl-escrito__caja--pendiente { border-style: dashed; }
+.hrl-escrito__rotulo { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted-foreground); }
+.hrl-escrito__texto { font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 700; color: var(--foreground); }
+.hrl-escrito__sobra { padding: 0 2px; border-radius: var(--radius-sm); background: var(--destructive); color: var(--destructive-foreground); }
+.hrl-escrito__motivo { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-sm); font-weight: 600; color: var(--destructive-text); }
+
+/* FALTAN: las casillas sin dato como recuadros vacíos (punteados); con la
+   propuesta, «→ 0»; llenas, en verde. */
+.hrl-vacias { display: flex; flex-direction: column; gap: var(--space-2); }
+.hrl-vacias__cuenta { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 700; color: var(--destructive-text); }
+.hrl-vacias__cuenta--completa { color: var(--success-text); }
+.hrl-vacias__lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hrl-vacias__celda {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 2px dashed var(--destructive);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+.hrl-vacias__celda--propuesta { border-color: var(--success); }
+.hrl-vacias__celda--llena { border-style: solid; border-color: var(--success); background: var(--success-soft); }
+.hrl-vacias__etiqueta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-secondary); }
+.hrl-vacias__valor { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--muted-foreground); }
+.hrl-vacias__celda--propuesta .hrl-vacias__valor,
+.hrl-vacias__celda--llena .hrl-vacias__valor { color: var(--success-text); }
+
+/* Un error que no es una cuenta: la celda misma, grande. */
+.hrl-pregunta__celdas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.hrl-pregunta__celda { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-md); font-variant-numeric: tabular-nums; }
+.hrl-pregunta__celda .hrl-hoja__muestra { padding: var(--space-1) var(--space-3); font-weight: 700; }
+.hrl-pregunta__nota-corta { font-size: var(--text-sm); color: var(--muted-foreground); }
+
+/* Respondido: una línea, con deshacer y seguir. */
+.hrl-pregunta__hecho { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); font-size: var(--text-sm); }
+.hrl-pregunta__hecho strong { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--success-text); }
+.hrl-pregunta__hecho-acciones { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-left: auto; }
+
+.hrl-comparar__cabeza { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); }
+
+/* En un teléfono, los dos lados uno sobre otro y el signo entre ellos. */
+@media (max-width: 640px) {
+  .hrl-balanza__fila { grid-template-columns: minmax(0, 1fr); }
+  .hrl-balanza__signo { flex-direction: row; height: auto; }
+}
+
+/* La barra de abajo: a la izquierda, el avance y deshacer todo; a la
+   derecha, finalizar. */
+.hrl-correccion__pie {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-soft);
+}
+
+.hrl-correccion__pie-info,
+.hrl-correccion__pie-acciones,
+.hrl-correccion__deshacer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.hrl-correccion__avance,
+.hrl-correccion__deshacer { font-size: var(--text-sm); color: var(--text-secondary); }
+.hrl-correccion__avance { display: inline-flex; align-items: center; gap: var(--space-1); }
+.hrl-correccion__avance svg { color: var(--success-text); }
+
+/* ---------------------------------------------------- remisión a DIRESA */
+
+/* Dos columnas: a la izquierda qué fuentes entran y cuáles no; a la derecha
+   el periodo y lo que se descarga o registra. Por debajo de ~760 px el panel
+   de acciones baja debajo de la lista. */
+.hrl-diresa {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: var(--space-6);
+  align-items: start;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+@media (max-width: 760px) {
+  .hrl-diresa { grid-template-columns: minmax(0, 1fr); }
+}
+
+.hrl-diresa__estado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.hrl-diresa__fuentes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: var(--space-3);
+}
+
+/* Cada grupo lleva su color de estado en el borde y el fondo tenue, y además
+   su icono y su título: el color nunca va solo (CLAUDE.md § 4.6). */
+.hrl-diresa__grupo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-soft);
+  border-left: 4px solid var(--hrl-diresa-tono);
+  border-radius: var(--radius-sm);
+  background: var(--hrl-diresa-fondo);
+}
+
+.hrl-diresa__grupo--ok { --hrl-diresa-tono: var(--success); --hrl-diresa-fondo: var(--success-soft); --hrl-diresa-texto: var(--success-text); }
+.hrl-diresa__grupo--warn { --hrl-diresa-tono: var(--warning); --hrl-diresa-fondo: var(--warning-soft); --hrl-diresa-texto: var(--warning-fg); }
+.hrl-diresa__grupo--crit { --hrl-diresa-tono: var(--destructive); --hrl-diresa-fondo: var(--destructive-soft); --hrl-diresa-texto: var(--destructive-text); }
+
+.hrl-diresa__grupo-cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--hrl-diresa-texto);
+}
+
+.hrl-diresa__grupo-titulo {
+  flex: 1;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.hrl-diresa__areas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--foreground);
+}
+
+.hrl-diresa__areas li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.hrl-diresa__areas li svg { color: var(--hrl-diresa-texto); flex: 0 0 auto; }
+
+.hrl-diresa__vacio {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+.hrl-diresa__acciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: var(--background);
+}
+
+.hrl-diresa__acciones .hrl-btn { width: 100%; justify-content: center; }
+
+.hrl-diresa__descargas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hrl-diresa__rotulo {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* ------------------------------------------------------ registro diario */
+
+.hrl-registro__cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0 var(--space-5) var(--space-3);
+}
+
+/* Rejilla de captura: una fila por concepto, con sus casillas numéricas. */
+.hrl-captura {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hrl-captura__fila {
+  display: grid;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-5);
+  border-radius: var(--radius-sm);
+}
+
+.hrl-captura__fila:hover { background: var(--row-hover); }
+
+.hrl-captura__fila--total {
+  background: var(--muted);
+  font-weight: var(--weight-bold);
+  margin-top: var(--space-2);
+}
+
+.hrl-captura__grupo {
+  padding: var(--space-3) var(--space-5) var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--subtle-foreground);
+}
+
+.hrl-captura__etiqueta {
+  font-size: var(--text-base);
+  color: var(--foreground);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ======================================================= Nutrición: carga
+
+   El módulo de Nutrición se llena subiendo su Excel (paneles/reporte/nutricion). */
+
+/* La zona de carga es la acción principal y ocupa más ancho; la ayuda va al
+   costado y pasa debajo en pantallas estrechas. */
+/* Una sección debajo de otra, como el resto de Nutrición (CLAUDE.md § 4.6b):
+   primero subir el archivo, después la plantilla y el ejemplo. */
+.hrl-carga {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.hrl-carga__zona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-card);
+  background: var(--muted);
+  text-align: center;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.hrl-carga__zona--encima {
+  border-color: var(--primary);
+  background: var(--info-soft);
+}
+
+.hrl-carga__etapas,
+.hrl-carga__pasos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+}
+
+.hrl-carga__etapas li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--space-5);
+  color: var(--subtle-foreground);
+}
+
+.hrl-carga__etapas .hrl-carga__etapa--hecha { color: var(--success-text); }
+.hrl-carga__etapas .hrl-carga__etapa--actual { color: var(--foreground); font-weight: var(--weight-semibold); }
+.hrl-carga__etapa--actual svg { animation: hrl-giro 1.1s linear infinite; }
+
+@keyframes hrl-giro { to { transform: rotate(360deg); } }
+
+.hrl-carga__pasos { list-style: decimal; padding-left: var(--space-5); line-height: var(--leading-normal); }
+
+/* ================================= Nutrición: detalle día por día
+
+   Una semana a la vez, por grupo: los días en filas, las comidas en
+   columnas. Los grupos que no cambian en todo el mes se pliegan en una línea. */
+
+.hrl-dias { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+
+/* El calendario acompaña al recorrer las tablas: es la forma de saltar de
+   semana o de día sin volver arriba, y evita el hueco bajo él. Se ancla bajo
+   la barra superior del kit, que también es fija: `--hrl-topbar-h` la mide el
+   AppShell (con `top` a secas quedaba tapado por ella). En una columna
+   (pantallas estrechas) no se fija: taparía las tablas. */
+@media (min-width: 1101px) {
+  .hrl-dias .hrl-registro > :first-child { position: sticky; top: calc(var(--hrl-topbar-h, 0px) + var(--space-4)); }
+}
+
+/* El nombre no es `.hrl-detalle` a propósito: el kit ya tiene esa clase (la
+   rejilla de DetailDialog, con `align-items: start`), y heredarla encogía el
+   calendario y las tablas a su ancho mínimo, dejando un tercio vacío. */
+
+.hrl-semana { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+
+.hrl-semana__cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.hrl-semana__cabeza > strong { font-size: var(--text-md); padding: 0 var(--space-1); }
+
+.hrl-semana__paginas { display: inline-flex; flex-wrap: wrap; gap: var(--space-1); margin-left: auto; }
+
+.hrl-semana__origen {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+.hrl-semana__dia { font-weight: var(--weight-semibold); white-space: nowrap; }
+.hrl-semana__dia--finde { color: var(--info-fg); }
+.hrl-semana__fila--elegida td { background: var(--info-soft); }
+
+.hrl-grupo {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.hrl-grupo__cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--touch-target);
+  padding: var(--space-2) var(--space-4);
+  background: var(--muted);
+}
+
+/* Las tablas de la semana: dos columnas cuando caben (pantallas anchas), una
+   cuando no. Llenan el ancho junto al calendario. */
+.hrl-semana__tablas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.hrl-grupo__fijo {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--info-fg);
+}
+
+.hrl-grupo__resumen {
+  flex: 1;
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+.hrl-grupo .hrl-table-wrap { border-top: 1px solid var(--border); }
+
+/* Casilla de raciones: el número a la derecha y su marca, si la tiene. */
+.hrl-casilla {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+.hrl-casilla--vacia .hrl-input-mini { border-color: var(--destructive); border-style: dashed; }
+.hrl-casilla--error .hrl-input-mini { border-color: var(--destructive); background: var(--destructive-soft); }
+.hrl-casilla--aviso .hrl-input-mini { border-color: var(--warning); background: var(--warning-soft); }
+.hrl-casilla--error .hrl-casilla__marca { color: var(--destructive-text); }
+.hrl-casilla--aviso .hrl-casilla__marca { color: var(--warning-fg); }
+.hrl-casilla__marca { display: inline-flex; }
+
+/* Corregida a mano después de subir el archivo. */
+.hrl-casilla--editada::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--info);
+  pointer-events: none;
+}
+
+.hrl-fila--total td { background: var(--muted); font-weight: var(--weight-bold); }
+
+/* Una fila que encabeza un grupo (la especialidad de Centro Quirúrgico) y las
+   que van dentro de él, con sangría. */
+.hrl-fila--grupo td { background: var(--neutral-soft); font-weight: var(--weight-semibold); }
+.hrl-sangria { padding-left: var(--space-5); color: var(--muted-foreground); }
+
+.hrl-acciones-paso {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.hrl-acciones-paso__motivo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+/* =============================================== Nutrición: recorrido
+
+   Los pasos son `ProgressSteps` del kit (v1.8.0), que salió de aquí. */
+
+/* Cada paso entra con un fundido. `backwards` y no `both` a propósito: con
+   `both` el `transform` final se queda puesto, el contenedor pasa a ser bloque
+   contenedor y un `position: fixed` de adentro se resuelve contra él
+   (CLAUDE.md § 4.1). Con `backwards`, al terminar no queda ningún transform. */
+.hrl-paso-entrada {
+  gap: var(--space-5);
+  min-width: 0;
+  animation: hrl-entrada var(--duration-slow) var(--ease) backwards;
+}
+
+@keyframes hrl-entrada {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* =============================================== Espera del bot
+
+   La mascota es la del kit (Mascot, vía paneles/Mascota.jsx): su movimiento y
+   su movimiento reducido son del kit. Aquí solo va lo que la rodea. */
+
+/* La espera mientras el bot lee: la mascota y lo que va diciendo, en globo. */
+.hrl-espera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--muted);
+  text-align: center;
+}
+
+.hrl-espera__estado { margin: 0; font-size: var(--text-md); font-weight: var(--weight-semibold); }
+
+.hrl-espera__frase {
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  color: var(--muted-foreground);
+  font-size: var(--text-base);
+  animation: hrl-entrada var(--duration-base) var(--ease) backwards;
+}
+
+.hrl-espera__etapas { align-self: center; margin-top: var(--space-2); text-align: left; }
+
+/* Movimiento reducido de lo propio de este sistema (el kit resuelve el suyo,
+   también el de la mascota): los fundidos se quedan quietos y la etapa en
+   curso pulsa. */
+@media (prefers-reduced-motion: reduce) {
+  .hrl-espera__frase,
+  .hrl-paso-entrada { animation: none; }
+
+  /* La etapa en curso del bot dice «trabajando» con un pulso en el sitio en
+     vez de girar (mismo criterio que el kit para su spinner). Va después del
+     @keyframes original, así que este gana. */
+  @keyframes hrl-giro { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+  /* El tooltip entra con el fundido, sin desplazarse. */
+  @keyframes hrl-graf-tip { from { opacity: 0; } to { opacity: 1; } }
+  /* El punto resaltado cambia de tamaño sin crecer de a poco; el fundido de los demás se queda. */
+  .hrl-graf__punto, .hrl-graf__halo { transition: none; }
+}
+
+/* =============================================== Nutrición: validación */
+
+/* Lo primero del paso 2 (Lectura.jsx): la mascota y una frase que dice qué
+   pasó con el Excel y qué falta. El estado lo dicen el título y la mascota;
+   el fondo lo acompaña con un tinte (sin franja lateral de color, que es
+   decoración y no información). */
+.hrl-lectura {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.hrl-lectura--listo { background: var(--success-soft); }
+.hrl-lectura--problema { background: var(--destructive-soft); }
+
+.hrl-lectura__texto { display: flex; flex-direction: column; gap: var(--space-1); flex: 1; min-width: 240px; }
+.hrl-lectura__titulo { font-size: var(--text-lg); color: var(--foreground); }
+.hrl-lectura__detalle { font-size: var(--text-base); color: var(--muted-foreground); line-height: var(--leading-normal); }
+
+.hrl-destino__icono {
+  display: inline-flex;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--info-soft);
+  color: var(--info-fg);
+}
+
+.hrl-hallazgos { display: flex; flex-direction: column; }
+
+.hrl-hallazgo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.hrl-hallazgo:first-child { border-top: none; }
+
+/* ==================================================== Nutrición: envío */
+
+.hrl-destino {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+
+.hrl-destino__rotulo {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--subtle-foreground);
+}
+
+.hrl-destino__lista {
+  margin: 0;
+  padding-left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+/* ------------------------------------------------ indicadores de desempeño */
+
+/* Los filtros del tablero (buscar, año, mes): se reparten según el ancho. La
+   barra del kit (`FilterBar`) tiene cuatro columnas fijas y en un teléfono los
+   campos quedaban de 70 px. */
+.hrl-desempeno-filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+/* Las cajas de datos del kit (`Field` dentro de `.hrl-campos`), sin sus tres
+   columnas fijas: en un teléfono, una debajo de otra. */
+.hrl-campos.hrl-campos--fluido {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+}
+
+/* Una cifra con su detalle debajo, en una celda de tabla: «7,3 %» y «6 de 82». */
+.hrl-cifra { display: flex; flex-direction: column; gap: var(--space-1); }
+.hrl-cifra > strong { font-size: var(--text-md); white-space: nowrap; }
+.hrl-cifra > span { font-size: var(--text-xs); color: var(--muted-foreground); white-space: nowrap; }
+.hrl-cifra--fuera > strong { color: var(--destructive-text); }
+
+/* El logro frente a la meta: la barra del logro sobre una escala de 0 a 100 %. */
+.hrl-frente-meta { display: flex; flex-direction: column; gap: var(--space-1); min-width: 120px; }
+.hrl-frente-meta > span:last-child { font-size: var(--text-xs); color: var(--muted-foreground); white-space: nowrap; }
+
+/* Lista de una ficha técnica o de un resumen: término y su explicación. */
+.hrl-definiciones { margin: 0; display: grid; gap: var(--space-3); }
+.hrl-definiciones > div { display: grid; grid-template-columns: minmax(120px, 200px) minmax(0, 1fr); gap: var(--space-3); }
+.hrl-definiciones dt { font-weight: var(--weight-semibold); color: var(--foreground); }
+.hrl-definiciones dd { margin: 0; color: var(--muted-foreground); line-height: var(--leading-normal); }
+
+@media (max-width: 700px) {
+  .hrl-definiciones > div { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+}
+
+.hrl-lista { margin: 0; padding-left: var(--space-5); display: grid; gap: var(--space-2); line-height: var(--leading-normal); color: var(--muted-foreground); }
+
+/* Texto de apoyo bajo una tabla o un gráfico. */
+.hrl-nota { margin: 0; font-size: var(--text-sm); color: var(--muted-foreground); line-height: var(--leading-normal); }
+
+/* Las fichas que alimenta una fuente, para marcarlas: se reparten según el ancho. */
+.hrl-casillas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-2) var(--space-4);
+  max-height: 320px;
+  overflow: auto;
+}
+
+/* La muestra de color de una leyenda: siempre junto a su nombre, nunca sola. */
+.hrl-muestra { display: inline-block; width: var(--space-3); height: var(--space-3); border-radius: var(--radius-xs); margin-right: var(--space-2); vertical-align: middle; }
+
+/* La fila del mes elegido en la tabla mes a mes. */
+.hrl-fila--elegida td { background: var(--info-soft); }
+
+/* El tablero de una ficha: el gráfico grande a la izquierda y el mes elegido a
+   la derecha, como en el prototipo. En una columna bajo 1100 px. */
+.hrl-tablero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(300px, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.hrl-tablero__mes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-left: var(--space-5);
+  border-left: 1px solid var(--border);
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .hrl-tablero { grid-template-columns: minmax(0, 1fr); }
+  .hrl-tablero__mes { padding-left: 0; border-left: none; padding-top: var(--space-4); border-top: 1px solid var(--border); }
+}
+
+.hrl-tablero__nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.hrl-tablero__nav h3 { margin: 0; font-size: var(--text-xl); }
+.hrl-tablero__cifra { margin: 0; font-size: var(--text-md); color: var(--muted-foreground); }
+.hrl-tablero__cifra strong { font-size: var(--text-xl); color: var(--foreground); }
+
+/* Lo que se puede hacer con el mes: una barra de acento a la izquierda. */
+.hrl-tablero__actuar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2) 0 var(--space-2) var(--space-4);
+  border-left: 3px solid var(--warning);
+}
+
+/* Los gráficos propios (graficos.jsx): el SVG se escala al ancho. */
+.hrl-grafico svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hrl-grafico__columna { fill: transparent; cursor: pointer; outline: none; }
+.hrl-grafico__columna:hover { fill: var(--row-hover); fill-opacity: 0.5; }
+.hrl-grafico__columna:focus-visible { stroke: var(--ring); stroke-width: 2; }
+
+/* Un cuadro por paciente. */
+.hrl-cuadros { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.hrl-cuadro {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border-radius: var(--radius-xs);
+  background: var(--cuadro);
+  border: 2px solid var(--cuadro);
+  flex: none;
+}
+.hrl-cuadro--chico { width: 12px; height: 12px; margin-right: var(--space-2); vertical-align: -1px; }
+
+/* La leyenda del mes: cada clase con su cuenta. */
+.hrl-leyenda-mes { margin: 0; display: grid; gap: var(--space-1); font-size: var(--text-sm); }
+.hrl-leyenda-mes > div { display: flex; justify-content: space-between; gap: var(--space-3); }
+.hrl-leyenda-mes dt { color: var(--muted-foreground); }
+.hrl-leyenda-mes dd { margin: 0; font-weight: var(--weight-semibold); }
+
+/* Pares clave–valor del mes, separados del resto por una línea. */
+.hrl-pares { margin: 0; display: grid; gap: var(--space-2); font-size: var(--text-sm); border-top: 1px solid var(--border); padding-top: var(--space-3); }
+.hrl-pares > div { display: flex; justify-content: space-between; gap: var(--space-3); }
+.hrl-pares dt { color: var(--muted-foreground); }
+.hrl-pares dd { margin: 0; font-weight: var(--weight-semibold); text-align: right; }
+
+/* Un control que apunta al revés (la flecha «anterior» del kit es la de «siguiente», girada). */
+.hrl-girado { display: inline-flex; transform: rotate(180deg); }
+
+/* La cabecera de una ficha: la bajada a lo ancho y el año a un lado. */
+.hrl-cabecera-ficha { display: grid; grid-template-columns: minmax(0, 1fr) minmax(160px, 220px); gap: var(--space-4); align-items: end; }
+@media (max-width: 700px) { .hrl-cabecera-ficha { grid-template-columns: minmax(0, 1fr); } }
+
+/* Las filas que se abren con un clic en cualquier parte (FilasQueAbren). */
+.hrl-fila-que-abre { cursor: pointer; }
+.hrl-fila-que-abre:hover td { background: var(--row-hover); }
+.hrl-filas-que-abren { min-width: 0; }
+
+/* ------------------------------------------------- diálogo de una cuenta
+
+   Cuenta nueva y editar cuenta (superadministrador): dos paneles lado a lado,
+   los datos de la persona a la izquierda y el rol y la contraseña a la derecha,
+   sobre la superficie hundida. Debajo de 860 px se apilan. */
+.hrl-cuenta-paneles {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .hrl-cuenta-paneles { grid-template-columns: minmax(0, 1fr); }
+}
+
+.hrl-cuenta-panel { min-width: 0; }
+
+.hrl-cuenta-panel--lateral {
+  padding: var(--space-4);
+  border-radius: var(--radius-tile);
+  background: var(--surface-sunken);
+}
+
+.hrl-cuenta-panel__titulo {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--foreground);
+}
+
+.hrl-cuenta-panel__nota { margin: 0; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--muted-foreground); }
+.hrl-cuenta-panel__separador { height: 1px; margin: var(--space-2) 0; background: var(--border); }
+
+/* La tabla de cuentas cabe en su tarjeta (15/11/2026: tenía barra horizontal). Las
+   columnas con ancho propio lo conservan y Nombre, Contacto y Roles se reparten el
+   resto; los textos parten en líneas. Debajo de 900 px vuelve la barra: ahí no
+   caben ocho columnas. */
+.hrl-tabla-cuentas .hrl-table-wrap { overflow-x: visible; }
+.hrl-tabla-cuentas .hrl-table { width: 100%; min-width: 0; table-layout: fixed; }
+.hrl-tabla-cuentas .hrl-table tbody td { overflow-wrap: break-word; }
+.hrl-tabla-cuentas .hrl-badge { white-space: normal; }
+.hrl-cuenta-contacto { display: flex; flex-direction: column; gap: var(--space-1); }
+
+@media (max-width: 900px) {
+  .hrl-tabla-cuentas .hrl-table-wrap { overflow-x: auto; }
+  .hrl-tabla-cuentas .hrl-table { min-width: 900px; }
+}
+
+/* Cada rol en dos líneas: el rol en su píldora y, debajo, la unidad. */
+.hrl-cuenta-roles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.hrl-cuenta-roles li { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+.hrl-cuenta-roles__unidad {
+  padding-left: var(--space-2);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--muted-foreground);
+}
+
+/* ================================================= El panel de monitoreo */
+
+.hrl-monitoreo__cifras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-4);
+}
+.hrl-monitoreo__grupo {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+}
+.hrl-monitoreo__bloque {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-xl, var(--text-lg));
+  line-height: var(--leading-normal);
+}
+.hrl-monitoreo__partes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-4);
+}
+.hrl-monitoreo__pide { display: block; margin-top: var(--space-1); }
+.hrl-monitoreo__parte { flex-basis: 100%; font-size: var(--text-sm); font-weight: 600; color: var(--foreground); }
+.hrl-monitoreo__comparacion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--neutral-soft);
+  font-variant-numeric: tabular-nums;
+}
+.hrl-monitoreo__comparacion .hrl-monitoreo__nota { flex-basis: auto; }
+.hrl-monitoreo__cuerpo { padding: 0; }
+.hrl-avance { display: flex; align-items: stretch; gap: var(--space-1); }
+.hrl-avance__mes { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); width: 100%; }
+.hrl-avance__pista { display: flex; align-items: flex-end; width: 100%; height: 28px; }
+.hrl-avance__barra { display: block; width: 100%; border-radius: var(--radius-xs, var(--radius-sm)); }
+.hrl-avance__barra--dato { background: var(--primary); }
+.hrl-avance__barra--relacionado { background: var(--neutral-text); }
+.hrl-avance__barra--sin-dato { height: 40%; border: 1px dashed var(--muted-foreground); background: transparent; }
+.hrl-avance__inicial { font-size: var(--text-xs); line-height: 1; color: var(--muted-foreground); }
+.hrl-avance__mes--futuro .hrl-avance__inicial { opacity: 0.5; }
+.hrl-avance__nota { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--muted-foreground); }
+.hrl-avance__ultimo { display: inline-flex; flex-direction: column; align-items: flex-end; font-variant-numeric: tabular-nums; }
+.hrl-avance__leyenda { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin: 0; font-size: var(--text-sm); color: var(--muted-foreground); }
+/* En un teléfono la tabla se desplaza dentro de su tarjeta: el nombre conserva un ancho legible. */
+.hrl-avance__tabla td:first-child, .hrl-avance__tabla th:first-child { min-width: 220px; }
+.hrl-avance__clave { display: inline-flex; align-items: center; gap: var(--space-1); }
+.hrl-avance__muestra { display: inline-block; width: 12px; height: 12px; border-radius: var(--radius-xs, var(--radius-sm)); }
+.hrl-monitoreo__motivo { margin: 0; font-size: var(--text-base); line-height: var(--leading-normal); color: var(--muted-foreground); }
+.hrl-monitoreo__motivo strong { color: var(--foreground); }
+.hrl-monitoreo__rotulo { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-sm); color: var(--muted-foreground); }
+.hrl-monitoreo__cifra { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); }
+.hrl-monitoreo__valor { font-size: var(--text-2xl, var(--text-lg)); line-height: 1.1; font-variant-numeric: tabular-nums; }
+/* La medida va pegada a la cifra y casi con su mismo peso: «0.4 %» solo no dice nada. */
+.hrl-monitoreo__unidad { flex: 1 1 140px; min-width: 0; font-size: var(--text-md); font-weight: var(--weight-semibold); line-height: var(--leading-snug, 1.3); color: var(--foreground); }
+.hrl-monitoreo__nota { flex-basis: 100%; font-size: var(--text-sm); color: var(--muted-foreground); }
+.hrl-monitoreo__frase { display: block; }
+.hrl-monitoreo__frase + .hrl-monitoreo__frase { margin-top: var(--space-1); }
+.hrl-monitoreo__fila { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+.hrl-monitoreo__fila .hrl-avance__nota { white-space: normal; }
+
+/* La tarjeta de un indicador (07/11/2026): la cifra y su meta arriba, el dibujo, y el pie que
+   lleva al análisis. La conclusión, el análisis del mes a mes y la fuente están en el detalle. */
+.hrl-monitoreo__resumen { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid var(--border); }
+.hrl-monitoreo__resumen > .hrl-monitoreo__cifra { flex: 1 1 220px; min-width: 0; }
+.hrl-monitoreo__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; padding: var(--space-2) var(--space-3); border-radius: var(--radius); background: var(--neutral-soft); text-align: right; }
+.hrl-monitoreo__meta-rotulo { font-size: var(--text-xs); color: var(--muted-foreground); }
+.hrl-monitoreo__meta-valor { font-size: var(--text-md); color: var(--foreground); font-variant-numeric: tabular-nums; }
+@media (max-width: 480px) {
+  .hrl-monitoreo__meta { align-items: flex-start; text-align: left; }
+}
+
+/* Cumplimiento: un estado por celda, para que quepan todos los meses sin desplazar la tabla. */
+.hrl-cumplimiento__celda { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--radius-full); }
+.hrl-cumplimiento__celda--ok { color: var(--success-text); background: var(--success-soft); }
+.hrl-cumplimiento__celda--none { color: var(--warning-fg); background: var(--warning-soft); }
+.hrl-cumplimiento__celda--vacio { color: var(--neutral-text); background: var(--neutral-soft); }
+.hrl-cumplimiento__leyenda { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); }
+.hrl-cumplimiento__clave { display: inline-flex; align-items: center; gap: var(--space-1); }
+
+/* El gráfico de cada indicador (GraficoIndicador.jsx). Colores solo de tokens: el modo oscuro
+   los cambia sin tocar nada aquí. La rejilla es la línea más tenue del dibujo; las referencias
+   se distinguen por su trazo, no solo por el color. */
+.hrl-graf { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.hrl-graf__cabecera { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.hrl-graf__titulo { font-size: var(--text-md); font-weight: var(--weight-semibold); color: var(--foreground); }
+/* Cada recuadro comparte las filas de sus vecinos (`subgrid`): misma altura, y la etiqueta, la cifra
+   y la nota alineadas entre todos, aunque un texto ocupe dos líneas o un recuadro no tenga nota. */
+.hrl-graf__datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: var(--space-2); }
+.hrl-graf__dato { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 2px; align-content: start; min-width: 0; padding: var(--space-2); border-radius: var(--radius); background: var(--neutral-soft); }
+.hrl-graf__dato-etiqueta, .hrl-graf__dato-nota { font-size: var(--text-xs); color: var(--muted-foreground); }
+.hrl-graf__dato-valor { font-size: var(--text-md); color: var(--foreground); font-variant-numeric: tabular-nums; }
+.hrl-graf__dibujo { min-width: 0; width: 100%; }
+.hrl-graf__svg { display: block; overflow: visible; max-width: 100%; }
+.hrl-graf__oculto { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hrl-graf__rejilla { stroke: var(--border); stroke-width: 1; }
+.hrl-graf__eje { stroke: var(--muted-foreground); stroke-width: 1; }
+.hrl-graf__vacio { fill: var(--surface-sunken); }
+.hrl-graf__mediana { stroke: var(--muted-foreground); stroke-width: 1.5; }
+.hrl-graf__logro { stroke: var(--foreground); stroke-width: 1.5; stroke-dasharray: 9 4; }
+.hrl-graf__umbral { stroke: var(--foreground); stroke-width: 1; stroke-dasharray: 2 4; }
+.hrl-graf__ritmo { fill: none; stroke: var(--info); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.hrl-graf__linea { fill: none; stroke: var(--primary); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.hrl-graf__comparacion { fill: none; stroke: var(--neutral-text); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; opacity: 0.7; }
+.hrl-graf__comparacion-punto { fill: var(--neutral-text); stroke: var(--surface); stroke-width: 2; }
+.hrl-graf__punto { fill: var(--primary); stroke: var(--surface); stroke-width: 2; transition: r var(--transition-fast); }
+.hrl-graf__punto--no-alcanza { fill: var(--surface); stroke: var(--destructive); stroke-width: 2.5; }
+.hrl-graf__halo { fill: var(--primary); opacity: 0.18; transition: r var(--transition-fast); }
+.hrl-graf__barra { fill: var(--primary); }
+.hrl-graf__barra--no-alcanza { fill: var(--destructive-soft); stroke: var(--destructive); stroke-width: 1.5; }
+/* Al pasar sobre un mes, el resto se atenúa: el ojo va al que se está leyendo. */
+.hrl-graf__marca { transition: opacity var(--transition-fast); }
+.hrl-graf__svg--con-activo .hrl-graf__marca { opacity: 0.35; }
+.hrl-graf__svg--con-activo .hrl-graf__marca--activa { opacity: 1; }
+.hrl-graf__guia { stroke: var(--foreground); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.55; pointer-events: none; }
+.hrl-graf__columna { fill: transparent; outline: none; cursor: pointer; }
+.hrl-graf__columna:hover { fill: var(--row-hover); fill-opacity: 0.35; }
+.hrl-graf__columna:focus-visible { stroke: var(--ring); stroke-width: 2; }
+/* Encima del punto y más ancho que alto: tapa lo menos posible de los meses vecinos. No recibe el
+   puntero: si no, al llegar a él el mes se apagaría y volvería a encenderse. */
+.hrl-graf__flotante { max-width: min(480px, calc(100vw - 2 * var(--space-3))); transform: none; pointer-events: none; animation-name: hrl-graf-tip; }
+.hrl-graf__flotante::after { content: ''; position: absolute; left: var(--hrl-graf-flecha, 50%); bottom: -5px; width: 10px; height: 10px; margin-left: -5px; background: inherit; transform: rotate(45deg); }
+.hrl-graf__flotante--abajo::after { top: -5px; bottom: auto; }
+@keyframes hrl-graf-tip {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.hrl-graf__tip { display: flex; flex-direction: column; gap: 2px; }
+.hrl-graf__aviso { display: block; margin-top: var(--space-1); font-size: var(--text-xs); color: var(--muted-foreground); }
+.hrl-graf__leyenda { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); font-size: var(--text-xs); color: var(--muted-foreground); }
+.hrl-graf__clave { display: inline-flex; align-items: center; gap: var(--space-1); }
+.hrl-graf__muestra { display: inline-block; flex: none; width: 18px; height: 0; border-top: 2px solid var(--muted-foreground); }
+.hrl-graf__muestra--linea { border-top-color: var(--primary); }
+.hrl-graf__muestra--barra { width: 10px; height: 10px; border: 0; border-radius: var(--radius-xs, var(--radius-sm)); background: var(--primary); }
+.hrl-graf__muestra--hueco { width: 10px; height: 10px; border: 2px solid var(--destructive); border-radius: var(--radius-full); background: var(--surface); }
+.hrl-graf__muestra--contorno { width: 10px; height: 10px; border: 2px solid var(--destructive); border-radius: var(--radius-xs, var(--radius-sm)); background: var(--destructive-soft); }
+.hrl-graf__muestra--comparacion { border-top-color: var(--neutral-text); }
+.hrl-graf__muestra--mediana { border-top-width: 1.5px; }
+.hrl-graf__muestra--logro { border-top: 2px dashed var(--foreground); }
+.hrl-graf__muestra--umbral { border-top: 1px dotted var(--foreground); }
+.hrl-graf__muestra--ritmo { border-top: 2px dotted var(--info); }
+.hrl-graf__lectura { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-2) var(--space-3); border-left: 3px solid var(--border); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--muted-foreground); }
+.hrl-graf__lectura strong { color: var(--foreground); }
+.hrl-graf__lectura--bueno { border-left-color: var(--success); }
+.hrl-graf__lectura--malo { border-left-color: var(--destructive); }
+.hrl-graf__lectura ul { margin: 0; padding-left: var(--space-4); }
+.hrl-graf__sello { font-size: var(--text-xs); color: var(--muted-foreground); }
+
+/* ================================================== El tutorial guiado */
+
+/* Guia.jsx. El orden de capas está explicado allí: el velo va sobre los diálogos
+   y bajo los tooltips, para que lo resaltado se use y su ayuda se lea. */
+.hrl-guia__velo {
+  position: fixed;
+  z-index: 215;
+  background: var(--scrim);
+  animation: hrl-guia-entra 180ms ease-out both;
+}
+.hrl-guia__velo--libre { pointer-events: none; }
+
+.hrl-guia__anillo {
+  position: fixed;
+  z-index: 216;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  pointer-events: none;
+  transition: top 180ms ease-out, left 180ms ease-out, width 180ms ease-out, height 180ms ease-out;
+  animation: hrl-guia-late 1800ms ease-in-out 2;
+}
+
+.hrl-guia__tarjeta {
+  position: fixed;
+  z-index: 218;
+  /* Hasta que se mide su tamaño: arriba a la izquierda, nunca fuera de la vista. */
+  top: var(--space-5);
+  left: var(--space-5);
+  width: min(400px, calc(100vw - 32px));
+  background: var(--surface);
+  color: var(--foreground);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-overlay);
+  animation: hrl-guia-entra 180ms ease-out both;
+  transition: top 180ms ease-out, left 180ms ease-out;
+}
+.hrl-guia__tarjeta:focus { outline: none; }
+
+/* El desplazamiento va dentro: en la tarjeta recortaría la flecha, que sobresale. */
+.hrl-guia__contenido {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding: var(--space-5);
+}
+
+/* La flecha hacia lo señalado: la tarjeta está de ese lado de lo señalado. */
+.hrl-guia__flecha {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--surface);
+  transform: rotate(45deg);
+}
+.hrl-guia__flecha--abajo { top: -7px; left: calc(var(--guia-flecha) - 7px); }
+.hrl-guia__flecha--arriba { bottom: -7px; left: calc(var(--guia-flecha) - 7px); }
+.hrl-guia__flecha--derecha { left: -7px; top: calc(var(--guia-flecha) - 7px); }
+.hrl-guia__flecha--izquierda { right: -7px; top: calc(var(--guia-flecha) - 7px); }
+
+.hrl-guia--saliendo .hrl-guia__velo,
+.hrl-guia--saliendo .hrl-guia__anillo,
+.hrl-guia--saliendo .hrl-guia__tarjeta { opacity: 0; transition: opacity 200ms ease-in; animation: none; }
+
+.hrl-guia__cabeza { display: flex; align-items: flex-start; gap: var(--space-3); }
+.hrl-guia__titulos { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--space-1); min-width: 0; }
+.hrl-guia__fase { font-size: var(--text-sm); color: var(--muted-foreground); }
+.hrl-guia__titulo { font-size: var(--text-md); line-height: var(--leading-normal); }
+.hrl-guia__texto { margin: 0; font-size: var(--text-base); line-height: var(--leading-normal); }
+
+/* Cuánto falta: los tres pasos del reporte. */
+.hrl-guia__progreso { display: flex; gap: var(--space-1); }
+.hrl-guia__tramo { flex: 1 1 0; height: 4px; border-radius: var(--radius); background: var(--border); }
+.hrl-guia__tramo--hecho { background: var(--primary); }
+
+.hrl-guia__acciones { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.hrl-guia__anterior svg { transform: rotate(180deg); }
+
+/* «Iniciar tutorial»: a la derecha de la cabecera, encima de la fecha. La fila del
+   título ya deja ese lugar libre, porque la fecha va pegada abajo. */
+.hrl-pagehead { position: relative; }
+.hrl-pagehead__franja:has(.hrl-guia-boton) { position: absolute; top: 0; right: 2px; }
+.hrl-guia-boton { white-space: nowrap; }
+
+@keyframes hrl-guia-entra { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hrl-guia-late {
+  0%, 100% { outline: 0 solid transparent; }
+  50% { outline: 4px solid var(--primary); outline-offset: 2px; }
+}
+
+/* En un celular, abajo y a lo ancho, sin flecha: al lado de lo señalado no cabría.
+   El botón vuelve a su lugar, bajo el título: arriba taparía la ruta. */
+@media (max-width: 640px) {
+  .hrl-guia__tarjeta { top: auto !important; left: 12px !important; right: 12px; bottom: 12px; width: auto; }
+  .hrl-guia__contenido { max-height: 55vh; }
+  .hrl-guia__flecha { display: none; }
+  .hrl-pagehead__franja:has(.hrl-guia-boton) { position: static; margin-top: var(--space-2); }
+}
+
+/* Alternativa, no apagado: el resaltado aparece sin latir y lo demás entra con su
+   fundido, sin desplazarse. */
+@media (prefers-reduced-motion: reduce) {
+  .hrl-guia__anillo, .hrl-guia__tarjeta { transition: none; }
+  @keyframes hrl-guia-late { 0%, 100% { outline: 0 solid transparent; } }
+}
+
+/* Los indicadores directos de un área en su Inicio (inicio/IndicadoresDelArea.jsx): el título,
+   su explicación y las mismas tarjetas de Monitoreo, en su propio mosaico. */
+.hrl-indicadores-area { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.hrl-indicadores-area > .hrl-monitoreo__bloque { margin: 0; }
+
+/* Unidades de hospitalización (superadministrador): cada departamento y, debajo,
+   sus áreas con sangría. */
+.hrl-table tbody tr.hrl-fila-departamento > td { background: var(--surface-sunken); }
+.hrl-unidad-hosp { display: inline-block; padding-left: var(--space-5); }
+.hrl-unidad-hosp--departamento { padding-left: 0; font-weight: var(--weight-semibold); color: var(--foreground); }
+.hrl-unidad-hosp__nota { font-size: var(--text-sm); color: var(--muted-foreground); }

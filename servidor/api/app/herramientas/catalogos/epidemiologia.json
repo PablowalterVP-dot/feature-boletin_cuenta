@@ -1,0 +1,2326 @@
+{
+  "_nota": "Generado por servidor/scripts/exportar-catalogo-epidemiologia.mjs desde la definición del bot. No se edita a mano.",
+  "version": "EPI-W1",
+  "hoja": "Infecciones intrahospitalarias",
+  "unidad": "casos",
+  "cuadros": [
+    {
+      "codigo": "f1",
+      "numero": 1,
+      "titulo": "Infecciones intrahospitalarias",
+      "subtitulo": "Casos nuevos del mes por grupo de edad, servicio y sexo",
+      "casillas": [
+        {
+          "codigo": "f1.e0.neonatologia_f",
+          "fila": "e0.neonatologia_f",
+          "nombre": "Neonatología · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.neonatologia_m",
+          "fila": "e0.neonatologia_m",
+          "nombre": "Neonatología · masculino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.uci_f",
+          "fila": "e0.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.uci_m",
+          "fila": "e0.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.gineco_f",
+          "fila": "e0.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.itu_f",
+          "fila": "e0.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.itu_m",
+          "fila": "e0.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.iho_f",
+          "fila": "e0.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.iho_m",
+          "fila": "e0.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.muerte_neonatal_f",
+          "fila": "e0.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.muerte_neonatal_m",
+          "fila": "e0.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.muerte_materna_f",
+          "fila": "e0.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.otras_f",
+          "fila": "e0.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e0.otras_m",
+          "fila": "e0.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · Menor de 1 año",
+          "etiquetas": [
+            "Menor de 1 año",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.neonatologia_f",
+          "fila": "e1.neonatologia_f",
+          "nombre": "Neonatología · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.neonatologia_m",
+          "fila": "e1.neonatologia_m",
+          "nombre": "Neonatología · masculino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.uci_f",
+          "fila": "e1.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.uci_m",
+          "fila": "e1.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.gineco_f",
+          "fila": "e1.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.itu_f",
+          "fila": "e1.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.itu_m",
+          "fila": "e1.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.iho_f",
+          "fila": "e1.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.iho_m",
+          "fila": "e1.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.muerte_neonatal_f",
+          "fila": "e1.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.muerte_neonatal_m",
+          "fila": "e1.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.muerte_materna_f",
+          "fila": "e1.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.otras_f",
+          "fila": "e1.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e1.otras_m",
+          "fila": "e1.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 1 a 4 años",
+          "etiquetas": [
+            "1 a 4 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.neonatologia_f",
+          "fila": "e5.neonatologia_f",
+          "nombre": "Neonatología · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.neonatologia_m",
+          "fila": "e5.neonatologia_m",
+          "nombre": "Neonatología · masculino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.uci_f",
+          "fila": "e5.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.uci_m",
+          "fila": "e5.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.gineco_f",
+          "fila": "e5.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.itu_f",
+          "fila": "e5.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.itu_m",
+          "fila": "e5.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.iho_f",
+          "fila": "e5.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.iho_m",
+          "fila": "e5.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.muerte_neonatal_f",
+          "fila": "e5.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.muerte_neonatal_m",
+          "fila": "e5.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.muerte_materna_f",
+          "fila": "e5.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.otras_f",
+          "fila": "e5.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e5.otras_m",
+          "fila": "e5.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 5 a 9 años",
+          "etiquetas": [
+            "5 a 9 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.neonatologia_f",
+          "fila": "e10.neonatologia_f",
+          "nombre": "Neonatología · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.neonatologia_m",
+          "fila": "e10.neonatologia_m",
+          "nombre": "Neonatología · masculino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.uci_f",
+          "fila": "e10.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.uci_m",
+          "fila": "e10.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.gineco_f",
+          "fila": "e10.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.itu_f",
+          "fila": "e10.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.itu_m",
+          "fila": "e10.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.iho_f",
+          "fila": "e10.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.iho_m",
+          "fila": "e10.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.muerte_neonatal_f",
+          "fila": "e10.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.muerte_neonatal_m",
+          "fila": "e10.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.muerte_materna_f",
+          "fila": "e10.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.otras_f",
+          "fila": "e10.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e10.otras_m",
+          "fila": "e10.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 10 a 14 años",
+          "etiquetas": [
+            "10 a 14 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.neonatologia_f",
+          "fila": "e15.neonatologia_f",
+          "nombre": "Neonatología · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.neonatologia_m",
+          "fila": "e15.neonatologia_m",
+          "nombre": "Neonatología · masculino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.uci_f",
+          "fila": "e15.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.uci_m",
+          "fila": "e15.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.gineco_f",
+          "fila": "e15.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.itu_f",
+          "fila": "e15.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.itu_m",
+          "fila": "e15.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.iho_f",
+          "fila": "e15.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.iho_m",
+          "fila": "e15.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.muerte_neonatal_f",
+          "fila": "e15.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.muerte_neonatal_m",
+          "fila": "e15.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.muerte_materna_f",
+          "fila": "e15.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.otras_f",
+          "fila": "e15.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e15.otras_m",
+          "fila": "e15.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 15 a 19 años",
+          "etiquetas": [
+            "15 a 19 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.neonatologia_f",
+          "fila": "e20.neonatologia_f",
+          "nombre": "Neonatología · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.neonatologia_m",
+          "fila": "e20.neonatologia_m",
+          "nombre": "Neonatología · masculino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.uci_f",
+          "fila": "e20.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.uci_m",
+          "fila": "e20.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.gineco_f",
+          "fila": "e20.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.itu_f",
+          "fila": "e20.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.itu_m",
+          "fila": "e20.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.iho_f",
+          "fila": "e20.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.iho_m",
+          "fila": "e20.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.muerte_neonatal_f",
+          "fila": "e20.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.muerte_neonatal_m",
+          "fila": "e20.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.muerte_materna_f",
+          "fila": "e20.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.otras_f",
+          "fila": "e20.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e20.otras_m",
+          "fila": "e20.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 20 a 24 años",
+          "etiquetas": [
+            "20 a 24 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.neonatologia_f",
+          "fila": "e25.neonatologia_f",
+          "nombre": "Neonatología · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.neonatologia_m",
+          "fila": "e25.neonatologia_m",
+          "nombre": "Neonatología · masculino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.uci_f",
+          "fila": "e25.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.uci_m",
+          "fila": "e25.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.gineco_f",
+          "fila": "e25.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.itu_f",
+          "fila": "e25.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.itu_m",
+          "fila": "e25.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.iho_f",
+          "fila": "e25.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.iho_m",
+          "fila": "e25.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.muerte_neonatal_f",
+          "fila": "e25.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.muerte_neonatal_m",
+          "fila": "e25.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.muerte_materna_f",
+          "fila": "e25.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.otras_f",
+          "fila": "e25.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e25.otras_m",
+          "fila": "e25.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 25 a 29 años",
+          "etiquetas": [
+            "25 a 29 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.neonatologia_f",
+          "fila": "e30.neonatologia_f",
+          "nombre": "Neonatología · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.neonatologia_m",
+          "fila": "e30.neonatologia_m",
+          "nombre": "Neonatología · masculino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.uci_f",
+          "fila": "e30.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.uci_m",
+          "fila": "e30.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.gineco_f",
+          "fila": "e30.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.itu_f",
+          "fila": "e30.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.itu_m",
+          "fila": "e30.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.iho_f",
+          "fila": "e30.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.iho_m",
+          "fila": "e30.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.muerte_neonatal_f",
+          "fila": "e30.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.muerte_neonatal_m",
+          "fila": "e30.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.muerte_materna_f",
+          "fila": "e30.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.otras_f",
+          "fila": "e30.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e30.otras_m",
+          "fila": "e30.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 30 a 34 años",
+          "etiquetas": [
+            "30 a 34 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.neonatologia_f",
+          "fila": "e35.neonatologia_f",
+          "nombre": "Neonatología · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.neonatologia_m",
+          "fila": "e35.neonatologia_m",
+          "nombre": "Neonatología · masculino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.uci_f",
+          "fila": "e35.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.uci_m",
+          "fila": "e35.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.gineco_f",
+          "fila": "e35.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.itu_f",
+          "fila": "e35.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.itu_m",
+          "fila": "e35.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.iho_f",
+          "fila": "e35.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.iho_m",
+          "fila": "e35.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.muerte_neonatal_f",
+          "fila": "e35.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.muerte_neonatal_m",
+          "fila": "e35.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.muerte_materna_f",
+          "fila": "e35.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.otras_f",
+          "fila": "e35.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e35.otras_m",
+          "fila": "e35.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 35 a 39 años",
+          "etiquetas": [
+            "35 a 39 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.neonatologia_f",
+          "fila": "e40.neonatologia_f",
+          "nombre": "Neonatología · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.neonatologia_m",
+          "fila": "e40.neonatologia_m",
+          "nombre": "Neonatología · masculino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.uci_f",
+          "fila": "e40.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.uci_m",
+          "fila": "e40.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.gineco_f",
+          "fila": "e40.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.itu_f",
+          "fila": "e40.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.itu_m",
+          "fila": "e40.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.iho_f",
+          "fila": "e40.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.iho_m",
+          "fila": "e40.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.muerte_neonatal_f",
+          "fila": "e40.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.muerte_neonatal_m",
+          "fila": "e40.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.muerte_materna_f",
+          "fila": "e40.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.otras_f",
+          "fila": "e40.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e40.otras_m",
+          "fila": "e40.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 40 a 44 años",
+          "etiquetas": [
+            "40 a 44 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.neonatologia_f",
+          "fila": "e45.neonatologia_f",
+          "nombre": "Neonatología · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.neonatologia_m",
+          "fila": "e45.neonatologia_m",
+          "nombre": "Neonatología · masculino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.uci_f",
+          "fila": "e45.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.uci_m",
+          "fila": "e45.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.gineco_f",
+          "fila": "e45.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.itu_f",
+          "fila": "e45.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.itu_m",
+          "fila": "e45.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.iho_f",
+          "fila": "e45.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.iho_m",
+          "fila": "e45.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.muerte_neonatal_f",
+          "fila": "e45.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.muerte_neonatal_m",
+          "fila": "e45.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.muerte_materna_f",
+          "fila": "e45.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.otras_f",
+          "fila": "e45.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e45.otras_m",
+          "fila": "e45.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 45 a 49 años",
+          "etiquetas": [
+            "45 a 49 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.neonatologia_f",
+          "fila": "e50.neonatologia_f",
+          "nombre": "Neonatología · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.neonatologia_m",
+          "fila": "e50.neonatologia_m",
+          "nombre": "Neonatología · masculino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.uci_f",
+          "fila": "e50.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.uci_m",
+          "fila": "e50.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.gineco_f",
+          "fila": "e50.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.itu_f",
+          "fila": "e50.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.itu_m",
+          "fila": "e50.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.iho_f",
+          "fila": "e50.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.iho_m",
+          "fila": "e50.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.muerte_neonatal_f",
+          "fila": "e50.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.muerte_neonatal_m",
+          "fila": "e50.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.muerte_materna_f",
+          "fila": "e50.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.otras_f",
+          "fila": "e50.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e50.otras_m",
+          "fila": "e50.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 50 a 54 años",
+          "etiquetas": [
+            "50 a 54 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.neonatologia_f",
+          "fila": "e55.neonatologia_f",
+          "nombre": "Neonatología · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.neonatologia_m",
+          "fila": "e55.neonatologia_m",
+          "nombre": "Neonatología · masculino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.uci_f",
+          "fila": "e55.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.uci_m",
+          "fila": "e55.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.gineco_f",
+          "fila": "e55.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.itu_f",
+          "fila": "e55.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.itu_m",
+          "fila": "e55.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.iho_f",
+          "fila": "e55.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.iho_m",
+          "fila": "e55.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.muerte_neonatal_f",
+          "fila": "e55.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.muerte_neonatal_m",
+          "fila": "e55.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.muerte_materna_f",
+          "fila": "e55.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.otras_f",
+          "fila": "e55.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e55.otras_m",
+          "fila": "e55.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 55 a 59 años",
+          "etiquetas": [
+            "55 a 59 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.neonatologia_f",
+          "fila": "e60.neonatologia_f",
+          "nombre": "Neonatología · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.neonatologia_m",
+          "fila": "e60.neonatologia_m",
+          "nombre": "Neonatología · masculino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.uci_f",
+          "fila": "e60.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.uci_m",
+          "fila": "e60.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.gineco_f",
+          "fila": "e60.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.itu_f",
+          "fila": "e60.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.itu_m",
+          "fila": "e60.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.iho_f",
+          "fila": "e60.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.iho_m",
+          "fila": "e60.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.muerte_neonatal_f",
+          "fila": "e60.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.muerte_neonatal_m",
+          "fila": "e60.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.muerte_materna_f",
+          "fila": "e60.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.otras_f",
+          "fila": "e60.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e60.otras_m",
+          "fila": "e60.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 60 a 64 años",
+          "etiquetas": [
+            "60 a 64 años",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.neonatologia_f",
+          "fila": "e65.neonatologia_f",
+          "nombre": "Neonatología · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Neonatología",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.neonatologia_m",
+          "fila": "e65.neonatologia_m",
+          "nombre": "Neonatología · masculino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Neonatología",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.uci_f",
+          "fila": "e65.uci_f",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.uci_m",
+          "fila": "e65.uci_m",
+          "nombre": "UCI (Pediatría, Medicina, Cirugía) · masculino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "UCI (Pediatría, Medicina, Cirugía)",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.gineco_f",
+          "fila": "e65.gineco_f",
+          "nombre": "Gineco-Obstetricia · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Gineco-Obstetricia",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.itu_f",
+          "fila": "e65.itu_f",
+          "nombre": "Otros servicios: infección del tracto urinario · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Otros servicios: infección del tracto urinario",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.itu_m",
+          "fila": "e65.itu_m",
+          "nombre": "Otros servicios: infección del tracto urinario · masculino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Otros servicios: infección del tracto urinario",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.iho_f",
+          "fila": "e65.iho_f",
+          "nombre": "Otros servicios: infección de herida operatoria · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Otros servicios: infección de herida operatoria",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.iho_m",
+          "fila": "e65.iho_m",
+          "nombre": "Otros servicios: infección de herida operatoria · masculino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Otros servicios: infección de herida operatoria",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.muerte_neonatal_f",
+          "fila": "e65.muerte_neonatal_f",
+          "nombre": "Muerte neonatal · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Muerte neonatal",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.muerte_neonatal_m",
+          "fila": "e65.muerte_neonatal_m",
+          "nombre": "Muerte neonatal · masculino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Muerte neonatal",
+            "M"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.muerte_materna_f",
+          "fila": "e65.muerte_materna_f",
+          "nombre": "Muerte materna · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Muerte materna",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.otras_f",
+          "fila": "e65.otras_f",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · femenino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "F"
+          ],
+          "decimal": false
+        },
+        {
+          "codigo": "f1.e65.otras_m",
+          "fila": "e65.otras_m",
+          "nombre": "Otras infecciones (neumonía sin ventilador, infección de piel…) · masculino · 65 años a más",
+          "etiquetas": [
+            "65 años a más",
+            "Otras infecciones (neumonía sin ventilador, infección de piel…)",
+            "M"
+          ],
+          "decimal": false
+        }
+      ]
+    }
+  ]
+}

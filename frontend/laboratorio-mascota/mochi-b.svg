@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-base="176" data-cabeza-y="66" data-sudor-x="152" data-sudor-y="94" style="--m-tinta:#143b3a;--m-globo-tinta:#143b3a;--m-sombra:#143b3a;--m-brillo:#ffffff;--m-globo:#ffffff;--m-globo-borde:#c3ddd3;--m-ok:#00a76f;--m-alerta:#e5533d;--m-corazon:#ff6b81;--m-cruz:#00a76f;--m-sudor:#6ec6f0;--m-destello:#ffc23c;--m-zz:#6f8f86">
+  <!-- B · Residente: aguamarina, lentes redondos y fotocheck; ojos redondos y boca de gato. -->
+  <defs>
+    <linearGradient id="piel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3f6f6"/><stop offset="1" stop-color="#9fd9d6"/></linearGradient>
+    <radialGradient id="metal" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffffff"/><stop offset="0.55" stop-color="#d5dfe2"/><stop offset="1" stop-color="#93a3a9"/></radialGradient>
+    <clipPath id="silueta"><rect x="42" y="66" width="116" height="110" rx="55"/></clipPath>
+  </defs>
+  <ellipse class="m-sombra" cx="100" cy="179" rx="48" ry="6" fill="var(--m-sombra)" opacity="0.14"/>
+  <g class="m-cuerpo">
+    
+    <rect x="42" y="66" width="116" height="110" rx="55" fill="url(#piel)"/>
+    <g clip-path="url(#silueta)">
+      <path d="M30 136 H80 L100 168 L120 136 H170 V190 H30 Z" fill="#ffffff"/>
+      <path d="M80 136 L90 151 L85 154 L100 168 M120 136 L110 151 L115 154 L100 168" fill="none" stroke="#b3d0cf" stroke-width="2.2" stroke-linejoin="round"/>
+    </g>
+    <rect x="42" y="66" width="116" height="110" rx="55" fill="none" stroke="#74b9b5" stroke-width="2.5"/>
+    <g class="m-capa" data-paralaje="0.35">
+      <path d="M84 143 C82 158 90 166 100 166 C110 166 118 158 116 143" fill="none" stroke="#2b4f7a" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="84" cy="142" r="3.4" fill="#2b4f7a"/><circle cx="116" cy="142" r="3.4" fill="#2b4f7a"/>
+      <circle cx="100" cy="167" r="6.5" fill="url(#metal)" stroke="#2b4f7a" stroke-width="3"/>
+    </g>
+    <g class="m-capa" data-paralaje="0.35">
+      <rect x="124" y="147" width="14" height="16" rx="2.5" fill="#ffffff" stroke="#b9c7cc" stroke-width="1.5"/>
+      <rect x="128" y="144.5" width="6" height="4" rx="1.2" fill="#8a979c"/>
+      <circle cx="131" cy="153" r="3" fill="#9fd9d6"/>
+      <path d="M127.5 159 H134.5" stroke="#c3ccd0" stroke-width="1.6" stroke-linecap="round"/>
+    </g>
+    <g class="m-cara" data-paralaje="1">
+      
+      <g class="m-ojos" data-cx="100" data-cy="108" data-estilo="redondo" data-sep="36" data-w="15" data-h="20"></g>
+      <g fill="none" stroke="#23443f" stroke-width="3" stroke-linecap="round">
+        <circle cx="82" cy="108" r="13.5" fill="#ffffff" fill-opacity="0.15"/><circle cx="118" cy="108" r="13.5" fill="#ffffff" fill-opacity="0.15"/>
+        <path d="M95.5 106 Q100 102.5 104.5 106 M68.5 105 L58 101 M131.5 105 L142 101"/>
+      </g>
+      <g class="m-boca" data-cx="100" data-cy="128" data-w="15" data-estilo="gato"></g>
+    </g>
+    
+  </g>
+  <g class="m-globo" data-x="154" data-y="56"></g>
+</svg>

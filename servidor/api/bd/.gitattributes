@@ -1,0 +1,3 @@
+# Los scripts de Alejandro son la fuente de verdad: git no debe tocar sus bytes
+# (ni convertir fines de línea), o SHA256SUMS dejaría de coincidir.
+* -text

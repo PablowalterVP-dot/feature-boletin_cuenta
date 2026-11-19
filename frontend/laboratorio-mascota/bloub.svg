@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-base="176" data-cabeza-y="60" data-sudor-x="154" data-sudor-y="92" style="--m-tinta:#173a30;--m-brillo:#ffffff;--m-mejilla:#ff7f9a;--m-globo:#ffffff;--m-globo-borde:#c3d6cf;--m-globo-tinta:#173a30;--m-ok:#00a76f;--m-alerta:#e5533d;--m-corazon:#ff6b81;--m-cruz:#00a76f;--m-sudor:#6ec6f0;--m-destello:#ffc23c;--m-zz:#6f8a80;--m-sombra:#173a30">
+  <!-- Bloub, residente. Blob que respira, lentes redondos, fotocheck y lápiz en la oreja. -->
+  <defs>
+    <linearGradient id="bloub-piel" x1="0.2" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#9be6bf"/>
+      <stop offset="1" stop-color="#3fb583"/>
+    </linearGradient>
+  </defs>
+  <ellipse class="m-sombra" cx="100" cy="179" rx="50" ry="6" fill="var(--m-sombra)" opacity="0.14"/>
+  <g class="m-cuerpo">
+    <g class="m-capa" data-paralaje="-0.3">
+      <g transform="rotate(32 152 80)">
+        <rect x="148" y="52" width="8" height="40" rx="1.5" fill="#ffc23c"/>
+        <rect x="148" y="52" width="8" height="6" rx="1.5" fill="#ff8fa3"/>
+        <path d="M148 92 L152 101 L156 92 Z" fill="#f2d3a8"/>
+        <path d="M150.6 98 L152 101 L153.4 98 Z" fill="#3b3b3b"/>
+      </g>
+    </g>
+    <path d="M98 66 C94 52 104 43 113 45 C106 49 104 57 104 66 Z" fill="#3fb583" stroke="#2c9a6b" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M100 60 C134 60 158 86 158 118 C158 152 134 176 100 176 C64 176 42 152 42 118 C42 84 66 60 100 60 Z" fill="url(#bloub-piel)" stroke="#2c9a6b" stroke-width="2.5">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.33;0.66;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" values="M100 60 C134 60 158 86 158 118 C158 152 134 176 100 176 C64 176 42 152 42 118 C42 84 66 60 100 60 Z;M100 63 C138 58 160 88 156 120 C153 152 132 175 100 175 C66 177 41 150 44 116 C46 86 64 66 100 63 Z;M100 58 C132 62 156 84 159 116 C161 150 136 177 100 176 C62 174 44 154 41 120 C39 82 70 56 100 58 Z;M100 60 C134 60 158 86 158 118 C158 152 134 176 100 176 C64 176 42 152 42 118 C42 84 66 60 100 60 Z"/>
+    </path>
+    <g class="m-capa" data-paralaje="0.4">
+      <path d="M76 146 L96 160 M124 146 L104 160" fill="none" stroke="#2f7cc0" stroke-width="4" stroke-linecap="round"/>
+      <rect x="89" y="155" width="22" height="19" rx="3.5" fill="#ffffff" stroke="#b9c7cc" stroke-width="1.5"/>
+      <rect x="96" y="152" width="8" height="5" rx="1.5" fill="#8a979c"/>
+      <path d="M98.5 159h3v3h3v3h-3v3h-3v-3h-3v-3h3z" fill="#00a76f"/>
+    </g>
+    <g class="m-cara" data-paralaje="1">
+      <g class="m-mejillas" data-base="0.3">
+        <ellipse cx="64" cy="127" rx="8" ry="5.5" fill="var(--m-mejilla)"/>
+        <ellipse cx="136" cy="127" rx="8" ry="5.5" fill="var(--m-mejilla)"/>
+      </g>
+      <g class="m-ojos" data-cx="100" data-cy="106" data-sep="38" data-w="12" data-h="18"></g>
+      <g fill="none" stroke="#21433a" stroke-width="3.2" stroke-linecap="round">
+        <circle cx="81" cy="106" r="15" fill="#ffffff" fill-opacity="0.18"/>
+        <circle cx="119" cy="106" r="15" fill="#ffffff" fill-opacity="0.18"/>
+        <path d="M96 104 Q100 100 104 104 M66 103 L55 99 M134 103 L145 99"/>
+      </g>
+      <g class="m-boca" data-cx="100" data-cy="131" data-w="14"></g>
+    </g>
+  </g>
+  <g class="m-globo" data-x="152" data-y="46"></g>
+</svg>

@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cabecera y plazo</title>
+  <link rel="stylesheet" href="/node_modules/@hrl/core-ui/tokens.css" />
+  <style>
+    /* Página de pruebas, fuera de la aplicación. Ningún color escrito a mano:
+       los degradados mezclan tokens del kit. */
+    body { margin: 0; }
+    .lab { min-height: 100vh; background: var(--bg-app); color: var(--text-primary); font-family: var(--font-sans); font-size: var(--text-base); }
+    /* Texto claro sobre el degradado: el blanco de la mascota, que no cambia
+       con el tema (--primary-foreground se oscurece en modo oscuro). Al
+       implementar, el kit necesita un token propio («texto sobre marca»). */
+    .lab { --cab-texto: var(--mascota-blanco); }
+
+    .lab__barra {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4);
+      padding: var(--space-3) var(--space-5);
+      background: var(--surface); border-bottom: 1px solid var(--border-soft);
+    }
+    .lab__barra h1 { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-bold); }
+    .lab__barra p { margin: 0; flex: 1 1 320px; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .lab__grupo { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); }
+    .lab__etiqueta { margin-right: var(--space-1); font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--muted-foreground); }
+    .lab__toggle {
+      min-height: var(--touch-target); padding: 0 var(--space-3);
+      border: 1px solid var(--input-border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-primary);
+      font: inherit; font-size: var(--text-sm); font-weight: var(--weight-semibold); cursor: pointer;
+    }
+    .lab__toggle[aria-pressed='true'] { background: var(--primary); border-color: var(--primary); color: var(--primary-foreground); }
+    .lab__toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+    .lab__cuerpo { display: grid; gap: var(--space-6); max-width: 1180px; margin: 0 auto; padding: var(--space-6) var(--space-5); }
+    .lab--movil .lab__cuerpo { max-width: 420px; }
+
+    .regla {
+      display: grid; gap: var(--space-2); padding: var(--space-4) var(--space-5);
+      background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-card);
+    }
+    .regla h2 { margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); }
+    .regla ul { margin: 0; padding-left: var(--space-5); color: var(--text-secondary); line-height: 1.6; }
+
+    .variante { display: grid; gap: var(--space-3); }
+    .variante h2 { margin: 0; font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.02em; }
+    .variante__nota { margin: 0; max-width: 80ch; color: var(--text-secondary); line-height: 1.55; }
+    .lienzo { display: grid; gap: var(--space-4); padding: var(--space-5); background: var(--bg-app); border: 1px dashed var(--input-border); border-radius: var(--radius-sm); }
+    .caso { display: grid; gap: var(--space-2); }
+    .caso__rotulo { margin: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted-foreground); }
+
+    /* ---------------------------------------------------------- la cabecera
+
+       A la izquierda, siempre lo mismo: migas, el nombre del departamento y la
+       fecha completa de hoy. A la derecha, todo lo del plazo, dicho una sola
+       vez: una etiqueta y una línea de detalle, y los botones. */
+
+    .cab {
+      position: relative; isolation: isolate; overflow: hidden;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5);
+      border-radius: var(--radius-card); color: var(--cab-texto);
+      padding: var(--space-6) var(--space-6) calc(var(--space-6) + 30px);
+      background: linear-gradient(110deg, var(--brand-deep) 0%, var(--brand) 100%);
+    }
+    .cab__ondas { position: absolute; inset: auto 0 0 0; z-index: -1; width: 100%; height: 72px; }
+    .cab__ondas path:nth-child(1) { fill: color-mix(in srgb, var(--mascota-cuerpo) 35%, transparent); }
+    .cab__ondas path:nth-child(2) { fill: color-mix(in srgb, var(--mascota-cuerpo-claro) 22%, transparent); }
+    .cab__ondas path:nth-child(3) { fill: color-mix(in srgb, var(--mascota-estetoscopio) 70%, transparent); }
+
+    .cab__izquierda { flex: 1 1 340px; min-width: 0; }
+    .cab__migas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); margin: 0 0 var(--space-2); font-size: var(--text-sm); font-weight: var(--weight-medium); opacity: 0.86; }
+    .cab__migas [aria-current] { font-weight: var(--weight-bold); opacity: 1; }
+    .cab h3 { margin: 0; font-size: var(--text-2xl); font-weight: var(--weight-bold); letter-spacing: -0.03em; line-height: 1.15; }
+    .cab__fecha { margin: var(--space-1) 0 0; font-size: var(--text-base); opacity: 0.88; }
+    .cab__fecha::first-letter { text-transform: uppercase; }
+
+    .cab__derecha { flex: 0 1 460px; display: grid; gap: var(--space-3); justify-items: end; text-align: right; }
+    .lab--movil .cab__derecha { justify-items: start; text-align: left; }
+    .cab__acciones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+    .lab--movil .cab__acciones { justify-content: flex-start; }
+
+    /* La etiqueta del estado: una sola, clara. El detalle lleva las fechas. */
+    .cab__estado { display: grid; gap: 2px; }
+    .cab__etiqueta { display: inline-flex; align-items: center; justify-content: flex-end; gap: var(--space-2); margin: 0; font-size: var(--text-md); font-weight: var(--weight-bold); }
+    .lab--movil .cab__etiqueta { justify-content: flex-start; }
+    .cab__detalle { margin: 0; font-size: var(--text-sm); line-height: 1.45; opacity: 0.9; }
+    /* El último día: el icono y la etiqueta se tiñen de aviso. No es la única
+       señal: la etiqueta dice «Vence hoy». */
+    .cab--urgente .cab__etiqueta,
+    .cab--urgente .cab__datos dd.plazo {
+      justify-self: end; padding: 2px var(--space-3); border-radius: var(--radius-full);
+      background: var(--warning); color: var(--mascota-tinta);
+    }
+    .cab--urgente .cab__datos dd.plazo { justify-self: start; padding: 0 var(--space-2); }
+    .lab--movil .cab--urgente .cab__etiqueta,
+    .cab--urgente .cab__panel .cab__etiqueta,
+    .cab--urgente .cab__con-icono .cab__etiqueta { justify-self: start; }
+
+    /* Botones sobre el degradado: el principal en blanco, el secundario con
+       borde claro. Los del kit en su tono normal se pierden sobre el verde. */
+    .cab .hrl-btn--cta { background: var(--cab-texto); border-color: var(--cab-texto); color: var(--brand-deep); }
+    .cab .hrl-btn--ghost {
+      background: transparent; color: var(--cab-texto);
+      border: 1px solid color-mix(in srgb, var(--cab-texto) 55%, transparent);
+    }
+    .cab .hrl-btn--ghost:hover { background: color-mix(in srgb, var(--cab-texto) 12%, transparent); }
+
+    /* B · panel */
+    .cab__panel {
+      display: grid; gap: var(--space-3); justify-items: start; text-align: left;
+      padding: var(--space-4); border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--cab-texto) 11%, transparent);
+      border: 1px solid color-mix(in srgb, var(--cab-texto) 24%, transparent);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .cab__panel .cab__etiqueta { justify-content: flex-start; font-size: var(--text-lg); }
+    .cab__panel .cab__acciones { justify-content: flex-start; }
+    .cab__rotulo { margin: 0; font-size: var(--text-xs); font-weight: var(--weight-bold); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
+
+    /* C · icono */
+    .cab__con-icono { display: flex; align-items: center; gap: var(--space-3); text-align: left; }
+    .cab__con-icono .cab__etiqueta { justify-content: flex-start; }
+    .cab__circulo {
+      display: grid; place-items: center; flex: none; width: 48px; height: 48px; border-radius: var(--radius-full);
+      background: color-mix(in srgb, var(--cab-texto) 16%, transparent);
+      border: 1px solid color-mix(in srgb, var(--cab-texto) 30%, transparent);
+    }
+    .cab--urgente .cab__circulo { background: var(--warning); border-color: var(--warning); color: var(--mascota-tinta); }
+
+    /* D · datos con rótulo */
+    .cab__datos { display: grid; grid-template-columns: auto auto; gap: var(--space-1) var(--space-4); margin: 0; text-align: left; font-size: var(--text-sm); }
+    .cab__datos dt { opacity: 0.78; }
+    .cab__datos dd { margin: 0; font-weight: var(--weight-semibold); }
+
+    /* E · días del plazo */
+    .tira { display: flex; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+    .tira li {
+      display: grid; place-items: center; width: 38px; height: 44px; border-radius: var(--radius-sm);
+      background: color-mix(in srgb, var(--cab-texto) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--cab-texto) 22%, transparent);
+      line-height: 1.05;
+    }
+    .tira li strong { font-size: var(--text-md); }
+    .tira li small { font-size: var(--text-xs); opacity: 0.85; }
+    .tira li.pasado { opacity: 0.4; }
+    .tira li.hoy { background: var(--cab-texto); border-color: var(--cab-texto); color: var(--brand-deep); }
+    .cab--urgente .tira li.hoy { background: var(--warning); border-color: var(--warning); color: var(--mascota-tinta); }
+    .tira li.enviado { background: color-mix(in srgb, var(--mascota-cuerpo) 45%, transparent); }
+
+    /* F · Dr. Mochi */
+    .cab__mochi { display: flex; align-items: center; gap: var(--space-3); }
+  </style>
+</head>
+<body>
+  <div class="lab hrl-nuevo" id="lab">
+    <header class="lab__barra">
+      <h1>Cabecera «Ondas» y el plazo de envío</h1>
+      <p>A la izquierda, siempre el departamento y la fecha. A la derecha, el plazo dicho una sola vez y los botones. Cada variante en sus dos versiones.</p>
+      <div class="lab__grupo" role="group" aria-label="Fecha dentro del plazo" id="dentro">
+        <span class="lab__etiqueta">Dentro</span>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-01" aria-pressed="false">1 oct</button>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-03" aria-pressed="true">3 oct</button>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-05" aria-pressed="false">5 oct · último</button>
+        <button type="button" class="lab__toggle" id="enviado" aria-pressed="false">Ya enviado</button>
+      </div>
+      <div class="lab__grupo" role="group" aria-label="Fecha fuera del plazo" id="fuera">
+        <span class="lab__etiqueta">Fuera</span>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-06" aria-pressed="false">6 oct</button>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-18" aria-pressed="true">18 oct</button>
+        <button type="button" class="lab__toggle" data-fecha="2026-10-31" aria-pressed="false">31 oct</button>
+      </div>
+      <div class="lab__grupo">
+        <button type="button" class="lab__toggle" id="tema" aria-pressed="false">Modo oscuro</button>
+        <button type="button" class="lab__toggle" id="movil" aria-pressed="false">Teléfono</button>
+      </div>
+    </header>
+
+    <main class="lab__cuerpo">
+      <section class="regla" aria-labelledby="regla-t">
+        <h2 id="regla-t">La regla y las etiquetas</h2>
+        <ul>
+          <li>El reporte de un mes se envía a Estadística <strong>solo del 1 al 5 del mes siguiente</strong>. Antes o después no sale nada.</li>
+          <li><strong>Pendiente de envío</strong> (o <strong>Vence hoy</strong>, el día 5): acción principal <em>Subir el Excel</em>, que lleva al bot; alternativa, <em>Llenar a mano</em>.</li>
+          <li><strong>Enviado a Estadística</strong>: dentro del plazo y ya enviado. Lleva al historial.</li>
+          <li><strong>Sin envíos pendientes</strong>: fuera del plazo. Lleva al historial; el mes en curso se puede ir llenando a mano.</li>
+        </ul>
+      </section>
+      <div id="variantes" style="display: grid; gap: var(--space-6)"></div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { createElement as h } from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { Button, Icon, IconSprite, Mascot } from '@hrl/core-ui';
+
+    /* ── La regla (al implementar, va a dominio/periodos.js) ── */
+    const ABRE = 1;
+    const CIERRA = 5;
+    const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    const fecha = (a, m, d) => new Date(a, m - 1, d);
+    const diasEntre = (x, y) => Math.round((y - x) / 86400000);
+    const fechaLarga = (f) => `${DIAS[f.getDay()]}, ${f.getDate()} de ${MESES[f.getMonth()]} de ${f.getFullYear()}`;
+    const diaYFecha = (f) => `${DIAS[f.getDay()]} ${f.getDate()} de ${MESES[f.getMonth()]}`;
+
+    /* Si la ventana está abierta, es la del mes anterior; si no, la próxima,
+       que es la del mes en curso. */
+    function ventana(hoy) {
+      const a = hoy.getFullYear(), m = hoy.getMonth() + 1, d = hoy.getDate();
+      if (d >= ABRE && d <= CIERRA) {
+        const pm = m === 1 ? 12 : m - 1, pa = m === 1 ? a - 1 : a;
+        return { abierta: true, mes: MESES[pm - 1], anio: pa, abre: fecha(a, m, ABRE), cierra: fecha(a, m, CIERRA), quedan: CIERRA - d, dia: d };
+      }
+      const sm = m === 12 ? 1 : m + 1, sa = m === 12 ? a + 1 : a;
+      return { abierta: false, mes: MESES[m - 1], anio: a, abre: fecha(sa, sm, ABRE), cierra: fecha(sa, sm, CIERRA), faltan: diasEntre(hoy, fecha(sa, sm, ABRE)), dia: d };
+    }
+
+    /* El estado del plazo, en una etiqueta y un detalle. Ninguna variante
+       repite la etiqueta en otro sitio. */
+    function caso(hoyIso, enviado) {
+      const hoy = new Date(`${hoyIso}T12:00`);
+      const v = ventana(hoy);
+      const reporte = `${v.mes[0].toUpperCase()}${v.mes.slice(1)} ${v.anio}`;
+      const base = { v, hoy, fechaHoy: fechaLarga(hoy), reporte };
+      if (v.abierta && enviado) {
+        return {
+          ...base, tipo: 'enviado', icono: 'sh-ok', mascota: 'done',
+          etiqueta: 'Enviado a Estadística',
+          // Simulado: se envió el día anterior (o hoy, si hoy es el día 1).
+          detalle: `Reporte de ${v.mes} · enviado el ${diaYFecha(fecha(v.abre.getFullYear(), v.abre.getMonth() + 1, Math.max(ABRE, v.dia - 1)))}`,
+          plazo: 'Cumplido',
+          principal: ['Revisar historial de reportes', 'sh-folder'],
+          secundaria: ['Ver la constancia', 'sh-doc'],
+        };
+      }
+      if (v.abierta) {
+        const hoyVence = v.quedan === 0;
+        return {
+          ...base, tipo: 'pendiente', urgente: hoyVence, icono: hoyVence ? 'sh-warn' : 'sh-clock', mascota: hoyVence ? 'thinking' : 'idle',
+          etiqueta: hoyVence ? 'Vence hoy' : 'Pendiente de envío',
+          detalle: hoyVence
+            ? `Reporte de ${v.mes} · último día del plazo`
+            : `Reporte de ${v.mes} · hasta el ${diaYFecha(v.cierra)} (${v.quedan === 1 ? 'queda 1 día' : `quedan ${v.quedan} días`})`,
+          plazo: hoyVence ? 'Hoy es el último día' : `Hasta el ${diaYFecha(v.cierra)} · ${v.quedan === 1 ? 'queda 1 día' : `quedan ${v.quedan} días`}`,
+          principal: ['Subir el Excel', 'sh-upload'],
+          secundaria: ['Llenar a mano', 'sh-pencil'],
+        };
+      }
+      return {
+        ...base, tipo: 'fuera', icono: 'sh-calendar', mascota: 'sleeping',
+        etiqueta: 'Sin envíos pendientes',
+        detalle: `Próximo envío: ${v.mes}, del ${ABRE} al ${CIERRA} de ${MESES[v.abre.getMonth()]} (${v.faltan === 1 ? 'falta 1 día' : `faltan ${v.faltan} días`})`,
+        plazo: `Del ${ABRE} al ${CIERRA} de ${MESES[v.abre.getMonth()]} · ${v.faltan === 1 ? 'falta 1 día' : `faltan ${v.faltan} días`}`,
+        principal: ['Revisar historial de reportes', 'sh-folder'],
+        secundaria: ['Llenar a mano', 'sh-pencil'],
+      };
+    }
+
+    /* ── Piezas de marcado ── */
+    const ONDAS = '<svg class="cab__ondas" viewBox="0 0 1200 72" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C200 10 400 70 600 40 S1000 10 1200 35 V72 H0Z"/><path d="M0 52 C250 30 450 75 700 50 S1050 30 1200 50 V72 H0Z"/><path d="M0 62 C300 50 600 75 900 60 S1100 52 1200 60 V72 H0Z"/></svg>';
+    const icono = (n, t = 16) => `<span data-icono="${n}" data-tamano="${t}"></span>`;
+    const izquierda = (c) => `<div class="cab__izquierda"><nav class="cab__migas" aria-label="Ruta de navegación"><span>Nutrición y Dietética</span><span aria-hidden="true">›</span><span aria-current="page">Inicio</span></nav><h3>Departamento de Nutrición y Dietética</h3><p class="cab__fecha">${c.fechaHoy}</p></div>`;
+    const acciones = (c) => `<div class="cab__acciones"><span data-boton="${c.principal[0]}" data-icono-boton="${c.principal[1]}" data-tono="cta"></span><span data-boton="${c.secundaria[0]}" data-icono-boton="${c.secundaria[1]}" data-tono="ghost"></span></div>`;
+    const etiqueta = (c) => `<p class="cab__etiqueta">${icono(c.icono, 18)}${c.etiqueta}</p>`;
+    const cab = (c, derecha) => `<section class="cab${c.urgente ? ' cab--urgente' : ''}">${izquierda(c)}<div class="cab__derecha">${derecha}</div>${ONDAS}</section>`;
+
+    function tira(c) {
+      const { v } = c;
+      return `<ol class="tira" aria-label="Días del plazo de envío">${[1, 2, 3, 4, 5].map((d) => {
+        const dia = fecha(v.abre.getFullYear(), v.abre.getMonth() + 1, d);
+        let clase = '';
+        if (v.abierta && c.tipo === 'enviado') clase = d <= v.dia ? 'enviado' : 'pasado';
+        else if (v.abierta) clase = d < v.dia ? 'pasado' : d === v.dia ? 'hoy' : '';
+        return `<li class="${clase}"${clase === 'hoy' ? ' aria-current="date"' : ''}><strong>${d}</strong><small>${DIAS[dia.getDay()].slice(0, 3)}</small></li>`;
+      }).join('')}</ol>`;
+    }
+
+    const VARIANTES = [
+      {
+        nombre: 'A · Etiqueta y detalle',
+        nota: 'El formato 1, limpio: a la derecha una etiqueta con su icono («Pendiente de envío», «Vence hoy», «Enviado a Estadística», «Sin envíos pendientes»), una línea con el mes y la fecha, y los botones. Nada se dice dos veces.',
+        html: (c) => cab(c, `<div class="cab__estado">${etiqueta(c)}<p class="cab__detalle">${c.detalle}</p></div>${acciones(c)}`),
+      },
+      {
+        nombre: 'B · En un panel',
+        nota: 'Lo mismo dentro de una placa translúcida que agrupa el plazo y sus acciones; arriba, el reporte del que se habla («Reporte de septiembre 2026»). Separa lo informativo (izquierda) de lo que hay que hacer (derecha).',
+        html: (c) => cab(c, `<div class="cab__panel"><p class="cab__rotulo">Reporte de ${c.reporte.toLowerCase()}</p><div class="cab__estado">${etiqueta(c)}<p class="cab__detalle">${c.tipo === 'pendiente' ? c.plazo : c.detalle}</p></div>${acciones(c)}</div>`),
+      },
+      {
+        nombre: 'C · Icono en un círculo',
+        nota: 'El icono del estado crece y va en un círculo, al lado de la etiqueta y el detalle. Se reconoce el estado de un vistazo; el último día el círculo se pone amarillo.',
+        html: (c) => cab(c, `<div class="cab__con-icono"><span class="cab__circulo">${icono(c.icono, 22)}</span><div class="cab__estado"><p class="cab__etiqueta">${c.etiqueta}</p><p class="cab__detalle">${c.detalle}</p></div></div>${acciones(c)}`),
+      },
+      {
+        nombre: 'D · Datos con rótulo',
+        nota: 'En vez de una frase, tres datos rotulados: el reporte, su estado y el plazo. Más ordenado para leer rápido; ocupa algo más de alto.',
+        html: (c) => cab(c, `<dl class="cab__datos"><dt>Reporte</dt><dd>${c.reporte}</dd><dt>Estado</dt><dd>${c.etiqueta}</dd><dt>Plazo</dt><dd class="plazo">${c.plazo}</dd></dl>${acciones(c)}`),
+      },
+      {
+        nombre: 'E · Los días del plazo',
+        nota: 'La etiqueta arriba y los cinco días del plazo debajo: los pasados atenuados, hoy en blanco (amarillo el último día) y, si ya se envió, los días hasta el envío teñidos. Fuera del plazo, los del mes que viene.',
+        html: (c) => cab(c, `${etiqueta(c)}${tira(c)}${acciones(c)}`),
+      },
+      {
+        nombre: 'F · Con Dr. Mochi',
+        nota: 'La etiqueta y el detalle junto a la mascota, que acompaña el estado: espera, piensa el último día, celebra lo enviado y duerme fuera del plazo.',
+        html: (c) => cab(c, `<div class="cab__mochi"><div class="cab__estado">${etiqueta(c)}<p class="cab__detalle">${c.detalle}</p></div><span data-mascota="${c.mascota}"></span></div>${acciones(c)}`),
+      },
+    ];
+
+    const destino = document.getElementById('variantes');
+    let raices = [];
+    const elegido = { dentro: '2026-10-03', fuera: '2026-10-18', enviado: false };
+
+    function pintar() {
+      raices.forEach((r) => r.unmount());
+      raices = [];
+      const dentro = caso(elegido.dentro, elegido.enviado);
+      const fuera = caso(elegido.fuera, false);
+      destino.innerHTML = VARIANTES.map((v, i) => `
+        <section class="variante" aria-labelledby="v${i}">
+          <h2 id="v${i}">${v.nombre}</h2>
+          <p class="variante__nota">${v.nota}</p>
+          <div class="lienzo">
+            <div class="caso"><p class="caso__rotulo">Dentro del plazo${elegido.enviado ? ' · ya enviado' : ''}</p>${v.html(dentro)}</div>
+            <div class="caso"><p class="caso__rotulo">Fuera del plazo</p>${v.html(fuera)}</div>
+          </div>
+        </section>`).join('');
+
+      const montar = (nodo, el) => { const r = createRoot(nodo); r.render(el); raices.push(r); };
+      destino.querySelectorAll('[data-icono]').forEach((n) => montar(n, h(Icon, { name: n.dataset.icono, size: Number(n.dataset.tamano) })));
+      destino.querySelectorAll('[data-boton]').forEach((n) => montar(n, h(Button, { tone: n.dataset.tono, icon: n.dataset.iconoBoton }, n.dataset.boton)));
+      destino.querySelectorAll('[data-mascota]').forEach((n) => montar(n, h(Mascot, { state: n.dataset.mascota, size: 'md' })));
+    }
+
+    const sprite = document.createElement('div');
+    document.body.append(sprite);
+    createRoot(sprite).render(h(IconSprite));
+
+    for (const grupo of ['dentro', 'fuera']) {
+      const botones = [...document.querySelectorAll(`#${grupo} [data-fecha]`)];
+      botones.forEach((b) => b.addEventListener('click', () => {
+        botones.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+        elegido[grupo] = b.dataset.fecha;
+        pintar();
+      }));
+    }
+    const enviado = document.getElementById('enviado');
+    enviado.addEventListener('click', () => {
+      elegido.enviado = !elegido.enviado;
+      enviado.setAttribute('aria-pressed', String(elegido.enviado));
+      pintar();
+    });
+
+    const raiz = document.documentElement;
+    const tema = document.getElementById('tema');
+    const fijarTema = (oscuro) => { raiz.dataset.temaHrl = oscuro ? 'oscuro' : 'claro'; tema.setAttribute('aria-pressed', String(oscuro)); };
+    tema.addEventListener('click', () => fijarTema(raiz.dataset.temaHrl !== 'oscuro'));
+    const movil = document.getElementById('movil');
+    movil.addEventListener('click', () => {
+      const activo = document.getElementById('lab').classList.toggle('lab--movil');
+      movil.setAttribute('aria-pressed', String(activo));
+    });
+
+    /* Enlace directo: ?dentro=2026-10-05&fuera=2026-10-31&enviado=1&tema=oscuro&movil=1 */
+    const p = new URLSearchParams(location.search);
+    if (p.get('dentro')) document.querySelector(`#dentro [data-fecha="${p.get('dentro')}"]`)?.click();
+    if (p.get('fuera')) document.querySelector(`#fuera [data-fecha="${p.get('fuera')}"]`)?.click();
+    if (p.get('enviado') === '1') enviado.click();
+    if (p.get('tema') === 'oscuro') fijarTema(true);
+    if (p.get('movil') === '1') movil.click();
+    pintar();
+  </script>
+</body>
+</html>

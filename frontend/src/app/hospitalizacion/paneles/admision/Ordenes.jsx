@@ -1,0 +1,134 @@
+import { useState } from 'react'
+import { Badge, Button, Card, DataTable, Input, Mosaic, PageActions, SegmentedControl, Stack } from '@hrl/core-ui'
+import { ORIGENES, etiqueta, movimientosDe, camaPorId, pacientePorId, serviciosConCamas } from '@/app/hospitalizacion/dominio/consultas.js'
+import { verFechaHora } from '@/app/hospitalizacion/dominio/tiempo.js'
+import { buscarEnPadron } from '@/app/hospitalizacion/datos/admision.js'
+import { GRUPOS_SERVICIO, servicioPorId } from '@/app/hospitalizacion/datos/catalogo.js'
+import { CIE10, MEDICOS } from '@/app/hospitalizacion/datos/clinicos.js'
+import { DialogoAccion, ListaDatos, nombreDepartamento, nombreServicio, useApp, useEnvio } from '@/app/hospitalizacion/paneles/comun.jsx'
+
+/* Las áreas que ya están en el sistema, agrupadas por departamento. */
+function gruposAreas(estado) {
+  const grupos = new Map()
+  for (const id of serviciosConCamas(estado)) {
+    const departamento = servicioPorId(id)?.departamento.nombre ?? 'Otros'
+    grupos.set(departamento, [...(grupos.get(departamento) ?? []), { value: id, label: nombreServicio(id) }])
+  }
+  return [...grupos].map(([label, options]) => ({ label, options }))
+}
+
+const VACIO = { value: '', label: 'Elige…' }
+
+const PACIENTE_VACIO = { hc: '', tipoDocumento: 'dni', dni: '', nombres: '', sexo: '', nacimiento: '', hcMadre: '' }
+const TIPOS_DOCUMENTO = [{ value: 'dni', label: 'DNI' }, { value: 'ce', label: 'Carné de extranjería' }, { value: 'pasaporte', label: 'Pasaporte' }, { value: 'sin_documento', label: 'Sin documento (RN o no identificado)' }]
+
+function DialogoOrden({ onCerrar }) {
+  const { estado } = useApp()
+  const { error, enviar } = useEnvio(onCerrar)
+  const [busqueda, setBusqueda] = useState('')
+  const [elegido, setElegido] = useState(null)
+  const [nuevo, setNuevo] = useState(PACIENTE_VACIO)
+  const [origen, setOrigen] = useState('consulta_externa')
+  const [servicioId, setServicio] = useState('')
+  const [medicoOrdena, setMedico] = useState('')
+  const [diagnosticoIngreso, setDx] = useState('')
+  const [enviadaPor, setEnviada] = useState('')
+  const [servicioProcedencia, setProcedencia] = useState('')
+  const hallados = buscarEnPadron(estado, busqueda).slice(0, 5)
+  const campo = (k) => (e) => setNuevo({ ...nuevo, [k]: e.target.value })
+  const paciente = elegido ? { pacienteId: elegido.id } : { paciente: nuevo }
+
+  return (
+    <DialogoAccion
+      titulo="Nueva orden de hospitalización"
+      subtitulo="Admisión envía al paciente a un área. La habitación y la cama las designa esa área."
+      textoConfirmar="Enviar al área"
+      maxWidth={640}
+      onCerrar={onCerrar}
+      error={error}
+      onConfirmar={() => enviar('orden/registrar', { ...paciente, origen, servicioId, medicoOrdena, diagnosticoIngreso, enviadaPor, servicioProcedencia }, `Orden enviada. ${nombreServicio(servicioId)} ya la ve para designar la cama.`)}
+    >
+      <SegmentedControl label="Por dónde llega" value={origen} options={ORIGENES} onChange={setOrigen} />
+      {origen === 'emergencia' && <Input label="Enfermera de Emergencia que envió la orden" required value={enviadaPor} onChange={(e) => setEnviada(e.target.value)} />}
+      {origen === 'otro_servicio' && <Input label="Servicio de procedencia" required kind="select" value={servicioProcedencia} onChange={(e) => setProcedencia(e.target.value)} options={[{ value: '', label: 'Elige…' }]} groups={GRUPOS_SERVICIO} />}
+      {elegido ? (
+        <Stack gap={2}>
+          <ListaDatos datos={[['Paciente', elegido.nombres], ['N° de HC', elegido.hc], ['DNI', elegido.dni]]} />
+          <div><Button tone="ghost" size="sm" onClick={() => setElegido(null)}>Elegir otro paciente</Button></div>
+        </Stack>
+      ) : (
+        <Stack gap={3}>
+          <Input label="Buscar en el padrón" searchIcon placeholder="N° de HC, DNI o apellidos" value={busqueda} onChange={(e) => setBusqueda(e.target.value)} />
+          {hallados.map((p) => (
+            <Stack key={p.id} direction="row" justify="between" align="center" gap={2}>
+              <span>{p.nombres}, HC {p.hc}, DNI {p.dni}</span>
+              <Button size="sm" tone="ghost" onClick={() => setElegido(p)}>Elegir</Button>
+            </Stack>
+          ))}
+          <p className="texto-apoyo">Si no está en el padrón, escribe sus datos:</p>
+          <div className="campos-dos">
+            <Input label="N° de HC" value={nuevo.hc} onChange={campo('hc')} />
+            <Input label="Tipo de documento" kind="select" value={nuevo.tipoDocumento} onChange={campo('tipoDocumento')} options={TIPOS_DOCUMENTO} />
+          </div>
+          {nuevo.tipoDocumento !== 'sin_documento' && <Input label="Número de documento" value={nuevo.dni} onChange={campo('dni')} />}
+          {nuevo.tipoDocumento === 'sin_documento' && <Input label="N° de HC de la madre" info="Solo para recién nacidos." value={nuevo.hcMadre} onChange={campo('hcMadre')} />}
+          <Input label="Apellidos y nombres" value={nuevo.nombres} onChange={campo('nombres')} />
+          <div className="campos-dos">
+            <Input label="Sexo" kind="select" value={nuevo.sexo} onChange={campo('sexo')} options={[{ value: '', label: 'Elige…' }, { value: 'F', label: 'Femenino' }, { value: 'M', label: 'Masculino' }]} />
+            <Input label="Fecha de nacimiento" kind="date" value={nuevo.nacimiento} onChange={campo('nacimiento')} />
+          </div>
+        </Stack>
+      )}
+      <Input label="Área de hospitalización" required kind="select" info="El área recibe la orden y designa la habitación y la cama." value={servicioId} onChange={(e) => setServicio(e.target.value)} options={[VACIO]} groups={gruposAreas(estado)} />
+      <Input label="Médico que ordena" required kind="select" value={medicoOrdena} onChange={(e) => setMedico(e.target.value)} options={[VACIO, ...MEDICOS.map((m) => ({ value: m.label, label: m.label }))]} />
+      <Input label="Diagnóstico de ingreso (CIE-10)" kind="select" value={diagnosticoIngreso} onChange={(e) => setDx(e.target.value)} options={[{ value: '', label: 'Sin diagnóstico todavía' }, ...CIE10.map((c) => ({ value: c.label, label: c.label }))]} />
+    </DialogoAccion>
+  )
+}
+
+function DialogoAnular({ orden, onCerrar }) {
+  const { error, enviar } = useEnvio(onCerrar)
+  const [motivo, setMotivo] = useState('')
+  return (
+    <DialogoAccion titulo="Anular orden" textoConfirmar="Anular orden" tono="danger" onCerrar={onCerrar} error={error} onConfirmar={() => enviar('orden/anular', { ordenId: orden.id, motivo }, 'Orden anulada.')}>
+      <Input label="Motivo" required autoFocus value={motivo} onChange={(e) => setMotivo(e.target.value)} />
+    </DialogoAccion>
+  )
+}
+
+const FILTROS = [{ value: 'pendiente', label: 'Esperando cama' }, { value: 'todas', label: 'Todas' }]
+
+export function Ordenes() {
+  const { estado } = useApp()
+  const [filtro, setFiltro] = useState('pendiente')
+  const [nueva, setNueva] = useState(false)
+  const [anular, setAnular] = useState(null)
+  const filas = [...estado.ordenes].filter((o) => filtro === 'todas' || o.estado === 'pendiente').reverse()
+  const camaDe = (o) => {
+    if (!o.hospitalizacionId) return null
+    return camaPorId(estado, movimientosDe(estado, o.hospitalizacionId).find((m) => m.tipo === 'ingreso')?.camaId)?.codigo
+  }
+  return (
+    <Mosaic stacked className="hrl-panel">
+      <PageActions><Button icon="sh-plus" onClick={() => setNueva(true)}>Nueva orden</Button></PageActions>
+      <Card title="Órdenes" subtitle="En el sistema final estas órdenes llegan desde Admisión (Galeno)." actions={<SegmentedControl label="Filtro" value={filtro} options={FILTROS} onChange={setFiltro} />}>
+        <DataTable
+          rowKey={(o) => o.id}
+          rows={filas}
+          empty="No hay órdenes esperando cama."
+          columns={[
+            { key: 'fechaHora', label: 'Orden', width: 150, render: (o) => verFechaHora(o.fechaHora) },
+            { key: 'paciente', label: 'Paciente', render: (o) => pacientePorId(estado, o.pacienteId).nombres },
+            { key: 'hc', label: 'N° de HC', width: 100, render: (o) => pacientePorId(estado, o.pacienteId).hc },
+            { key: 'origen', label: 'Origen', width: 150, render: (o) => etiqueta(ORIGENES, o.origen) },
+            { key: 'servicio', label: 'Área', width: 170, render: (o) => (o.servicioId ? nombreServicio(o.servicioId) : nombreDepartamento(o.departamentoId)) },
+            { key: 'estado', label: 'Estado', width: 170, render: (o) => (o.estado === 'pendiente' ? <Badge label="Esperando cama" tone="warn" /> : o.estado === 'anulada' ? <Badge label="Anulada" tone="none" /> : <Badge label={`En cama ${camaDe(o) ?? ''}`} tone="ok" />) },
+            { key: 'accion', label: '', width: 100, align: 'right', render: (o) => (o.estado === 'pendiente' ? <Button size="sm" tone="ghost" onClick={() => setAnular(o)}>Anular</Button> : null) },
+          ]}
+        />
+      </Card>
+      {nueva && <DialogoOrden onCerrar={() => setNueva(false)} />}
+      {anular && <DialogoAnular orden={anular} onCerrar={() => setAnular(null)} />}
+    </Mosaic>
+  )
+}

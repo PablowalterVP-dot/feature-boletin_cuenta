@@ -1,0 +1,151 @@
+# Despliegue del sistema en el servidor: frontend (nginx), API, bot validador y
+# hospitalización con su base.
+#
+# La base de Estadística NO está aquí: es un PostgreSQL aparte que provee el
+# servidor. La API la encuentra por DATABASE_URL. La de hospitalización sí está
+# (`hospitalizacion-db`). Guía completa: docs/DESPLIEGUE.md.
+#
+#   cp .env.example .env        # y completa DATABASE_URL y JWT_SECRETO
+#   docker compose up -d --build
+#
+# Solo el frontend publica un puerto. La API y el bot quedan en la red interna:
+# el navegador llega a la API a través del nginx del frontend (/api), y la API
+# llega al bot por su nombre de servicio.
+
+name: estadistica-hrl
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: servidor/bot-validador/Dockerfile
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: servidor/api/Dockerfile
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Falta DATABASE_URL en .env}
+      JWT_SECRETO: ${JWT_SECRETO:?Falta JWT_SECRETO en .env}
+      BOT_VALIDADOR_URL: http://bot:8787
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-2}
+    volumes:
+      - cargas:/datos/cargas
+    # Para una base en el mismo servidor, fuera de Docker: en DATABASE_URL se
+    # escribe host.docker.internal en vez de localhost (dentro del contenedor,
+    # localhost es el propio contenedor).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      bot:
+        condition: service_healthy
+
+  # Hospitalización (servidor/hospitalizacion/, decisión 0011 de docs/hospitalizacion/).
+  # Se levanta con el resto: sin este servicio, sus pantallas dicen «Sin conexión con
+  # hospitalización». Sus pacientes van en una base aparte de la de Estadística, en el
+  # PostgreSQL de abajo (docs/DESPLIEGUE.md § «Hospitalización»). El nginx del frontend
+  # le reenvía /api/hospitalizacion/.
+  hospitalizacion:
+    build:
+      context: .
+      dockerfile: servidor/hospitalizacion/Dockerfile
+    restart: unless-stopped
+    environment:
+      # Por omisión, la base de abajo. Para usar el PostgreSQL del servidor:
+      # EGRESOS_DB_HOST=host.docker.internal y EGRESOS_DB_PUERTO=5432 en .env.
+      EGRESOS_DB_HOST: ${EGRESOS_DB_HOST:-hospitalizacion-db}
+      EGRESOS_DB_PUERTO: ${EGRESOS_DB_PUERTO:-5432}
+      EGRESOS_DB: ${EGRESOS_DB:-egresos}
+      # Las claves de la base las genera `hospitalizacion-db` la primera vez. Solo se
+      # escriben en .env (o en Coolify) para usar el PostgreSQL del servidor.
+      EGRESOS_OWNER_CLAVE: ${EGRESOS_OWNER_CLAVE:-}
+      EGRESOS_APP_CLAVE: ${EGRESOS_APP_CLAVE:-}
+      EGRESOS_LECTURA_CLAVE: ${EGRESOS_LECTURA_CLAVE:-}
+      EGRESOS_RESPALDO_CLAVE: ${EGRESOS_RESPALDO_CLAVE:-}
+      EGRESOS_OWNER_CLAVE_ARCHIVO: /claves/owner
+      EGRESOS_APP_CLAVE_ARCHIVO: /claves/app
+      EGRESOS_LECTURA_CLAVE_ARCHIVO: /claves/lectura
+      EGRESOS_RESPALDO_CLAVE_ARCHIVO: /claves/respaldo
+      # El mismo secreto que la API: el token lo firma ella y esta lo lee.
+      JWT_SECRETO: ${JWT_SECRETO:?Falta JWT_SECRETO en .env}
+      INGRESO: estadistica
+      APP_ENV: produccion
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-2}
+    volumes:
+      - egresos_claves:/claves:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      hospitalizacion-db:
+        condition: service_healthy
+
+  # La base de hospitalización. No publica puerto: solo la alcanza el servicio de
+  # arriba, por la red interna. Sus datos viven en el volumen `egresos_datos`.
+  #
+  # Antes de arrancar PostgreSQL genera, solo si faltan, las cuatro claves de la base
+  # (la dueña y las de egresos_app, egresos_lectura y egresos_respaldo) y las guarda en
+  # el volumen `egresos_claves`. Nadie tiene que inventarlas ni escribirlas. Va aquí y
+  # no en un contenedor aparte que termina, porque Coolify reinicia los que terminan.
+  hospitalizacion-db:
+    image: postgres:16
+    command:
+      - sh
+      - -c
+      - |
+        set -e
+        umask 022
+        for nombre in owner app lectura respaldo; do
+          [ -s /claves/$$nombre ] || head -c 48 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' > /claves/$$nombre
+        done
+        exec docker-entrypoint.sh postgres -c timezone=America/Lima
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${EGRESOS_DB:-egresos}
+      # Dueña de la base: la primera migración crea con ella los otros tres roles.
+      POSTGRES_USER: egresos_owner
+      POSTGRES_PASSWORD_FILE: /claves/owner
+      TZ: America/Lima
+    volumes:
+      - egresos_datos:/var/lib/postgresql/data
+      - egresos_claves:/claves
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U egresos_owner -d ${EGRESOS_DB:-egresos}"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        # Vacía, el frontend se compila en modo demo (todo en memoria).
+        VITE_API_URL: ${VITE_API_URL-http://api:8000}
+      # Solo si el repositorio de @hrl/core-ui es privado (ver docs/DESPLIEGUE.md):
+      # secrets:
+      #   - github_token
+    restart: unless-stopped
+    ports:
+      - "${PUERTO_WEB:-80}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+      hospitalizacion:
+        condition: service_started
+
+volumes:
+  # Los Excel que suben las áreas. Sobrevive a `docker compose down` y a una
+  # reconstrucción; solo `down -v` lo borra.
+  cargas:
+  # Los pacientes, censos y egresos de hospitalización. Igual que `cargas`: solo
+  # `down -v` lo borra. Va en el respaldo diario (docs/DESPLIEGUE.md).
+  egresos_datos:
+  # Las claves de esa base, generadas al primer arranque. Va con `egresos_datos`: si se
+  # pierde una, la otra ya no abre.
+  egresos_claves:
+
+# secrets:
+#   github_token:
+#     environment: GITHUB_TOKEN

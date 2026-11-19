@@ -1,0 +1,89 @@
+# Registro del repo para el antiguo portal de desarrollo del HRL (Backstage, ya reemplazado por Docmost).
+# El portal lo descubre solo en la rama por defecto. Las tres piezas cuelgan
+# del sistema `reporte-estadistico`, definido en catalog/hrl.yaml del portal.
+# La documentación (mkdocs.yml y docs/) es una sola y se muestra en las tres.
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: estadistica-web
+  title: Reporte Estadístico · Web
+  description: >-
+    Interfaz con la que las diez áreas entregan su reporte mensual a la Oficina
+    de Estadística. Sin servidor corre en modo demo, en memoria.
+  annotations:
+    github.com/project-slug: DevHRL/Estadistica_hrl
+    backstage.io/source-location: url:https://github.com/DevHRL/Estadistica_hrl/tree/main/frontend
+    backstage.io/techdocs-ref: dir:.
+  tags: [react, vite]
+  links:
+    - url: https://github.com/DevHRL/Estadistica_hrl
+      title: Repositorio
+spec:
+  type: website
+  lifecycle: experimental
+  owner: equipo-estadistica
+  system: reporte-estadistico
+  dependsOn:
+    - component:estadistica-api
+    - component:estadistica-bot-validador
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: estadistica-api
+  title: Reporte Estadístico · API
+  description: >-
+    API con FastAPI y PostgreSQL, con autenticación JWT. Hoy guarda y valida
+    solo los datos reales de Nutrición.
+  annotations:
+    github.com/project-slug: DevHRL/Estadistica_hrl
+    backstage.io/source-location: url:https://github.com/DevHRL/Estadistica_hrl/tree/main/servidor/api
+    backstage.io/techdocs-entity: component:default/estadistica-web
+  tags: [python, fastapi, postgresql]
+spec:
+  type: service
+  lifecycle: experimental
+  owner: equipo-estadistica
+  system: reporte-estadistico
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: estadistica-bot-validador
+  title: Reporte Estadístico · Bot validador
+  description: >-
+    Lee y valida el Excel que envía cada área. También va embebido en la web,
+    con las mismas reglas.
+  annotations:
+    github.com/project-slug: DevHRL/Estadistica_hrl
+    backstage.io/source-location: url:https://github.com/DevHRL/Estadistica_hrl/tree/main/servidor/bot-validador
+    backstage.io/techdocs-entity: component:default/estadistica-web
+  tags: [node, excel]
+spec:
+  type: service
+  lifecycle: experimental
+  owner: equipo-estadistica
+  system: reporte-estadistico
+---
+# Hospitalización (Egresos Hospitalarios), desde el 14/11/2026: su API y su base son
+# aparte, y sus pantallas viven en estadistica-web. Antes era el repositorio
+# DevHRL/egresos-hospitalarios, con su propio sistema en el portal.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: estadistica-hospitalizacion-api
+  title: Reporte Estadístico · Hospitalización
+  description: >-
+    Camas, censo diario, ingresos y egresos de los pacientes hospitalizados.
+    FastAPI con su propia base PostgreSQL; entra con el ingreso de Estadística.
+  annotations:
+    github.com/project-slug: DevHRL/Estadistica_hrl
+    backstage.io/source-location: url:https://github.com/DevHRL/Estadistica_hrl/tree/main/servidor/hospitalizacion
+    backstage.io/techdocs-ref: dir:.
+  tags: [python, fastapi, postgresql, docker]
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/giancarlochavez
+  system: reporte-estadistico

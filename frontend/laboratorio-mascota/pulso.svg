@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-base="179" data-cabeza-y="46" data-sudor-x="160" data-sudor-y="72" style="--m-tinta:#5cf2b0;--m-brillo:#e6fff4;--m-mejilla:#ff7aa2;--m-globo:#ffffff;--m-globo-borde:#c4d3cd;--m-globo-tinta:#1d2b33;--m-ok:#00a76f;--m-alerta:#e5533d;--m-corazon:#ff6b81;--m-cruz:#00a76f;--m-sudor:#6ec6f0;--m-destello:#ffc23c;--m-zz:#7c8d94;--m-sombra:#1d2b33">
+  <!-- Pulso, monitor de signos vitales. La boca es un electrocardiograma. -->
+  <defs>
+    <linearGradient id="pulso-carcasa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1f5f7"/>
+      <stop offset="1" stop-color="#cbd7dc"/>
+    </linearGradient>
+    <clipPath id="pulso-pantalla"><rect x="52" y="64" width="96" height="70" rx="14"/></clipPath>
+  </defs>
+  <ellipse class="m-sombra" cx="100" cy="182" rx="44" ry="6" fill="var(--m-sombra)" opacity="0.14"/>
+  <g class="m-cuerpo">
+    <g class="m-capa" data-paralaje="-0.25">
+      <path d="M158 116 C176 118 184 138 174 150 C166 160 170 170 180 170" fill="none" stroke="#7c8d94" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="184" cy="170" r="6" fill="#f4f7f8" stroke="#7c8d94" stroke-width="2"/>
+      <circle cx="184" cy="170" r="2" fill="#7c8d94"/>
+    </g>
+    <path d="M80 58 V48 Q80 43 85 43 H115 Q120 43 120 48 V58" fill="none" stroke="#9aabb2" stroke-width="5" stroke-linecap="round"/>
+    <rect x="93" y="146" width="14" height="16" fill="#b3c1c7"/>
+    <rect x="64" y="160" width="72" height="10" rx="5" fill="#c9d4d9" stroke="#9aabb2" stroke-width="2"/>
+    <circle cx="74" cy="174" r="5" fill="#5d6c73"/>
+    <circle cx="126" cy="174" r="5" fill="#5d6c73"/>
+    <rect x="40" y="54" width="120" height="94" rx="22" fill="url(#pulso-carcasa)" stroke="#9aabb2" stroke-width="2.5"/>
+    <rect x="52" y="64" width="96" height="70" rx="14" fill="#0d2629"/>
+    <g clip-path="url(#pulso-pantalla)">
+      <path d="M76 64 V134 M100 64 V134 M124 64 V134 M52 88 H148 M52 112 H148" fill="none" stroke="#16393d" stroke-width="1"/>
+      <g class="m-cara" data-paralaje="1">
+        <g class="m-mejillas" data-base="0.25">
+          <ellipse cx="65" cy="100" rx="7" ry="4" fill="var(--m-mejilla)"/>
+          <ellipse cx="135" cy="100" rx="7" ry="4" fill="var(--m-mejilla)"/>
+        </g>
+        <g class="m-ojos" data-cx="100" data-cy="89" data-sep="34" data-w="12" data-h="18"></g>
+        <g class="m-boca" data-tipo="ecg" data-cx="100" data-cy="120" data-w="84" data-alto="13"></g>
+      </g>
+    </g>
+    <rect x="52" y="64" width="96" height="70" rx="14" fill="none" stroke="#1f4448" stroke-width="2"/>
+    <circle cx="60" cy="141" r="3" fill="#00d084">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="130" cy="141" r="3" fill="#9aabb2"/>
+    <circle cx="140" cy="141" r="3" fill="#9aabb2"/>
+  </g>
+  <g class="m-globo" data-x="162" data-y="40"></g>
+</svg>

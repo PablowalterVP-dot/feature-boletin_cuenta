@@ -1,0 +1,44 @@
+node_modules/
+dist/
+.vite/
+
+# Variables de entorno: nunca al repo (los .env.example sí se versionan)
+.env
+.env.*
+!.env.example
+
+# Insumos del hospital: datos reales, no se versionan
+insumos/
+docs/oficios/
+mod_laboratorio/
+
+# Ofimática: los formatos y boletines de referencia se guardan fuera del repo
+*.xlsx
+*.xlsm
+*.docx
+# Excepción: archivos de prueba del bot (estructura real, cifras inventadas)
+!servidor/bot-validador/pruebas/fixtures/**
+# Excepción: los meses de Nutrición ya entregados, que la API carga al arrancar
+# (preparar_base). Son totales de raciones por servicio, sin datos de pacientes,
+# y sin ellos un redeploy deja la base de producción sin el histórico.
+!servidor/api/historico/**
+# Excepción: los formatos oficiales con que Estadística remite a DIRESA, que la remisión llena y
+# descarga (servicios/remision-diresa.js). Cifras agregadas por establecimiento, sin pacientes.
+!frontend/public/plantillas/*.xlsx
+
+# Backend (Python)
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Archivos subidos a la API (RUTA_CARGAS por omisión).
+servidor/api/cargas/
+
+# Archivos de prueba de un mes (frontend/pruebas/plantillas.mjs): cifras ficticias.
+frontend/pruebas/plantillas-*/
+
+# Hospitalización: semilla generada en cada corrida y datos de referencia exportados para la imagen
+semilla.json
+servidor/hospitalizacion/maestros.json

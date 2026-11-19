@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-base="172" data-cabeza-y="40" data-sudor-x="160" data-sudor-y="92" style="--m-tinta:#0f172a;--m-brillo:#ffffff;--m-mejilla:#ff8a9e;--m-globo:#ffffff;--m-globo-borde:#c4d3cd;--m-globo-tinta:#0f172a;--m-ok:#00a76f;--m-alerta:#e5533d;--m-corazon:#ff6b81;--m-cruz:#00a76f;--m-sudor:#6ec6f0;--m-destello:#ffc23c;--m-zz:#7b8a86;--m-sombra:#0f172a">
+  <!-- Hexa, la mascota de siempre (silueta de DiceBear «Gaze», CC0) ascendida a
+       jefe de servicio: espejo frontal, monóculo y corbatín. -->
+  <ellipse class="m-sombra" cx="100" cy="175" rx="50" ry="6" fill="var(--m-sombra)" opacity="0.14"/>
+  <g class="m-cuerpo">
+    <path transform="translate(0 4) scale(2)" d="M39.61 19Q50 13 60.39 19l11.26 6.5q10.39 6 10.39 18v13q0 12-10.39 18L60.39 81Q50 87 39.61 81l-11.26-6.5q-10.39-6-10.39-18v-13q0-12 10.39-18Z" fill="#9bd78d" stroke="#6cb85d" stroke-width="1.25"/>
+    <g class="m-capa" data-paralaje="0.35">
+      <path d="M100 150 L82 140 Q77 150 82 160 Z M100 150 L118 140 Q123 150 118 160 Z" fill="#2f6fd6" stroke="#2559b0" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect x="95" y="145" width="10" height="10" rx="3" fill="#2559b0"/>
+    </g>
+    <g class="m-cara" data-paralaje="1">
+      <g class="m-mejillas" data-base="0.3">
+        <ellipse cx="62" cy="118" rx="9" ry="6" fill="var(--m-mejilla)"/>
+        <ellipse cx="138" cy="118" rx="9" ry="6" fill="var(--m-mejilla)"/>
+      </g>
+      <g class="m-ojos" data-cx="100" data-cy="96" data-sep="44" data-w="15" data-h="26"></g>
+      <g fill="none" stroke="#c9a640" stroke-linecap="round">
+        <circle cx="122" cy="96" r="17" stroke-width="3" fill="#ffffff" fill-opacity="0.2"/>
+        <path d="M137 104 C146 118 142 132 130 140" stroke-width="1.6"/>
+      </g>
+      <g class="m-boca" data-cx="100" data-cy="126" data-w="16"></g>
+    </g>
+    <g class="m-capa" data-paralaje="0.8">
+      <path d="M48 66 Q100 54 152 66" fill="none" stroke="#4b5b58" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="126" cy="60" r="12.5" fill="#dfe6e8" stroke="#6c7c82" stroke-width="2"/>
+      <circle cx="126" cy="60" r="3" fill="#4d5c61"/>
+      <path d="M118.5 56 A8.5 8.5 0 0 1 125 51.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g class="m-globo" data-x="160" data-y="38"></g>
+</svg>

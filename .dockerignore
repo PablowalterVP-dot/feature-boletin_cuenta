@@ -1,0 +1,29 @@
+# Lo que no entra en ninguna imagen (las tres se construyen desde la raíz).
+.git
+**/node_modules
+**/dist
+**/.vite
+**/.venv
+**/__pycache__
+**/*.py[cod]
+**/.pytest_cache
+**/*.egg-info
+
+# Configuración local: la de las imágenes llega por docker-compose.yml. Un
+# frontend/.env copiado cambiaría el modo con que Vite compila.
+**/.env
+**/.env.*
+!**/.env.example
+
+# Datos que no se versionan y no deben viajar a una imagen.
+servidor/api/cargas
+docs/oficios
+**/*.xlsx
+**/*.xlsm
+**/*.docx
+# Excepción: los meses ya entregados que la API carga al arrancar (preparar_base)
+!servidor/api/historico/**/*.xlsx
+# Excepción: los formatos oficiales de DIRESA que el frontend llena al descargar
+# (servicios/remision-diresa.js). Sin ellos, en el servidor la descarga del Excel
+# fallaba siempre: nginx respondía index.html en su lugar (16/11/2026).
+!frontend/public/plantillas/*.xlsx

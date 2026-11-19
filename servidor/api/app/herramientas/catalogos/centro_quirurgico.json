@@ -1,0 +1,786 @@
+{
+  "_nota": "Generado por servidor/scripts/exportar-catalogo-centro-quirurgico.mjs desde la definición del bot. No se edita a mano.",
+  "version": "CQX-1",
+  "cuadros": [
+    {
+      "codigo": "resumen",
+      "numero": 1,
+      "titulo": "Producción del mes",
+      "unidad": "intervenciones",
+      "hojas": [
+        "RESUMEN"
+      ],
+      "filas": [
+        {
+          "clave": "mayores.programada",
+          "nombre": "Cirugías mayores · programada",
+          "etiqueta": "CIRUGIAS MAYORES",
+          "alias": [],
+          "columna": "programada",
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "mayores.emergencia",
+          "nombre": "Cirugías mayores · emergencia",
+          "etiqueta": "CIRUGIAS MAYORES",
+          "alias": [],
+          "columna": "emergencia",
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "menores.programada",
+          "nombre": "Cirugías menores · programada",
+          "etiqueta": "CIRUGIAS MENORES",
+          "alias": [],
+          "columna": "programada",
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "menores.emergencia",
+          "nombre": "Cirugías menores · emergencia",
+          "etiqueta": "CIRUGIAS MENORES",
+          "alias": [],
+          "columna": "emergencia",
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_programadas.programada",
+          "nombre": "Horas programadas · programada",
+          "etiqueta": "HORAS PROGRAMADAS",
+          "alias": [],
+          "columna": "programada",
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_programadas.emergencia",
+          "nombre": "Horas programadas · emergencia",
+          "etiqueta": "HORAS PROGRAMADAS",
+          "alias": [],
+          "columna": "emergencia",
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_efectivas.programada",
+          "nombre": "Horas efectivas · programada",
+          "etiqueta": "HORAS EFECTIVAS",
+          "alias": [],
+          "columna": "programada",
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_efectivas.emergencia",
+          "nombre": "Horas efectivas · emergencia",
+          "etiqueta": "HORAS EFECTIVAS",
+          "alias": [],
+          "columna": "emergencia",
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_acto.programada",
+          "nombre": "Horas de acto quirúrgico · programada",
+          "etiqueta": "HORAS ACTO QUIRURGICO",
+          "alias": [],
+          "columna": "programada",
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_acto.emergencia",
+          "nombre": "Horas de acto quirúrgico · emergencia",
+          "etiqueta": "HORAS ACTO QUIRURGICO",
+          "alias": [],
+          "columna": "emergencia",
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "suspendidas.programada",
+          "nombre": "Cirugías suspendidas · programada",
+          "etiqueta": "CIRUGIAS SUSPENDIDAS",
+          "alias": [],
+          "columna": "programada",
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "suspendidas.emergencia",
+          "nombre": "Cirugías suspendidas · emergencia",
+          "etiqueta": "CIRUGIAS SUSPENDIDAS",
+          "alias": [],
+          "columna": "emergencia",
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "indicadores",
+      "numero": 4,
+      "titulo": "Cuadro de indicadores",
+      "unidad": "intervenciones",
+      "hojas": [
+        "CUADRO DE INDICADORES",
+        "INDICADORES"
+      ],
+      "filas": [
+        {
+          "clave": "salas_utilizadas",
+          "nombre": "Salas de operaciones utilizadas",
+          "etiqueta": "NO. SALAS OPERACIONES UTILIZADAS",
+          "alias": [],
+          "unidad": "salas",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "salas_emergencia",
+          "nombre": "Salas de emergencia",
+          "etiqueta": "NO. SALAS OPERACIONES EMERGENCIA",
+          "alias": [],
+          "unidad": "salas",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "salas_programadas",
+          "nombre": "Salas de cirugía programada",
+          "etiqueta": "NO. SALAS OPERACIONES PROGRAMADAS",
+          "alias": [],
+          "unidad": "salas",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "intervenciones_emergencia",
+          "nombre": "Intervenciones de emergencia",
+          "etiqueta": "INTERVENCIONES DE EMERGENCIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "intervenciones_programadas",
+          "nombre": "Intervenciones programadas",
+          "etiqueta": "NO. INTERVENCIONES QUIRURGICAS PROGRAMADAS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "intervenciones_suspendidas",
+          "nombre": "Intervenciones suspendidas",
+          "etiqueta": "NO. INTERVENCIONES QUIRURGICAS SUSPENDIDAS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "intervenciones_realizadas",
+          "nombre": "Intervenciones realizadas",
+          "etiqueta": "NO. INTERVENCIONES QUIRURGICAS REALIZADAS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_efectivas",
+          "nombre": "Horas quirúrgicas efectivas",
+          "etiqueta": "NO. HORAS QUIRURGICAS EFECTIVAS",
+          "alias": [],
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "horas_programadas",
+          "nombre": "Horas quirúrgicas programadas",
+          "etiqueta": "NO. HORAS QUIRURGICAS PROGRAMADOS",
+          "alias": [
+            "NO. HORAS QUIRURGICAS PROGRAMADAS"
+          ],
+          "unidad": "horas",
+          "decimal": true,
+          "ocasional": false
+        },
+        {
+          "clave": "reintervenidos",
+          "nombre": "Pacientes reintervenidos",
+          "etiqueta": "NO. PACIENTES REINTERVENIDOS",
+          "alias": [],
+          "unidad": "pacientes",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "defunciones",
+          "nombre": "Defunciones en centro quirúrgico",
+          "etiqueta": "NO. DEFUNCIONES EN CENTRO QUIRURGICO",
+          "alias": [],
+          "unidad": "defunciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "encefalopatia",
+          "nombre": "Pacientes con encefalopatía hipóxica",
+          "etiqueta": "NO. PACIENTES CON ENCEFALOPATIA HIPOXICA POST QUIRURGICO",
+          "alias": [],
+          "unidad": "pacientes",
+          "decimal": false,
+          "ocasional": true
+        }
+      ]
+    },
+    {
+      "codigo": "menor",
+      "numero": 6,
+      "titulo": "Cirugía menor",
+      "unidad": "intervenciones",
+      "hojas": [
+        "CIRUGIA MENOR"
+      ],
+      "filas": [
+        {
+          "clave": "cirugia_general",
+          "nombre": "Cirugía general",
+          "etiqueta": "CIRUGIA GENERAL",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "ginecologia",
+          "nombre": "Ginecología",
+          "etiqueta": "GINECOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "obstetricia",
+          "nombre": "Obstetricia",
+          "etiqueta": "OBSTETRICIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "traumatologia",
+          "nombre": "Traumatología y ortopedia",
+          "etiqueta": "TRAUMATOLOGIA Y ORTOP.",
+          "alias": [
+            "TRAUMATOLOGIA Y ORTOPEDIA",
+            "TRAUMATOLOGIA Y ORT."
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "neurocirugia",
+          "nombre": "Neurocirugía",
+          "etiqueta": "NEUROCIRUGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "urologia",
+          "nombre": "Urología",
+          "etiqueta": "UROLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "oftalmologia",
+          "nombre": "Oftalmología",
+          "etiqueta": "OFTALMOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "otorrinolaringologia",
+          "nombre": "Otorrinolaringología",
+          "etiqueta": "OTORRINOLARINGOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "oncologia",
+          "nombre": "Oncología",
+          "etiqueta": "ONCOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "quemados",
+          "nombre": "Unidad de quemados",
+          "etiqueta": "QUEMADOS",
+          "alias": [
+            "UNIDAD QUEMADOS"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cirugia_plastica",
+          "nombre": "Cirugía plástica",
+          "etiqueta": "CIRUGIA PLASTICA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cirugia_torax",
+          "nombre": "Cirugía de tórax y cardiovascular",
+          "etiqueta": "CIRUGIA TORAX",
+          "alias": [
+            "CIRUGIA DE TORAX",
+            "CIRUGIA TORAX Y CV",
+            "CIRUGIA CARDIO-TORAX"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cabeza_cuello",
+          "nombre": "Cirugía de cabeza y cuello",
+          "etiqueta": "CIRUGIA CABEZA Y CUELLO",
+          "alias": [
+            "CIRUGIA CABEZAY CUELLO",
+            "CIRUGIA DE CABEZA Y CUELLO"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "gastroenterologia",
+          "nombre": "Gastroenterología",
+          "etiqueta": "GASTROENTEROLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cirugia_pediatrica",
+          "nombre": "Cirugía pediátrica",
+          "etiqueta": "CIRUGIA PEDIATRICA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "nefrologia",
+          "nombre": "Nefrología",
+          "etiqueta": "NEFROLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "mayor",
+      "numero": 7,
+      "titulo": "Cirugía mayor",
+      "unidad": "intervenciones",
+      "hojas": [
+        "CIRUGIA MAYOR"
+      ],
+      "filas": [
+        {
+          "clave": "cirugia_general",
+          "nombre": "Cirugía general",
+          "etiqueta": "CIRUGIA GENERAL",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "ginecologia",
+          "nombre": "Ginecología",
+          "etiqueta": "GINECOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "obstetricia",
+          "nombre": "Obstetricia",
+          "etiqueta": "OBSTETRICIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "traumatologia",
+          "nombre": "Traumatología y ortopedia",
+          "etiqueta": "TRAUMATOLOGIA Y ORTOP.",
+          "alias": [
+            "TRAUMATOLOGIA Y ORTOPEDIA",
+            "TRAUMATOLOGIA Y ORT."
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "neurocirugia",
+          "nombre": "Neurocirugía",
+          "etiqueta": "NEUROCIRUGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "urologia",
+          "nombre": "Urología",
+          "etiqueta": "UROLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "oftalmologia",
+          "nombre": "Oftalmología",
+          "etiqueta": "OFTALMOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "otorrinolaringologia",
+          "nombre": "Otorrinolaringología",
+          "etiqueta": "OTORRINOLARINGOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "oncologia",
+          "nombre": "Oncología",
+          "etiqueta": "ONCOLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "quemados",
+          "nombre": "Unidad de quemados",
+          "etiqueta": "QUEMADOS",
+          "alias": [
+            "UNIDAD QUEMADOS"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cirugia_plastica",
+          "nombre": "Cirugía plástica",
+          "etiqueta": "CIRUGIA PLASTICA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cirugia_torax",
+          "nombre": "Cirugía de tórax y cardiovascular",
+          "etiqueta": "CIRUGIA TORAX",
+          "alias": [
+            "CIRUGIA DE TORAX",
+            "CIRUGIA TORAX Y CV",
+            "CIRUGIA CARDIO-TORAX"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cabeza_cuello",
+          "nombre": "Cirugía de cabeza y cuello",
+          "etiqueta": "CIRUGIA CABEZA Y CUELLO",
+          "alias": [
+            "CIRUGIA CABEZAY CUELLO",
+            "CIRUGIA DE CABEZA Y CUELLO"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "gastroenterologia",
+          "nombre": "Gastroenterología",
+          "etiqueta": "GASTROENTEROLOGIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cirugia_pediatrica",
+          "nombre": "Cirugía pediátrica",
+          "etiqueta": "CIRUGIA PEDIATRICA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "suspendidas",
+      "numero": 8,
+      "titulo": "Causas de suspensión",
+      "unidad": "intervenciones",
+      "hojas": [
+        "SUSPENDIDAS"
+      ],
+      "filas": [
+        {
+          "clave": "sala_ocupada",
+          "nombre": "Sala ocupada por emergencias",
+          "etiqueta": "SALA OCUPADA POR EMERGENCIAS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "falta_tiempo",
+          "nombre": "Falta de tiempo quirúrgico",
+          "etiqueta": "FALTA TIEMPO QUIRURGICO",
+          "alias": [
+            "FALTA DE TIEMPO QUIRURGICO"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "ingesta",
+          "nombre": "Ingesta de alimentos",
+          "etiqueta": "INGESTA DE ALIMENTOS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "cambio_plan",
+          "nombre": "Cambio de plan quirúrgico",
+          "etiqueta": "CAMBIO PLAN QUIRURGICO",
+          "alias": [
+            "CAMBIO DE PLAN QUIRURGICO"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "por_cirujano",
+          "nombre": "Suspendido por el cirujano",
+          "etiqueta": "SUSPENDIDO POR CIRUJANO",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "estudios_incompletos",
+          "nombre": "Estudios de laboratorio incompletos",
+          "etiqueta": "ESTUDIOS DE LABORATORIO INCOMPLETOS",
+          "alias": [
+            "ESTUDIOS DE LALABORATORIO INCOMPLETOS",
+            "ESTUDIOS PARACLINICOS INCOMPLETOS"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "hemoderivados",
+          "nombre": "Falta de hemoderivados",
+          "etiqueta": "FALTA DE HEMODERIVADOS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "instrumental",
+          "nombre": "Falta de instrumental quirúrgico",
+          "etiqueta": "FALTA DE INSTRUMENTAL QUIRURGICO",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "mala_preparacion",
+          "nombre": "Mala preparación del paciente",
+          "etiqueta": "MALA PREPARACION DEL PACIENTE",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "presion_arterial",
+          "nombre": "Presión arterial no controlada",
+          "etiqueta": "PRESION ARTERIAL NO CONTROLADA",
+          "alias": [
+            "PRESION ARTERIAL NO CONTOROLADA"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "infeccion_respiratoria",
+          "nombre": "Infección respiratoria",
+          "etiqueta": "INFECCION RESPIRATORIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "ausencia_paciente",
+          "nombre": "Ausencia del paciente",
+          "etiqueta": "AUSENCIA DEL PACIENTE",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "falta_insumos",
+          "nombre": "Falta de insumos",
+          "etiqueta": "FALTA DE INSUMOS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "falta_cama_uci",
+          "nombre": "Falta de cama UCI",
+          "etiqueta": "FALTA DE CAMA UCI",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "glucosa",
+          "nombre": "Glucosa no controlada",
+          "etiqueta": "GLUCOSA NO CONTROLADA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "riesgo_cardiovascular",
+          "nombre": "Riesgo cardiovascular diferido",
+          "etiqueta": "RIESGO CARDIOVASCULAR DIFERIDO",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "otros",
+          "nombre": "Otros (paciente o familiar se rehúsa…)",
+          "etiqueta": "OTROS",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": false
+        },
+        {
+          "clave": "alteraciones_cardiovasculares",
+          "nombre": "Alteraciones cardiovasculares",
+          "etiqueta": "ALTERACIONES CARDIOVASCULARES",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": true
+        },
+        {
+          "clave": "falta_cirujano",
+          "nombre": "Falta de cirujano para el turno",
+          "etiqueta": "FALTA CIRUJANO PARA EL TURNO",
+          "alias": [
+            "FALTA CIRUJANO PARA EL TUNRO"
+          ],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": true
+        },
+        {
+          "clave": "falta_enfermeria",
+          "nombre": "Falta de personal de enfermería",
+          "etiqueta": "FALTA PERSONAL DE ENFERMERIA",
+          "alias": [],
+          "unidad": "intervenciones",
+          "decimal": false,
+          "ocasional": true
+        }
+      ]
+    }
+  ]
+}

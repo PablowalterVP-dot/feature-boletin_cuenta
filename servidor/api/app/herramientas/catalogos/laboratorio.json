@@ -1,0 +1,1471 @@
+{
+  "_nota": "Generado por servidor/scripts/exportar-catalogo-laboratorio.mjs desde la definición del bot. No se edita a mano.",
+  "version": "LAB-1",
+  "hoja_patron": "^(ENERO|ENE|FEBRERO|FEB|MARZO|MAR|ABRIL|ABR|MAYO|MAY|JUN|JUNIO|JUL|JULIO|AGO|AGOSTO|SET|SETIEMBRE|SEPTIEMBRE|SEP|OCT|OCTUBRE|NOV|NOVIEMBRE|DIC|DICIEMBRE)$",
+  "cuadros": [
+    {
+      "codigo": "bioquimica",
+      "numero": 1,
+      "titulo": "Bioquímica",
+      "unidad": "exámenes",
+      "bloque": "izquierda",
+      "columna_rotulo": "A",
+      "etiqueta_total": "TOTAL EXAMENES BIOQUIMICOS",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "B"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "C"
+        },
+        {
+          "clave": "c_externa",
+          "nombre": "Consulta externa",
+          "columna": "D"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "E"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "F"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "G"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "acido_urico",
+          "etiqueta": "ACIDO URICO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "calcio",
+          "etiqueta": "CALCIO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "amilasa",
+          "etiqueta": "AMILASA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "glucosa",
+          "etiqueta": "GLUCOSA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "glucosa_post_prandial",
+          "etiqueta": "GLUCOSA POST PRANDIAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "fosforo",
+          "etiqueta": "FOSFORO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "hemoglobina_glicosilada",
+          "etiqueta": "HEMOGLOBINA GLICOSILADA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tolerancia_glucosa",
+          "etiqueta": "TOLERANCIA A LA GLUCOSA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "creatinina",
+          "etiqueta": "CREATININA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "depuracion_creatinina",
+          "etiqueta": "DEPURACION DE CREATININA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "microalbuminuria",
+          "etiqueta": "MICROALBUMINURIA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "urea",
+          "etiqueta": "UREA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "proteinuria_24h",
+          "etiqueta": "PROTEINURIA 24 HORAS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "bilirrubina_total",
+          "etiqueta": "BILIRRUBINA TOTAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "bilirrubina_directa",
+          "etiqueta": "BILIRRUBINA DIRECTA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "proteinas_totales",
+          "etiqueta": "PROTEINAS TOTAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "albumina",
+          "etiqueta": "ALBUMINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tgo",
+          "etiqueta": "TGO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tgp",
+          "etiqueta": "TGP",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ggtp",
+          "etiqueta": "GGTP",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "dhl",
+          "etiqueta": "LACTATO DESHIDROGENASA (DHL)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "pcr_cuantitativo",
+          "etiqueta": "PROTEINA C REACTIVA (CUANTITATIVO)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "fosfatasa_alcalina",
+          "etiqueta": "FOSFATASA ALCALINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cpk_total",
+          "etiqueta": "CPK TOTAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cpk_mb",
+          "etiqueta": "CPK MB",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "colesterol",
+          "etiqueta": "COLESTEROL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "trigliceridos",
+          "etiqueta": "TRIGLICERIDOS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "hdl",
+          "etiqueta": "HDLC",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ldl",
+          "etiqueta": "LDLC",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "aso",
+          "etiqueta": "ASO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "factor_reumatoideo",
+          "etiqueta": "FACTOR REUMATOIDEO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "hierro",
+          "etiqueta": "HIERRO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "lipasa",
+          "etiqueta": "LIPASA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "transferrina",
+          "etiqueta": "TRANSFERRINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "complemento_c3",
+          "etiqueta": "COMPLEMENTO C3",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "complemento_c4",
+          "etiqueta": "COMPLEMENTO C4",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "gases_arteriales",
+          "etiqueta": "GASES ARTERIALES",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "electrolitos",
+          "etiqueta": "ELECTROLITOS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "lipidos_totales",
+          "etiqueta": "LIPIDOS TOTALES",
+          "alias": [],
+          "ocasional": true
+        }
+      ]
+    },
+    {
+      "codigo": "hematologia",
+      "numero": 2,
+      "titulo": "Hematología-Hemostasia",
+      "unidad": "exámenes",
+      "bloque": "izquierda",
+      "columna_rotulo": "A",
+      "etiqueta_total": "TOTAL EXAMENES HEMATOLOGICOS -HEMOSTASICOS",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "B"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "C"
+        },
+        {
+          "clave": "c_externa",
+          "nombre": "Consulta externa",
+          "columna": "D"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "E"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "F"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "G"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "hematocrito",
+          "etiqueta": "HEMATOCRITO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "hemoglobina",
+          "etiqueta": "HEMOGLOBINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "hemograma",
+          "etiqueta": "HEMOGRAMA AUTOMATIZADO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "plaquetas",
+          "etiqueta": "PLAQUETAS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "coagulacion_sangria",
+          "etiqueta": "T COAGULACION & T SANGRIA",
+          "alias": [
+            "TC & TS"
+          ],
+          "ocasional": false
+        },
+        {
+          "clave": "vsg",
+          "etiqueta": "VELOCIDAD DE SEDIMENTACION GLOBULAR",
+          "alias": [
+            "VSG"
+          ],
+          "ocasional": false
+        },
+        {
+          "clave": "coombs_directo",
+          "etiqueta": "TEST COOMBS DIRECTO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "coombs_indirecto",
+          "etiqueta": "TEST DE COOMBS INDIRECTO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "grupo_factor",
+          "etiqueta": "GRUPO SANGUINEO Y FACTOR RH",
+          "alias": [
+            "GRUPO Y FACTOR"
+          ],
+          "ocasional": false
+        },
+        {
+          "clave": "lamina_periferica",
+          "etiqueta": "LAMINA PERIFERICA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "constantes_corpusculares",
+          "etiqueta": "CONSTANTES CORPUSCULARES",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "reticulocitos",
+          "etiqueta": "RETICULOCITOS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tiempo_tromboplastina",
+          "etiqueta": "TIEMPO DE TROMBOPLASTINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tiempo_protrombina",
+          "etiqueta": "TIEMPO DE PROTROMBINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "inr",
+          "etiqueta": "INR",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "fibrinogeno",
+          "etiqueta": "FIBRINOGENO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "dimero_d",
+          "etiqueta": "DIMERO D",
+          "alias": [],
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "microbiologia",
+      "numero": 3,
+      "titulo": "Microbiología",
+      "unidad": "exámenes",
+      "bloque": "izquierda",
+      "columna_rotulo": "A",
+      "etiqueta_total": "TOTAL EXAMENES MICROBIOLOGIA",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "B"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "C"
+        },
+        {
+          "clave": "c_externa",
+          "nombre": "Consulta externa",
+          "columna": "D"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "E"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "F"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "G"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "urocultivo",
+          "etiqueta": "UROCULTIVO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "hemocultivo",
+          "etiqueta": "HEMOCULTIVO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cultivo_cateter",
+          "etiqueta": "CULTIVO DE CATETER",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cultivo_secrecion",
+          "etiqueta": "CULTIVO DE SECRECION",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "citoquimico",
+          "etiqueta": "CITOQUIMICO",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "cultivo_bacteriano",
+          "etiqueta": "CULTIVO DE BACTERIANO",
+          "alias": [
+            "CULTIVO BACTERIANO"
+          ],
+          "ocasional": true
+        },
+        {
+          "clave": "recuento_celular",
+          "etiqueta": "RECUENTO CELULAR",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "coprocultivo",
+          "etiqueta": "COPROCULTIVO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "coloracion_gram",
+          "etiqueta": "COLORACION GRAM (SECREC.VAGINAL Y OTROS)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "koh_hongos",
+          "etiqueta": "KOH -HONGOS",
+          "alias": [
+            "KOH-HONGOS",
+            "KOH - HONGOS"
+          ],
+          "ocasional": false
+        },
+        {
+          "clave": "cultivo_hongos",
+          "etiqueta": "CULTIVO DE HONGOS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tinta_china",
+          "etiqueta": "TINTA CHINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ph_liquidos",
+          "etiqueta": "PH LIQUIDOS CORPORALES",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "baciloscopia_liquidos",
+          "etiqueta": "BACILOSCOPIA DE LIQUIDOS CORPORALES",
+          "alias": [],
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "uro_parasitologicos",
+      "numero": 4,
+      "titulo": "Uro-Parasitológicos",
+      "unidad": "exámenes",
+      "bloque": "izquierda",
+      "columna_rotulo": "A",
+      "etiqueta_total": "TOTAL EXAMENES URO -PARASITOLOGICOS",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "B"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "C"
+        },
+        {
+          "clave": "c_externa",
+          "nombre": "Consulta externa",
+          "columna": "D"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "E"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "F"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "G"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "heces_seriado",
+          "etiqueta": "HECES SERIADO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "coproparasitologico_funcional",
+          "etiqueta": "COPROPARASITOLOGICO FUNCIONAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "rx_inflamatoria",
+          "etiqueta": "RX INFLAMATORIA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "thevenon",
+          "etiqueta": "THEVENON HECES",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "sudan",
+          "etiqueta": "SUDAN",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "benedict",
+          "etiqueta": "BENEDICT",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "examen_orina",
+          "etiqueta": "EXAMEN COMPLETO DE ORINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "test_graham",
+          "etiqueta": "TEST GRAHAM",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "kinyoun",
+          "etiqueta": "KINYOUN",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "baermann",
+          "etiqueta": "METODO DE CONCENTRACION (BAERMANN)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "examen_directo_heces",
+          "etiqueta": "EXAMEN DIRECTO DE HECES",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "h_pylori_heces",
+          "etiqueta": "ANTIGENO H. PYLORI EN HECES",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "adenovirus_rotavirus",
+          "etiqueta": "ADENOVIRUS & ROTAVIRUS",
+          "alias": [],
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "inmuno_serologicos",
+      "numero": 5,
+      "titulo": "Inmuno-Serológicos",
+      "unidad": "exámenes",
+      "bloque": "izquierda",
+      "columna_rotulo": "A",
+      "etiqueta_total": "TOTAL EXAMENES INMUNO SEROLOGICOS",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "B"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "C"
+        },
+        {
+          "clave": "c_externa",
+          "nombre": "Consulta externa",
+          "columna": "D"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "E"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "F"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "G"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "rpr",
+          "etiqueta": "RPR",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vdrl",
+          "etiqueta": "VDRL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "aglutinaciones",
+          "etiqueta": "AGLUTINACIONES",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "rosa_bengala",
+          "etiqueta": "ROSA DE BENGALA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "anti_mpo",
+          "etiqueta": "ANTI MIELOPEROXIDASA (MPO)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "anti_pr3",
+          "etiqueta": "ANTI PROTEINASA 3 (PR3)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "anti_cardiolipina",
+          "etiqueta": "ANTI CARDIOLIPINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "anti_b2_glicoproteina",
+          "etiqueta": "ANTI B2-GLICOPROTEINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "anti_ama",
+          "etiqueta": "ANTI M2-3E (AMA)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ana_elisa",
+          "etiqueta": "ANA (ELISA)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "h_pylori_igm",
+          "etiqueta": "HELICOBACTER PILORY IGM",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "h_pylori_igg",
+          "etiqueta": "HELICOBACTER PILORY IGG",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vih_rapida",
+          "etiqueta": "VIH (I - II AB)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vhb_superficie_rapida",
+          "etiqueta": "ANTIGENO SUPERFICIE VHB (HEPATITIS B)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vhb_core_rapida",
+          "etiqueta": "ANTICORE VHB (HEPATITIS B CORE)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vhc_rapida",
+          "etiqueta": "ANTI VHC - AB (HEPATITIS C)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vha_igm_rapida",
+          "etiqueta": "ANTI VHA - IGM (HEPATITIS A)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "bhcg_cualitativo",
+          "etiqueta": "B HCG CUALITATIVO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vih_combo",
+          "etiqueta": "HIV AG/AB COMBO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "hbsag",
+          "etiqueta": "HBSAG (ANTIGENO DE SUPERFICIE)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vhc_quimio",
+          "etiqueta": "ANTI HVC (HEPATITIS C)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vha_igm_quimio",
+          "etiqueta": "ANTI VHA-IGM (HEPATITIS A)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vhb_core_quimio",
+          "etiqueta": "ANTI HBC (HEPATITIS B CORE)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "afp",
+          "etiqueta": "AFP (ALFA FETO PROTEINA)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cea",
+          "etiqueta": "CEA (ANTIGENO CARCINOEMBRIONARIO)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vitamina_b12",
+          "etiqueta": "VITAMINA B12",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ca_19_9",
+          "etiqueta": "CA 19.9",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ca_15_3",
+          "etiqueta": "CA 15.3",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ca_125",
+          "etiqueta": "CA 125",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "psa_total",
+          "etiqueta": "PSA TOTAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "psa_libre",
+          "etiqueta": "PSA LIBRE",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "bhcg_cuantitativo",
+          "etiqueta": "B HCG CUANTITATIVO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "procalcitonina",
+          "etiqueta": "PROCALCITONINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "insulina",
+          "etiqueta": "INSULINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "prolactina",
+          "etiqueta": "PROLACTINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "progesterona",
+          "etiqueta": "PROGESTERONA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "testosterona",
+          "etiqueta": "TESTOSTERONA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "t3_libre",
+          "etiqueta": "T3 LIBRE",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "t4_libre",
+          "etiqueta": "T4 LIBRE",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tsh",
+          "etiqueta": "TSH",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "paratohormona",
+          "etiqueta": "PARATOHORMONA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "troponina_i",
+          "etiqueta": "TROPONINA I",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "rubeola",
+          "etiqueta": "RUBEOLA IGM/IGG",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "toxoplasma",
+          "etiqueta": "TOXOPLASMA IG M/IG G",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cmv",
+          "etiqueta": "CMV IG M/IG G",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vhs_1",
+          "etiqueta": "VHS I IG M/IG G",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "vhs_2",
+          "etiqueta": "VHS II IG M/IG G",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "ferritina",
+          "etiqueta": "FERRITINA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "acido_folico",
+          "etiqueta": "ACIDO FOLICO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cortisol",
+          "etiqueta": "CORTISOL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "estradiol",
+          "etiqueta": "ESTRADIOL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "lh",
+          "etiqueta": "HORMONA LUTEINIZANTE",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "fsh",
+          "etiqueta": "HORMONA FSH",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "anti_ccp",
+          "etiqueta": "PEPTIDO CICLICLO (ANTICCP)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "b2_microglobulina",
+          "etiqueta": "B2 MICROGLOBULINA",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "ana_ena",
+          "etiqueta": "ANA/ENA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "acth",
+          "etiqueta": "ACTH",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "anca",
+          "etiqueta": "ANCA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "dengue_ns1",
+          "etiqueta": "DENGUE NS1",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "dengue_igm",
+          "etiqueta": "DENGUE IG.M",
+          "alias": [
+            "DENGUE IG,M",
+            "DENGUE IGM"
+          ],
+          "ocasional": true
+        },
+        {
+          "clave": "leptospira_ig",
+          "etiqueta": "LEPTOSPIRA IG G / IG M",
+          "alias": [],
+          "ocasional": true
+        }
+      ]
+    },
+    {
+      "codigo": "anatomia_patologica",
+      "numero": 6,
+      "titulo": "Anatomía Patológica",
+      "unidad": "exámenes",
+      "bloque": "derecha",
+      "columna_rotulo": "J",
+      "etiqueta_total": "TOTAL EXAMENES ANATOMIA PATOLOGICA",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "K"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "L"
+        },
+        {
+          "clave": "c_externa",
+          "nombre": "Consulta externa",
+          "columna": "M"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "N"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "O"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "P"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "pap",
+          "etiqueta": "TOTAL EXAMENES CITOLOGICOS (PAP)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "baaf",
+          "etiqueta": "TOTAL BAAF",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "biopsia",
+          "etiqueta": "TOTAL EXAMENES HISTOPATOLOGICOS (BIOPSIA)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "pieza_quirurgica",
+          "etiqueta": "TOTAL PIEZA QUIRURGICA (HISTOLOGIA)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "citologia_especial",
+          "etiqueta": "TOTAL CITOLOGIA ESPECIAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "tejidos_incluidos",
+          "etiqueta": "TOTAL DE TEJIDOS INCLUIDOS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "cortes_tejidos",
+          "etiqueta": "TOTAL DE CORTES DE TEJIDOS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "laminas_montadas",
+          "etiqueta": "TOTAL DE LAMINAS MONTADAS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "histoquimica",
+          "etiqueta": "TOTAL DE HISTOQUIMICA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "inmunohistoquimica",
+          "etiqueta": "TOTAL DE INMUNOHISTOQUIMICA",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "autopsia_medico_legal",
+          "etiqueta": "TOTAL AUTOPSIA MEDICO LEGAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "autopsia_clinica",
+          "etiqueta": "TOTAL AUTOPSIA CLINICA",
+          "alias": [],
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "metaxenicas",
+      "numero": 7,
+      "titulo": "Programas / Metaxénicas",
+      "unidad": "exámenes",
+      "bloque": "derecha",
+      "columna_rotulo": "J",
+      "etiqueta_total": "TOTAL DE EXAMENES",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "K"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "L"
+        },
+        {
+          "clave": "programa",
+          "nombre": "Programa",
+          "columna": "M"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "N"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "O"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "P"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "tuberculosis",
+          "etiqueta": "TUBERCULOSIS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "leishmania",
+          "etiqueta": "LEISHMANIA",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "leprae",
+          "etiqueta": "PROGRAMA LEPRAE",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "malaria",
+          "etiqueta": "MALARIA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "metaxenicas_referencial",
+          "etiqueta": "METAXENICAS (REFERENCIAL)",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "metaxenicas_varios",
+          "etiqueta": "METAXENICAS (VARIOS)",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "cultivo_tb",
+          "etiqueta": "CULTIVO DE TB (REFERENCIAL)",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "dengue_rapida",
+          "etiqueta": "PRUEBA RAPIDA DE DENGUE",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "leptospira_rapida",
+          "etiqueta": "PRUEBA RAPIDA DE LEPTOSPIRA",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "covid_influenza",
+          "etiqueta": "PRUEBA RAPIDA DE COVID + INFLUENZA",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "covid",
+          "etiqueta": "PRUEBA RAPIDA DE COVID",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "elisa_dengue",
+          "etiqueta": "ELISA DENGUE NS1 + IGM",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "otras_arbovirosis",
+          "etiqueta": "OTRAS ARBOVIROSIS (DENGUE)",
+          "alias": [
+            "OTRAS ARBOVIROSIS(DENGUE)"
+          ],
+          "ocasional": true
+        },
+        {
+          "clave": "tosferina",
+          "etiqueta": "TOSFERINA",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "baciloscopia_lepra",
+          "etiqueta": "BACILOSCOPIA DE LEPRA",
+          "alias": [],
+          "ocasional": true
+        },
+        {
+          "clave": "sarampion",
+          "etiqueta": "SARAMPION",
+          "alias": [],
+          "ocasional": true
+        }
+      ]
+    },
+    {
+      "codigo": "banco_sangre",
+      "numero": 8,
+      "titulo": "Banco de Sangre",
+      "unidad": "unidades",
+      "bloque": "derecha",
+      "columna_rotulo": "J",
+      "etiqueta_total": "TOTAL DE UNIDADES ENTREGADAS",
+      "procedencias": [
+        {
+          "clave": "hospitalizacion",
+          "nombre": "Hospitalización",
+          "columna": "K"
+        },
+        {
+          "clave": "emergencia",
+          "nombre": "Emergencia",
+          "columna": "L"
+        },
+        {
+          "clave": "c_externa",
+          "nombre": "Consulta externa",
+          "columna": "M"
+        },
+        {
+          "clave": "privado",
+          "nombre": "Privado",
+          "columna": "N"
+        },
+        {
+          "clave": "convenio",
+          "nombre": "Convenio",
+          "columna": "O"
+        },
+        {
+          "clave": "insolvencia",
+          "nombre": "Insolvencia",
+          "columna": "P"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "sangre_total",
+          "etiqueta": "SANGRE TOTAL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "globulos_rojos",
+          "etiqueta": "GLOBULOS ROJOS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "plasma_fresco",
+          "etiqueta": "PLASMA FRESCO CONGELADO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "crioprecipitado",
+          "etiqueta": "CRIOPRECIPITADO",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "plaquetas",
+          "etiqueta": "PLAQUETAS",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "grupo_abo_gel",
+          "etiqueta": "GRUPO SANGUINEO ABO EN GEL",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "prueba_cruzada_mayor",
+          "etiqueta": "PRUEBA CRUZADA MAYOR",
+          "alias": [],
+          "ocasional": false
+        },
+        {
+          "clave": "prueba_cruzada_menor",
+          "etiqueta": "PRUEBA CRUZADA MENOR",
+          "alias": [],
+          "ocasional": false
+        }
+      ]
+    },
+    {
+      "codigo": "actividades",
+      "numero": 9,
+      "titulo": "Programación y seguimiento",
+      "unidad": "actividades",
+      "bloque": "derecha",
+      "columna_rotulo": "J",
+      "etiqueta_total": null,
+      "procedencias": [
+        {
+          "clave": "total",
+          "nombre": "Total",
+          "columna": "Q"
+        }
+      ],
+      "examenes": [
+        {
+          "clave": "programacion",
+          "etiqueta": "PROGRAMACION, SEGUIMIENTO Y EVALUACION DE ACTIVIDADES",
+          "alias": [],
+          "ocasional": false
+        }
+      ]
+    }
+  ]
+}

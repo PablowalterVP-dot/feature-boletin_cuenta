@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laboratorio de la mascota</title>
+  <!-- Los tokens del kit, tal como los carga la aplicación: mismas fuentes,
+       colores y modo oscuro. -->
+  <link rel="stylesheet" href="/node_modules/@hrl/core-ui/tokens.css" />
+  <style>
+    /* Página de pruebas, fuera de la aplicación. La interfaz no tiene ningún
+       color escrito a mano: todo sale de los tokens. Los colores de las
+       mascotas viven en sus SVG (laboratorio-mascota/*.svg): son
+       ilustraciones, la única excepción del contrato. */
+    /* Los tokens cuelgan de .hrl-nuevo (el contenedor); body solo quita el margen. */
+    body { margin: 0; }
+    .lab { font-family: var(--font-sans); }
+    .lab { min-height: 100vh; background: var(--bg-app); color: var(--text-primary); font-size: var(--text-base); }
+
+    .lab__barra {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4);
+      padding: var(--space-3) var(--space-5);
+      background: var(--surface); border-bottom: 1px solid var(--border-soft);
+    }
+    .lab__barra h1 { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-bold); }
+    .lab__barra p { margin: 0; flex: 1; min-width: 240px; font-size: var(--text-sm); color: var(--muted-foreground); }
+    .lab__grupo { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+    .lab__etiqueta { align-self: center; margin-right: var(--space-1); font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--muted-foreground); }
+    .lab__toggle {
+      min-height: var(--touch-target); padding: 0 var(--space-3);
+      border: 1px solid var(--input-border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-primary);
+      font: inherit; font-size: var(--text-sm); font-weight: var(--weight-semibold); cursor: pointer;
+    }
+    .lab__toggle[aria-pressed='true'] { background: var(--primary); border-color: var(--primary); color: var(--primary-foreground); }
+    .lab__toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+    .lab__cuerpo { display: grid; gap: var(--space-6); max-width: 1180px; margin: 0 auto; padding: var(--space-6) var(--space-5); }
+    @media (max-width: 600px) { .lab__cuerpo { padding: var(--space-5); } }
+
+    .ronda { display: grid; gap: var(--space-4); }
+    .ronda h3 { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-bold); }
+
+    /* Ronda 3: la mascota grande a la izquierda y la paleta a la derecha. */
+    .taller { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+    @media (max-width: 860px) { .taller { grid-template-columns: 1fr; } }
+    .taller .ficha__escena { height: 340px; }
+    .taller .ficha__mascota { width: 240px; height: 240px; }
+    .panel {
+      display: grid; gap: var(--space-4); padding: var(--space-5);
+      background: var(--surface); border: 1px solid var(--border-soft);
+      border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+    }
+    .paletas { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-2); }
+    .paleta {
+      display: flex; align-items: center; gap: var(--space-2);
+      min-height: var(--touch-target-lg); padding: var(--space-2) var(--space-3);
+      border: 1px solid var(--input-border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-primary);
+      font: inherit; font-size: var(--text-sm); font-weight: var(--weight-semibold); text-align: left; cursor: pointer;
+    }
+    .paleta[aria-pressed='true'] { border-color: var(--primary); outline: 1px solid var(--primary); }
+    .paleta:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    .muestra {
+      flex: none; width: 24px; height: 24px; border-radius: var(--radius-full);
+      background: linear-gradient(var(--a), var(--b)); border: 2px solid var(--c);
+    }
+    .panel h4 { margin: 0; font-size: var(--text-base); font-weight: var(--weight-bold); }
+    .bloque { display: grid; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--border-soft); }
+    .selector { display: grid; gap: var(--space-3); }
+    .selector__sv, .selector__tono { position: relative; touch-action: none; cursor: crosshair; border-radius: var(--radius-sm); }
+    .selector__sv { height: 170px; }
+    .selector__tono { height: 18px; cursor: ew-resize; }
+    .selector canvas { display: block; width: 100%; height: 100%; border-radius: inherit; }
+    .selector__sv:focus-visible, .selector__tono:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    .selector__marca {
+      position: absolute; width: 18px; height: 18px; translate: -50% -50%;
+      border: 3px solid var(--surface); border-radius: var(--radius-full);
+      background: var(--color); box-shadow: var(--shadow-md); pointer-events: none;
+    }
+    .selector__tono .selector__marca { top: 50%; height: 24px; width: 12px; border-radius: var(--radius-xs); }
+    .selector__valor { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); font-size: var(--text-sm); }
+    .selector__muestra { width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--color); border: 1px solid var(--border-soft); }
+    .selector__valor label { display: flex; align-items: center; gap: var(--space-2); color: var(--muted-foreground); }
+    .selector__hex {
+      width: 10ch; min-height: var(--touch-target); padding: 0 var(--space-2);
+      border: 1px solid var(--input-border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-primary); font-family: var(--font-mono); font-size: var(--text-sm);
+    }
+    .selector__hex:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    .selector__rgb { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted-foreground); }
+    .valores { display: grid; grid-template-columns: auto 1fr; gap: var(--space-1) var(--space-4); margin: 0; font-size: var(--text-sm); }
+    .valores dt { color: var(--muted-foreground); }
+    .valores dd { display: flex; align-items: center; gap: var(--space-2); margin: 0; font-family: var(--font-mono); font-size: var(--text-xs); }
+    .valores dd span { width: 14px; height: 14px; border-radius: var(--radius-xs); background: var(--a); border: 1px solid var(--border-soft); }
+    .panel__nota { margin: 0; font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.55; }
+    .comparar { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: var(--space-3); }
+    .comparar button {
+      display: grid; justify-items: center; gap: var(--space-2);
+      padding: var(--space-3) var(--space-2) var(--space-2);
+      border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+      background: var(--bg-app); color: var(--text-primary);
+      font: inherit; font-size: var(--text-xs); font-weight: var(--weight-semibold); cursor: pointer;
+    }
+    .comparar button[aria-pressed='true'] { border-color: var(--primary); outline: 1px solid var(--primary); }
+    .comparar button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    .comparar .mini--104 { pointer-events: none; }
+    .anteriores > summary {
+      cursor: pointer; padding: var(--space-2) 0;
+      font-size: var(--text-lg); font-weight: var(--weight-bold);
+    }
+    .anteriores > summary:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    .anteriores[open] > summary { margin-bottom: var(--space-4); }
+    .anteriores .ronda + .ronda { margin-top: var(--space-6); }
+    .ronda h2 { margin: 0; font-size: var(--text-xl); font-weight: var(--weight-bold); }
+    .ronda > p { margin: 0; max-width: 80ch; color: var(--text-secondary); line-height: 1.55; }
+    .ronda--previa { padding-top: var(--space-6); border-top: 1px solid var(--border-soft); }
+    .fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-5); }
+    .ficha {
+      min-width: 0; display: grid; grid-template-rows: auto 1fr;
+      background: var(--surface); border: 1px solid var(--border-soft);
+      border-radius: var(--radius-card); box-shadow: var(--shadow-card); overflow: hidden;
+    }
+    .ficha__escena {
+      position: relative; display: grid; place-items: end center;
+      height: 300px; padding-bottom: var(--space-4);
+      background: var(--bg-app); border-bottom: 1px solid var(--border-soft);
+    }
+    .ficha__mascota {
+      width: 200px; height: 200px; border-radius: var(--radius-lg);
+      cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none;
+    }
+    .ficha__mascota:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+    .ficha__mascota svg, .mini svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+    /* Lo que dice: texto de interfaz, fuera del dibujo. */
+    .ficha__dice {
+      position: absolute; top: var(--space-3); left: 50%;
+      max-width: calc(100% - var(--space-6)); margin: 0;
+      padding: var(--space-2) var(--space-3);
+      background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      font-size: var(--text-sm); font-weight: var(--weight-medium); text-align: center;
+      opacity: 0; transform: translate(-50%, 6px);
+      transition: opacity var(--duration-base) var(--ease), transform var(--duration-base) var(--ease);
+      pointer-events: none;
+    }
+    .ficha__dice--on { opacity: 1; transform: translate(-50%, 0); }
+    .lab--quieto .ficha__dice { transform: translate(-50%, 0); }
+    @media (prefers-reduced-motion: reduce) { .ficha__dice { transform: translate(-50%, 0); } }
+
+    .ficha__texto { display: grid; align-content: start; gap: var(--space-2); padding: var(--space-5); }
+    .ficha__texto h3 { margin: 0; font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.02em; }
+    .ficha__rol { margin: 0; font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--primary); }
+    .ficha__nota { margin: 0; font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary); }
+    .chips { display: flex; flex-wrap: wrap; gap: var(--space-1); margin: var(--space-1) 0 0; padding: 0; list-style: none; }
+    .chips li {
+      padding: 2px var(--space-2); border-radius: var(--radius-xs);
+      background: var(--muted); font-size: var(--text-xs); color: var(--text-secondary);
+    }
+    .tamanos { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-4); margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border-soft); }
+    .tamanos figure { display: grid; justify-items: center; gap: var(--space-1); margin: 0; }
+    .tamanos figcaption { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted-foreground); }
+    .mini--40 { width: 40px; height: 40px; }
+    .mini--64 { width: 64px; height: 64px; }
+    .mini--104 { width: 104px; height: 104px; }
+
+    .reacciones { display: grid; gap: var(--space-3); }
+    .reacciones h2 { margin: 0; font-size: var(--text-xl); font-weight: var(--weight-bold); }
+    .reacciones > p { margin: 0; max-width: 80ch; color: var(--text-secondary); line-height: 1.55; }
+    .tabla { overflow-x: auto; background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-card); }
+    .tabla table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    .tabla th, .tabla td { padding: var(--space-2) var(--space-4); text-align: left; vertical-align: top; border-bottom: 1px solid var(--border-soft); }
+    .tabla th { font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--muted-foreground); background: var(--muted); }
+    .tabla tr:last-child td { border-bottom: 0; }
+    .tabla td:first-child { font-weight: var(--weight-semibold); white-space: nowrap; }
+    .tabla .grupo td { padding-top: var(--space-3); font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--primary); background: var(--surface); }
+    kbd { padding: 0 var(--space-1); border: 1px solid var(--input-border); border-radius: var(--radius-xs); font-family: var(--font-mono); font-size: var(--text-xs); }
+  </style>
+</head>
+<body>
+  <div class="lab hrl-nuevo" id="lab">
+    <header class="lab__barra">
+      <h1>Laboratorio de la mascota</h1>
+      <p>Cinco médicos para el bot del hospital. Mueva el cursor, haga clic, mantenga presionado, haga clic muchas veces seguidas o quédese quieto 12 segundos.</p>
+      <div class="lab__grupo" role="group" aria-label="Estado del bot" id="estados">
+        <span class="lab__etiqueta">Estado del bot</span>
+        <button type="button" class="lab__toggle" data-estado="reposo" aria-pressed="true">Reposo</button>
+        <button type="button" class="lab__toggle" data-estado="pensando" aria-pressed="false">Pensando</button>
+        <button type="button" class="lab__toggle" data-estado="listo" aria-pressed="false">Listo</button>
+        <button type="button" class="lab__toggle" data-estado="problema" aria-pressed="false">Problema</button>
+      </div>
+      <div class="lab__grupo">
+        <button type="button" class="lab__toggle" id="tema" aria-pressed="false">Modo oscuro</button>
+        <button type="button" class="lab__toggle" id="reducido" aria-pressed="false">Movimiento reducido</button>
+      </div>
+    </header>
+
+    <main class="lab__cuerpo">
+      <section class="ronda" aria-labelledby="ronda3-t">
+        <h2 id="ronda3-t">Ronda 3 · Dr. Mochi y su paleta</h2>
+        <p>La versión elegida (A), ahora sin contorno y sin brillo en los ojos. Elija una paleta o un color propio: cambia el cuerpo, las solapas, el estetoscopio y la tinta de la cara; la bata y el espejo no cambian. Pruebe cada una en modo claro y oscuro, y con los cuatro estados. Al clic ya no suelta nada: solo responde la cara y el cuerpo, y al quinto clic seguido se marea.</p>
+        <div class="taller">
+          <article class="ficha" aria-labelledby="taller-t">
+            <div class="ficha__escena">
+              <p class="ficha__dice" aria-live="polite"></p>
+              <div class="ficha__mascota" id="taller-mascota" role="button" tabindex="0"
+                   aria-label="Dr. Mochi: clic para saludar; mantenga presionado para apretarlo"></div>
+            </div>
+            <div class="ficha__texto">
+              <h3 id="taller-t">Dr. Mochi</h3>
+              <p class="ficha__rol" id="taller-paleta"></p>
+              <div class="tamanos" aria-label="Tamaños de la aplicación">
+                <figure><div class="mini mini--40" id="taller-40"></div><figcaption>40 px</figcaption></figure>
+                <figure><div class="mini mini--64" id="taller-64"></div><figcaption>64 px</figcaption></figure>
+                <figure><div class="mini mini--104" id="taller-104"></div><figcaption>104 px</figcaption></figure>
+              </div>
+            </div>
+          </article>
+          <div class="panel">
+            <h3>Paleta</h3>
+            <div class="paletas" id="paletas" role="group" aria-label="Paleta de colores"></div>
+            <p class="panel__nota" id="paleta-nota"></p>
+            <dl class="valores" id="paleta-valores"></dl>
+
+            <div class="bloque">
+              <h4>Color propio</h4>
+              <div class="lab__grupo" role="group" aria-label="Qué color cambia" id="objetivos">
+                <button type="button" class="lab__toggle" data-objetivo="piel2" aria-pressed="true">Cuerpo</button>
+                <button type="button" class="lab__toggle" data-objetivo="tubo" aria-pressed="false">Estetoscopio</button>
+                <button type="button" class="lab__toggle" data-objetivo="tinta" aria-pressed="false">Ojos y boca</button>
+              </div>
+              <div id="selector"></div>
+              <p class="panel__nota">El cuerpo arrastra a los demás: del color elegido salen el tono claro de arriba, las solapas, el estetoscopio y la tinta. Después se puede ajustar el estetoscopio o la tinta por separado.</p>
+            </div>
+
+            <div class="bloque">
+              <h4>Rasgos</h4>
+              <div class="lab__grupo">
+                <button type="button" class="lab__toggle" id="rasgo-brillo" aria-pressed="false">Brillo en los ojos</button>
+                <button type="button" class="lab__toggle" id="rasgo-boca" aria-pressed="true">Boca</button>
+              </div>
+            </div>
+            <p class="panel__nota">Para confirmarla basta el nombre; el enlace con <code>?paleta=…</code> abre esta página con ella elegida.</p>
+          </div>
+        </div>
+        <h3>Todas a la vez</h3>
+        <div class="comparar" id="comparar" role="group" aria-label="Comparar paletas"></div>
+      </section>
+
+      <details class="anteriores">
+        <summary>Rondas anteriores</summary>
+      <section class="ronda" aria-labelledby="ronda2-t">
+        <h2 id="ronda2-t">Ronda 2 · Dr. Mochi, cinco versiones</h2>
+        <p>Todas comparten la base pedida: cuerpo redondo, verde agua, bata blanca con estetoscopio y sin pómulos rojos (dos llevan mejillas apenas marcadas, del mismo verde). Cambian los accesorios, los ojos, la sonrisa de reposo y el tono de verde. Las expresiones (feliz, preocupado, dormido…) son las mismas en las cinco.</p>
+        <div class="fichas" id="ronda2"></div>
+      </section>
+
+      <section class="ronda ronda--previa" aria-labelledby="ronda1-t">
+        <h2 id="ronda1-t">Ronda 1 · Las cinco primeras, como referencia</h2>
+        <div class="fichas" id="ronda1"></div>
+      </section>
+      </details>
+
+      <section class="reacciones" aria-labelledby="reacciones-t">
+        <h2 id="reacciones-t">Sistema de reacciones</h2>
+        <p>Las cinco mascotas comparten el mismo motor (<code>laboratorio-mascota/motor.js</code>). Cada SVG solo nombra sus piezas: el motor mueve el cuerpo y los accesorios y dibuja los ojos, la boca, el globo y las partículas. Un estado del bot persiste; una reacción se pone encima un momento y se va. Lo que dice la mascota es texto de la interfaz, nunca parte del dibujo.</p>
+        <div class="tabla">
+          <table>
+            <thead><tr><th scope="col">Reacción</th><th scope="col">Se dispara con</th><th scope="col">Qué hace</th><th scope="col">Con movimiento reducido</th></tr></thead>
+            <tbody>
+              <tr class="grupo"><td colspan="4">Estados del bot (persisten)</td></tr>
+              <tr><td>Reposo</td><td>Esperando un archivo</td><td>Respira (inhala más rápido de lo que exhala), parpadea y te sigue con la mirada; los accesorios se balancean un poco al moverse.</td><td>Sin respiración; sigue mirando.</td></tr>
+              <tr><td>Pensando</td><td>Leyendo el Excel</td><td>Se mece, busca con la mirada y muestra «…» en un globo.</td><td>Quieto; los puntos pulsan en su sitio.</td></tr>
+              <tr><td>Listo</td><td>Sin errores</td><td>Salta, suelta destellos; ojos felices y ✓ en el globo.</td><td>Sin salto; los destellos aparecen y se desvanecen.</td></tr>
+              <tr><td>Problema</td><td>Hay errores que corregir</td><td>Se inclina, ceja preocupada, «!» en el globo y gota de sudor.</td><td>Inclinado y quieto; la gota no cae.</td></tr>
+              <tr class="grupo"><td colspan="4">Reacciones (pasajeras)</td></tr>
+              <tr><td>Seguir</td><td>Mover el cursor</td><td>La cara, los accesorios y el cuerpo se orientan al cursor (paralaje por capas).</td><td>Igual, sin inclinar el cuerpo.</td></tr>
+              <tr><td>Curiosear</td><td>El cursor sale de la página</td><td>Mira a su alrededor cada 2–4 s.</td><td>Igual.</td></tr>
+              <tr><td>Rubor</td><td>Cursor encima o foco con <kbd>Tab</kbd></td><td>Se le agrandan los ojos; las que tienen mejillas, se sonrojan un poco.</td><td>Igual.</td></tr>
+              <tr><td>Toque</td><td>Clic, <kbd>Enter</kbd> o <kbd>Espacio</kbd></td><td>Se aplasta, se estira al saltar y sonríe. No suelta nada.</td><td>Sonríe, sin moverse.</td></tr>
+              <tr><td>Apretar</td><td>Mantener presionado</td><td>Se aplasta con ojos «&gt; &lt;»; al soltarlo rebota como gelatina.</td><td>Cambia la cara, sin rebote.</td></tr>
+              <tr><td>Mareo</td><td>5 clics en 1,5 s</td><td>Ojos en espiral, boca ondulada; se tambalea en forma de ocho, primero más y luego menos.</td><td>Ojos en espiral, quieto.</td></tr>
+              <tr><td>Siesta</td><td>12 s sin actividad, en reposo</td><td>Cierra los ojos y suelta «z». Al volver, despierta sorprendido con «?».</td><td>Las «z» aparecen y se desvanecen.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module">
+    import { crearMascota, fijarReducido, reducidoActivo } from '/laboratorio-mascota/motor.js';
+    import { PALETAS, aplicarPaleta, derivarPaleta } from '/laboratorio-mascota/paletas.js';
+    import { crearSelector } from '/laboratorio-mascota/selector-color.js';
+
+    /* Frases comunes a las cinco de la ronda 2: varía el aspecto, no el carácter. */
+    const FRASES_MOCHI = {
+      reposo: 'Consultorio abierto.', pensando: 'Auscultando su Excel…', listo: 'Alta médica: todo en orden.', problema: 'Encontré algo. Veámoslo juntos.',
+      toque: 'Diga «aaa».', apretar: '¡Eso es un abrazo, no una consulta!', mareo: 'Necesito… reposo relativo.', siesta: 'Zzz… (guardia larga)', despertar: '¡Estaba de guardia, lo juro!',
+    };
+    const RONDA2 = [
+      {
+        archivo: 'mochi-a.svg', nombre: 'A · Dr. Mochi', rol: 'Verde agua · el de cabecera',
+        nota: 'La revisión directa del primero: cuerpo casi circular, sin pómulos. Espejo frontal y estetoscopio verde azulado. Ojos en píldora y sonrisa clásica.',
+        accesorios: ['Espejo frontal', 'Estetoscopio', 'Ojos en píldora', 'Sonrisa'],
+      },
+      {
+        archivo: 'mochi-b.svg', nombre: 'B · Mochi residente', rol: 'Aguamarina · curioso',
+        nota: 'Un verde agua más azulado. Lentes redondos y fotocheck en la bata, estetoscopio azul marino. Ojos redondos y boca de gato.',
+        accesorios: ['Lentes', 'Fotocheck', 'Ojos redondos', 'Boca de gato'],
+      },
+      {
+        archivo: 'mochi-c.svg', nombre: 'C · Mochi cirujano', rol: 'Menta · entusiasta',
+        nota: 'Un verde agua hacia la menta. Gorro quirúrgico del verde de la marca. Ojos grandes con doble brillo, sonrisa abierta y mejillas verdes casi imperceptibles.',
+        accesorios: ['Gorro quirúrgico', 'Ojos brillantes', 'Sonrisa abierta', 'Mejillas sutiles'],
+      },
+      {
+        archivo: 'mochi-d.svg', nombre: 'D · Mochi jefe de servicio', rol: 'Verde agua intenso · sobrio',
+        nota: 'El tono más saturado. Insignia con cruz verde y lapicero en el bolsillo. Ojos de punto y sonrisa pequeña: el más sereno.',
+        accesorios: ['Insignia con cruz', 'Lapicero', 'Ojos de punto', 'Sonrisa pequeña'],
+      },
+      {
+        archivo: 'mochi-e.svg', nombre: 'E · Mochi que escucha', rol: 'Verde agua pastel · atento',
+        nota: 'El tono más claro. Lleva el estetoscopio puesto, como quien está auscultando. Ojos con pestañas, sonrisa ladeada y mejillas verdes casi imperceptibles.',
+        accesorios: ['Estetoscopio puesto', 'Pestañas', 'Sonrisa ladeada', 'Mejillas sutiles'],
+      },
+    ].map((v) => ({ ...v, frases: FRASES_MOCHI }));
+
+    const VARIANTES = [
+      {
+        archivo: 'mochi.svg', nombre: '1 · Dr. Mochi', rol: 'Médico de cabecera',
+        nota: 'Tranquilo y cercano: el que te recibe en consulta y escucha antes de diagnosticar. Cuerpo de mochi blando, el que mejor se aplasta. La silueta más simple: la más legible a 40 px.',
+        accesorios: ['Bata con lapicero', 'Estetoscopio', 'Espejo frontal'],
+        frases: {
+          reposo: 'Consultorio abierto.', pensando: 'Auscultando su Excel…', listo: 'Alta médica: todo en orden.', problema: 'Encontré algo. Veámoslo juntos.',
+          toque: 'Diga «aaa».', apretar: '¡Eso es un abrazo, no una consulta!', mareo: 'Necesito… reposo relativo.', siesta: 'Zzz… (guardia larga)', despertar: '¡Estaba de guardia, lo juro!',
+        },
+      },
+      {
+        archivo: 'bloub.svg', nombre: '2 · Bloub', rol: 'Residente',
+        nota: 'Curioso y estudioso, siempre con una pregunta. El cuerpo es un blob que cambia de forma solo, como si respirara. Los lentes van pegados a la cara, así que los ojos nunca se salen.',
+        accesorios: ['Lentes redondos', 'Fotocheck', 'Lápiz en la oreja', 'Mechón'],
+        frases: {
+          reposo: 'Residente de turno, a la orden.', pensando: 'Repasando las guías…', listo: 'Caso resuelto, sin complicaciones.', problema: 'Hay un hallazgo. Se lo comento.',
+          toque: '¿Eso fue un reflejo rotuliano?', apretar: '¡Cuidado con los lentes!', mareo: 'Anotar: vértigo posicional.', siesta: 'Zzz… (repasando en sueños)', despertar: '¡Ya leí el capítulo!',
+        },
+      },
+      {
+        archivo: 'capsula.svg', nombre: '3 · Cápsula', rol: 'Cirujana',
+        nota: 'Precisa y enérgica: revisa casilla por casilla como quien cuenta gasas. Una cápsula de dos colores; el gorro y la mascarilla dicen «quirófano» sin más.',
+        accesorios: ['Gorro quirúrgico', 'Mascarilla bajada', 'Uniforme'],
+        frases: {
+          reposo: 'Quirófano listo.', pensando: 'Revisando cada casilla…', listo: 'Intervención exitosa.', problema: 'Hay que corregir antes de cerrar.',
+          toque: '¡Hola! Manos lavadas, lista.', apretar: '¡Técnica estéril, por favor!', mareo: 'Pausa quirúrgica…', siesta: 'Zzz… (entre cirugías)', despertar: '¡Lista para entrar a sala!',
+        },
+      },
+      {
+        archivo: 'pulso.svg', nombre: '4 · Pulso', rol: 'Monitor de signos vitales',
+        nota: 'El más «bot» de los cinco: vigilante y literal. La boca es un electrocardiograma que late según el estado: rápido al leer, irregular con errores, lento dormido.',
+        accesorios: ['Pantalla', 'Electrodo', 'Ruedas', 'Luz de encendido'],
+        frases: {
+          reposo: 'Monitoreando.', pensando: 'Leyendo los signos vitales del Excel…', listo: 'Ritmo normal. Todo en orden.', problema: 'Alerta: valores fuera de rango.',
+          toque: 'Pulso detectado. ¡Hola!', apretar: '¡Presión alta, presión alta!', mareo: 'Arritmia transitoria…', siesta: 'Zzz… (modo ahorro)', despertar: 'Señal recuperada.',
+        },
+      },
+      {
+        archivo: 'hexa.svg', nombre: '5 · Hexa', rol: 'Jefe de servicio',
+        nota: 'La mascota de hoy (DiceBear «Gaze») con los mismos ojos y el mismo verde, ascendida a veterano: espejo frontal, monóculo y corbatín. Continuidad para quien ya la conoce.',
+        accesorios: ['Espejo frontal', 'Monóculo', 'Corbatín'],
+        frases: {
+          reposo: 'A sus órdenes.', pensando: 'Revisando la historia clínica…', listo: 'Diagnóstico: sin errores.', problema: 'Algo no cuadra. Veámoslo.',
+          toque: '¡Hola! Sigo siendo yo.', apretar: 'Con cuidado, que tengo esquinas.', mareo: 'Seis lados y todos giran…', siesta: 'Zzz… (treinta años de guardias)', despertar: '¿Quién me llamó a consulta?',
+        },
+      },
+    ];
+
+    const mascotas = [];
+
+    function hablar(nodo, texto) {
+      if (!texto) return;
+      nodo.textContent = texto;
+      nodo.classList.add('ficha__dice--on');
+      clearTimeout(nodo.temporizador);
+      nodo.temporizador = setTimeout(() => nodo.classList.remove('ficha__dice--on'), 2600);
+    }
+
+    async function pintar(lista, destino, prefijo) {
+      const textos = await Promise.all(lista.map((v) => fetch(`/laboratorio-mascota/${v.archivo}`).then((r) => r.text())));
+      lista.forEach((v, i) => {
+        const id = `${prefijo}-${i}`;
+        const ficha = document.createElement('article');
+        ficha.className = 'ficha';
+        ficha.setAttribute('aria-labelledby', id);
+        ficha.innerHTML = `
+          <div class="ficha__escena">
+            <p class="ficha__dice" aria-live="polite"></p>
+            <div class="ficha__mascota" role="button" tabindex="0"
+                 aria-label="${v.nombre.split(' · ')[1]}: clic para saludar; mantenga presionado para apretarlo"></div>
+          </div>
+          <div class="ficha__texto">
+            <h3 id="${id}">${v.nombre}</h3>
+            <p class="ficha__rol">${v.rol}</p>
+            <p class="ficha__nota">${v.nota}</p>
+            <ul class="chips" aria-label="Rasgos">${v.accesorios.map((a) => `<li>${a}</li>`).join('')}</ul>
+            <div class="tamanos" aria-label="Tamaños de la aplicación">
+              ${[40, 64, 104].map((n) => `<figure><div class="mini mini--${n}"></div><figcaption>${n} px</figcaption></figure>`).join('')}
+            </div>
+          </div>`;
+        destino.append(ficha);
+
+        const dice = ficha.querySelector('.ficha__dice');
+        mascotas.push(crearMascota(ficha.querySelector('.ficha__mascota'), textos[i], {
+          alReaccionar: (clave) => hablar(dice, v.frases[clave]),
+        }));
+        for (const mini of ficha.querySelectorAll('.mini')) {
+          mascotas.push(crearMascota(mini, textos[i], { interactiva: false }));
+        }
+      });
+    }
+
+    /* Ronda 3: una mascota grande, sus tamaños reales y una por paleta. */
+    const textoMochi = await fetch('/laboratorio-mascota/dr-mochi.svg').then((r) => r.text());
+    const diceTaller = document.querySelector('#taller-mascota').closest('.ficha__escena').querySelector('.ficha__dice');
+    const taller = [
+      crearMascota(document.getElementById('taller-mascota'), textoMochi, { alReaccionar: (clave) => hablar(diceTaller, FRASES_MOCHI[clave]) }),
+      ...[40, 64, 104].map((n) => crearMascota(document.getElementById(`taller-${n}`), textoMochi, { interactiva: false })),
+    ];
+    mascotas.push(...taller);
+
+    const grupoPaletas = document.getElementById('paletas');
+    const comparar = document.getElementById('comparar');
+    const botonesPaleta = [];
+    const comparadas = [];
+    for (const paleta of PALETAS) {
+      const boton = document.createElement('button');
+      boton.type = 'button';
+      boton.className = 'paleta';
+      boton.dataset.paleta = paleta.id;
+      boton.innerHTML = `<span class="muestra" aria-hidden="true"></span>${paleta.nombre}`;
+      const muestra = boton.querySelector('.muestra');
+      muestra.style.setProperty('--a', paleta.piel1);
+      muestra.style.setProperty('--b', paleta.piel2);
+      muestra.style.setProperty('--c', paleta.piel2);
+      grupoPaletas.append(boton);
+
+      const tarjeta = document.createElement('button');
+      tarjeta.type = 'button';
+      tarjeta.dataset.paleta = paleta.id;
+      tarjeta.innerHTML = `<div class="mini mini--104"></div><span>${paleta.nombre}</span>`;
+      comparar.append(tarjeta);
+      const mini = crearMascota(tarjeta.querySelector('.mini'), textoMochi, { interactiva: false });
+      aplicarPaleta(mini.svg, paleta);
+      mascotas.push(mini);
+      comparadas.push(mini);
+
+      botonesPaleta.push(boton, tarjeta);
+    }
+
+    const ETIQUETAS = [['piel1', 'Cuerpo, arriba'], ['piel2', 'Cuerpo, abajo'], ['solapa', 'Solapas'], ['tubo', 'Estetoscopio'], ['tinta', 'Ojos y boca']];
+    let actual = PALETAS[0];
+    let objetivo = 'piel2';
+
+    function mostrar(paleta) {
+      actual = paleta;
+      for (const m of taller) aplicarPaleta(m.svg, paleta);
+      for (const b of botonesPaleta) b.setAttribute('aria-pressed', String(b.dataset.paleta === paleta.id));
+      document.getElementById('taller-paleta').textContent = `Paleta: ${paleta.nombre}`;
+      document.getElementById('paleta-nota').textContent = paleta.nota;
+      const valores = document.getElementById('paleta-valores');
+      valores.innerHTML = ETIQUETAS.map(([clave, texto]) => `<dt>${texto}</dt><dd><span></span>${paleta[clave]}</dd>`).join('');
+      valores.querySelectorAll('dd span').forEach((el, i) => el.style.setProperty('--a', paleta[ETIQUETAS[i][0]]));
+      const url = new URL(location.href);
+      if (paleta.id === 'propia') { url.searchParams.delete('paleta'); url.searchParams.set('color', paleta.piel2.slice(1)); }
+      else { url.searchParams.delete('color'); url.searchParams.set('paleta', paleta.id); }
+      history.replaceState(null, '', url);
+    }
+
+    /* Color propio: el cuerpo deriva la paleta entera; el estetoscopio y la
+       tinta solo cambian lo suyo, sobre la paleta que haya. */
+    const selector = crearSelector(document.getElementById('selector'), {
+      alCambiar: (hex) => {
+        if (objetivo === 'piel2') mostrar(derivarPaleta(hex));
+        else mostrar({ ...actual, id: 'propia', nombre: 'Color propio', nota: 'Ajustada a mano.', [objetivo]: hex });
+      },
+    });
+    const botonesObjetivo = [...document.querySelectorAll('#objetivos [data-objetivo]')];
+    for (const b of botonesObjetivo) {
+      b.addEventListener('click', () => {
+        objetivo = b.dataset.objetivo;
+        for (const o of botonesObjetivo) o.setAttribute('aria-pressed', String(o === b));
+        selector.fijar(actual[objetivo]);
+      });
+    }
+
+    function elegirPaleta(id) {
+      mostrar(PALETAS.find((p) => p.id === id) ?? PALETAS[0]);
+      selector.fijar(actual[objetivo]);
+    }
+    for (const b of botonesPaleta) b.addEventListener('click', () => elegirPaleta(b.dataset.paleta));
+
+    const inicial = new URLSearchParams(location.search);
+    if (/^[0-9a-f]{6}$/i.test(inicial.get('color') ?? '')) {
+      mostrar(derivarPaleta(`#${inicial.get('color')}`));
+      selector.fijar(actual.piel2);
+    } else elegirPaleta(inicial.get('paleta'));
+
+    /* Rasgos: valen para todas las de esta ronda. */
+    const rondaTres = [...taller, ...comparadas];
+    function rasgo(id, aplicar) {
+      const boton = document.getElementById(id);
+      boton.addEventListener('click', () => {
+        const activo = boton.getAttribute('aria-pressed') !== 'true';
+        boton.setAttribute('aria-pressed', String(activo));
+        for (const m of rondaTres) aplicar(m, activo);
+      });
+    }
+    rasgo('rasgo-brillo', (m, v) => m.fijarBrillo(v));
+    rasgo('rasgo-boca', (m, v) => m.fijarBoca(v));
+
+    await pintar(RONDA2, document.getElementById('ronda2'), 'r2');
+    await pintar(VARIANTES, document.getElementById('ronda1'), 'r1');
+
+    const botonesEstado = [...document.querySelectorAll('#estados [data-estado]')];
+    const fijarEstado = (estado) => {
+      for (const b of botonesEstado) b.setAttribute('aria-pressed', String(b.dataset.estado === estado));
+      for (const m of mascotas) m.setEstado(estado);
+    };
+    for (const boton of botonesEstado) boton.addEventListener('click', () => fijarEstado(boton.dataset.estado));
+
+    /* Tema: el atributo del kit en <html>. */
+    const raiz = document.documentElement;
+    const tema = document.getElementById('tema');
+    const fijarTema = (oscuro) => {
+      raiz.dataset.temaHrl = oscuro ? 'oscuro' : 'claro';
+      tema.setAttribute('aria-pressed', String(oscuro));
+    };
+    tema.addEventListener('click', () => fijarTema(raiz.dataset.temaHrl !== 'oscuro'));
+
+    /* Arranca con la preferencia del sistema; el botón la simula. */
+    const quieto = document.getElementById('reducido');
+    const aplicarQuieto = (valor) => {
+      fijarReducido(valor);
+      quieto.setAttribute('aria-pressed', String(valor));
+      document.getElementById('lab').classList.toggle('lab--quieto', valor);
+    };
+    quieto.addEventListener('click', () => aplicarQuieto(!reducidoActivo()));
+
+    /* Enlace directo a una combinación: ?estado=problema&tema=oscuro&quieto=1 */
+    const params = new URLSearchParams(location.search);
+    aplicarQuieto(params.has('quieto') ? params.get('quieto') === '1' : reducidoActivo());
+    if (params.get('tema') === 'oscuro') fijarTema(true);
+    if (botonesEstado.some((b) => b.dataset.estado === params.get('estado'))) fijarEstado(params.get('estado'));
+  </script>
+</body>
+</html>

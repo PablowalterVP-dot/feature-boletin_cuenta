@@ -1,0 +1,48 @@
+{
+  "estados": [
+    {
+      "clave": "no_iniciado",
+      "orden": 0,
+      "espera": "area"
+    },
+    {
+      "clave": "borrador",
+      "orden": 1,
+      "espera": "area"
+    },
+    {
+      "clave": "remitido",
+      "orden": 2,
+      "espera": "nadie"
+    }
+  ],
+  "transiciones": [
+    {
+      "accion": "crear",
+      "desde": [
+        "no_iniciado"
+      ],
+      "hasta": "borrador",
+      "rol": "area",
+      "confirmar": false
+    },
+    {
+      "accion": "enviar",
+      "desde": [
+        "borrador"
+      ],
+      "hasta": "remitido",
+      "rol": "area",
+      "confirmar": true
+    },
+    {
+      "accion": "rectificar",
+      "desde": [
+        "remitido"
+      ],
+      "hasta": "borrador",
+      "rol": "estadistica",
+      "confirmar": true
+    }
+  ]
+}
